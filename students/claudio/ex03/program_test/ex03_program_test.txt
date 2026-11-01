@@ -1,0 +1,6 @@
+ Program
+   Robot Program
+     Home
+     MoveJ
+       Waypoint_1
+     Popup: Moved to position Waypoint_1

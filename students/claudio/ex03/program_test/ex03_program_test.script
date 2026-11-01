@@ -1,0 +1,43 @@
+def ex03_program_test():
+  set_tool_communication(False, 115200, 0, 1, 1.5, 3.5)
+  set_tool_output_mode(0)
+  set_tool_digital_output_mode(0, 1)
+  set_tool_digital_output_mode(1, 1)
+  set_tool_voltage(0)
+  step_count_2a282927_1013_4673_bde4_ded9050f0a89 = 0.0
+  thread Step_Counter_Thread_17f0de44_3912_440c_a20a_e185e7b6168e():
+    while (True):
+      step_count_2a282927_1013_4673_bde4_ded9050f0a89 = step_count_2a282927_1013_4673_bde4_ded9050f0a89 + 1.0
+      sync()
+    end
+  end
+  run Step_Counter_Thread_17f0de44_3912_440c_a20a_e185e7b6168e()
+  set_gravity([0.0, 0.0, 9.82])
+  set_safety_mode_transition_hardness(1)
+  set_tcp(p[0.0,0.0,0.0,0.0,0.0,0.0])
+  set_payload(0.0)
+  set_standard_analog_input_domain(0, 1)
+  set_standard_analog_input_domain(1, 1)
+  set_tool_analog_input_domain(0, 1)
+  set_tool_analog_input_domain(1, 1)
+  set_analog_outputdomain(0, 0)
+  set_analog_outputdomain(1, 0)
+  set_input_actions_to_default()
+  global wall=p[3.6739403974420595E-17,0.0,3.6739403974420595E-17,1.5707963267948972,2.0135389160805275E-16,-3.7574731650848416E-16]
+  # begin: URCap Installation Node
+  #   Source: Remote TCP & Toolpath, 1.2.65.build36, Universal Robots A/S
+  #   Type: Remote TCP & Toolpath
+  # end: URCap Installation Node
+  global Waypoint_1_p=p[-.212519564903, -.093238980462, .250867379523, -.897095535393, -2.536397313072, -.561418272642]
+  global Waypoint_1_q=[-1.9036518201581956, -0.8837961635043872, -2.554351438387883, -1.704761742106495, 1.1892155401454754, 0.4314681400316744]
+  while (True):
+    $ 1 "Robot Program"
+    $ 2 "Home"
+    movej([0.0, -1.5707963267948966, 0.0, -1.5707963267948966, 0.0, 0.0], a=1.3962634015954636, v=1.0471975511965976)
+    $ 3 "MoveJ"
+    $ 4 "Waypoint_1" "breakAfter"
+    movej(get_inverse_kin(Waypoint_1_p, qnear=Waypoint_1_q), a=1.3962634015954636, v=1.0471975511965976)
+    $ 5 "Popup: Moved to position Waypoint_1"
+    popup("Moved to position Waypoint_1", "Message", False, False, blocking=True)
+  end
+end
