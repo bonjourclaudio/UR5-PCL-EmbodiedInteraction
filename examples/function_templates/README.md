@@ -81,10 +81,13 @@ Order in the lab:
 
 1. Pendant: robot ON → START, header icon → **Remote Control**, speed slider
    down (30 %), hand near the stop.
-2. Freedrive the arm **over the table** — the measured cell is
-   x −0.485…−0.201, y −0.286…0.240, z ≤ 0.234 m (`cart_against_wall`);
-   anything parked beyond the table's front edge is outside and would be
-   rejected as a target.
+2. Freedrive the arm **over the table** — the cell box is
+   x −0.485…−0.201, y −0.286…0.240, z 0.03…0.60 m (`cart_against_wall`);
+   anything beyond the table's front edge is outside and would be rejected as
+   a target. After teaching, the script prints the box; a `!! clipped` line
+   means part of your box lies outside the cell — `ws.pose/grid/line` then use
+   the clipped part, and a taught point listed as outside (e.g. `home`) must be
+   re-taught, because the arm is not allowed to go there.
 3. `python examples/function_templates/00_teach_workspace.py --target real`
    — all four points over the table, `home` included.
 4. `python examples/function_templates/01_read_state.py --target real`

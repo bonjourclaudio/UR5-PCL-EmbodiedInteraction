@@ -274,11 +274,14 @@ You normally work in simulation; driving the real arm happens only in the lab,
 supervised.
 
 Where the arm is parked matters: the first target of every script must be
-inside the box. The cell box is x −0.485…−0.201, y −0.286…0.240, z ≤ 0.234 m
+inside the box. The cell box is x −0.485…−0.201, y −0.286…0.240, z 0.03…0.60 m
 (Base frame, the table in front of the robot) — an arm hanging beyond the
 table's front edge is outside, and a workspace taught there would have no
 overlap with the cell (`WorkspaceError`). Freedrive it over the table before
-teaching.
+teaching. If only part of your taught box sticks out, `00_teach_workspace.py`
+/ `ws.describe()` print a `!! clipped` line: `ws.pose/grid/line` then use the
+clipped part automatically, but a taught point listed as outside (`home`,
+`top`, …) is a place the arm may not go — teach it again inside.
 
 `scripts/smoke_test_move.py` is wired to the sim host and bypasses the checks —
 it is not meant for the real arm.

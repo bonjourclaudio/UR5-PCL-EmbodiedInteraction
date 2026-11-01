@@ -1,6 +1,6 @@
 # ur5e framework — source snapshot
 
-Generated 2026-10-29T09:16Z from git e90c704
+Generated 2026-10-29T10:10Z from git 3fa684c
 by context/make_source_snapshot.sh. The files below are the student-facing
 framework (src/ur5e/, without the viewer) and the function templates, verbatim.
 When this snapshot and the repo disagree, the repo is right — regenerate.
@@ -372,6 +372,16 @@ class Workspace:
         b = self.box
         return tuple(round((hi - lo) * 1000) for lo, hi in (b.x, b.y, b.z))
 
+    @property
+    def usable_box(self) -> Box:
+        """The box poses are generated in: the taught box intersected with the
+        cell profile on the real arm (= what Robot(profile=ws) enforces). Same as
+        `box` in the sim or when the taught box lies inside the cell."""
+        try:
+            return self.profile(self.target).workspace
+        except WorkspaceError:
+            return self.box
+
     # ------------------------------------------------------------ geometry --
     def pose(self, u: float, v: float, w: float) -> List[float]:
         """Pose at fractions of the box: u along x, v along y, w along z, each
@@ -379,7 +389,7 @@ class Workspace:
         for name, val in (("u", u), ("v", v), ("w", w)):
             if not 0.0 <= val <= 1.0:
                 raise ValueError(f"{name}={val} is outside 0..1 — fractions of the workspace box")
-        b = self.box
+        b = self.usable_box
 
         def along(lo_hi, f):
             lo, hi = lo_hi
@@ -503,10 +513,26 @@ class Workspace:
     def describe(self) -> str:
         b = self.box
         sx, sy, sz = self.size_mm
-        return (f"workspace '{self.path or '(unsaved)'}' taught on {self.target} {self.taught_at}\n"
-                f"  box x {b.x[0]:+.3f}..{b.x[1]:+.3f}  y {b.y[0]:+.3f}..{b.y[1]:+.3f}  "
-                f"z {b.z[0]:+.3f}..{b.z[1]:+.3f} m   ({sx} x {sy} x {sz} mm)\n"
-                f"  home joints [deg]: {[round(q * 57.2958, 1) for q in self.home_joints]}")
+        out = (f"workspace '{self.path or '(unsaved)'}' taught on {self.target} {self.taught_at}\n"
+               f"  box x {b.x[0]:+.3f}..{b.x[1]:+.3f}  y {b.y[0]:+.3f}..{b.y[1]:+.3f}  "
+               f"z {b.z[0]:+.3f}..{b.z[1]:+.3f} m   ({sx} x {sy} x {sz} mm)\n"
+               f"  home joints [deg]: {[round(q * 57.2958, 1) for q in self.home_joints]}")
+        # On the real arm the usable box is the intersection with the cell profile:
+        # say so when that clips anything, naming the taught points that fall outside.
+        try:
+            c = self.profile(self.target).workspace
+        except WorkspaceError as e:
+            return out + f"\n  !! {e}"
+        if (c.x, c.y, c.z) != (b.x, b.y, b.z):
+            outside = [n for n in ("corner_a", "corner_b", "top", "home")
+                       if not c.contains(getattr(self, n)[:3])]
+            out += (f"\n  !! clipped to the cell profile -> usable x {c.x[0]:+.3f}..{c.x[1]:+.3f}  "
+                    f"y {c.y[0]:+.3f}..{c.y[1]:+.3f}  z {c.z[0]:+.3f}..{c.z[1]:+.3f} m "
+                    f"(ws.pose/grid/line use this box)"
+                    + (f"\n  !! taught points outside the cell: {', '.join(outside)} — "
+                       f"move_joints(home_joints) / moves to them are rejected; teach again inside"
+                       if outside else ""))
+        return out
 
 
 def demo_sim_workspace(start_pose: Sequence[float], start_joints: Sequence[float]) -> Workspace:
@@ -567,10 +593,19 @@ class Box:
     y: tuple[float, float]
     z: tuple[float, float]
 
-    def contains(self, p) -> bool:
-        return (self.x[0] <= p[0] <= self.x[1]
-                and self.y[0] <= p[1] <= self.y[1]
-                and self.z[0] <= p[2] <= self.z[1])
+    def contains(self, p, tol: float = 0.0) -> bool:
+        """True if p=(x,y,z) lies inside the box, grown by `tol` metres on every side."""
+        return (self.x[0] - tol <= p[0] <= self.x[1] + tol
+                and self.y[0] - tol <= p[1] <= self.y[1] + tol
+                and self.z[0] - tol <= p[2] <= self.z[1] + tol)
+
+
+# Joint targets are checked through the NOMINAL UR5e kinematics (kinematics.py),
+# the controller uses its calibrated model: the two differ by up to a few mm
+# (measured 2026-10-29 on the lab arm: 0.2-1.0 mm). A point taught as a box corner
+# therefore sits exactly on the edge and would be rejected without this slack.
+# Cartesian targets (move_to) are controller coordinates and get no tolerance.
+FK_TOLERANCE_M = 0.005
 
 
 @dataclass(frozen=True)
@@ -601,17 +636,17 @@ class SafetyLimits:
             if not (lo <= q[i] <= hi):
                 raise SafetyViolation(
                     f"joint {i} = {q[i]:.3f} rad outside limit [{lo:.3f}, {hi:.3f}]")
-        self.check_workspace(fk_tcp_position(q))
+        self.check_workspace(fk_tcp_position(q), tol=FK_TOLERANCE_M, what="joint target (flange FK)")
 
     def check_pose_target(self, pose) -> None:
         if len(pose) != 6:
             raise SafetyViolation(f"expected 6-element pose, got {len(pose)}")
         self.check_workspace(pose[:3])
 
-    def check_workspace(self, xyz) -> None:
-        if not self.workspace.contains(xyz):
+    def check_workspace(self, xyz, tol: float = 0.0, what: str = "target") -> None:
+        if not self.workspace.contains(xyz, tol):
             raise SafetyViolation(
-                f"target {tuple(round(float(v), 3) for v in xyz)} outside "
+                f"{what} {tuple(round(float(v), 3) for v in xyz)} outside "
                 f"workspace box of profile '{self.name}'")
 
     def check_joint_speed(self, speed, accel) -> None:
@@ -640,10 +675,11 @@ PROFILES = {
     # wall (~180deg). SLOW speeds; tcp_speed_max 0.15 m/s stays under the PolyScope
     # tool-speed limit (0.25 m/s), keeping software stricter than the controller.
     #
-    # VALIDATED: workspace box captured via scripts/teach_workspace.py against the
-    # real cell (front = -X). The box is deliberately conservative (slightly inside
-    # the physical surface) — it will reject moves beyond the captured region.
-    # Re-capture and replace this Box if the cell layout changes.
+    # VALIDATED: x/y of the workspace box captured via scripts/teach_workspace.py
+    # against the real cell (front = -X), deliberately conservative (slightly
+    # inside the physical surface). z max raised from the captured 0.234 m to
+    # 0.60 m on 2026-10-29 (first lab teach: home/top at 0.57 m; nothing above the
+    # table within that height). Re-capture / edit if the cell layout changes.
     "cart_against_wall": SafetyLimits(
         name="cart_against_wall",
         tcp_speed_max=0.15,        # 150 mm/s  (< PolyScope tool-speed limit 250 mm/s)
@@ -651,7 +687,7 @@ PROFILES = {
         joint_speed_max=0.5,
         joint_accel_max=0.8,
         joint_limits=_FULL_JOINTS,
-        workspace=Box(x=(-0.4853, -0.2013), y=(-0.2859, 0.2401), z=(0.0287, 0.2337)),  # captured (teach_workspace)
+        workspace=Box(x=(-0.4853, -0.2013), y=(-0.2859, 0.2401), z=(0.0287, 0.60)),  # x/y captured; z max set 2026-10-29
         payload_max_kg=0.5,
         require_payload=True,
         require_tcp=True,
@@ -1079,10 +1115,13 @@ Order in the lab:
 
 1. Pendant: robot ON → START, header icon → **Remote Control**, speed slider
    down (30 %), hand near the stop.
-2. Freedrive the arm **over the table** — the measured cell is
-   x −0.485…−0.201, y −0.286…0.240, z ≤ 0.234 m (`cart_against_wall`);
-   anything parked beyond the table's front edge is outside and would be
-   rejected as a target.
+2. Freedrive the arm **over the table** — the cell box is
+   x −0.485…−0.201, y −0.286…0.240, z 0.03…0.60 m (`cart_against_wall`);
+   anything beyond the table's front edge is outside and would be rejected as
+   a target. After teaching, the script prints the box; a `!! clipped` line
+   means part of your box lies outside the cell — `ws.pose/grid/line` then use
+   the clipped part, and a taught point listed as outside (e.g. `home`) must be
+   re-taught, because the arm is not allowed to go there.
 3. `python examples/function_templates/00_teach_workspace.py --target real`
    — all four points over the table, `home` included.
 4. `python examples/function_templates/01_read_state.py --target real`

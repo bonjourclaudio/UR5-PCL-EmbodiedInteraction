@@ -151,8 +151,10 @@ lines runs on sim and real with the same flag. `argument_parser` is a normal
 | `robot.limits` | the active `SafetyLimits` | |
 
 Every move is **validated before it is sent**: target inside the profile's
-workspace box (`move_to`: the target xyz; `move_joints`: the flange position
-from forward kinematics), speed/accel ≤ ceilings, joints within ±2π. A
+workspace box (`move_to`: the target xyz, exact; `move_joints`: the flange
+position from nominal forward kinematics, with 5 mm tolerance
+(`FK_TOLERANCE_M`) because the controller's calibrated model differs by up to
+a few mm), speed/accel ≤ ceilings, joints within ±2π. A
 violation raises `SafetyViolation` with a readable message and **nothing
 moves**; values are never clamped.
 
@@ -173,7 +175,8 @@ ws.grid(nx, ny, w=0.1, margin=0.05)     # poses over the area at height fraction
 ws.line(a_uvw, b_uvw, n)                # n poses between two fractional points
 ws.home_joints                          # taught home, rad  -> robot.move_joints(ws.home_joints)
 ws.home, ws.corner_a, ws.corner_b, ws.top   # the taught poses
-ws.box                                  # Box(x=(lo,hi), y=(..), z=(..)) in metres, Base frame
+ws.box                                  # taught Box(x=(lo,hi), y=(..), z=(..)) in metres, Base frame
+ws.usable_box                           # taught box ∩ cell profile on real (what pose/grid/line and the checks use)
 ws.orientation                          # rotation vector taught at corner A
 ws.profile(target)                      # SafetyLimits for this box (real: clipped to cart_against_wall)
 ws.describe(); ws.size_mm; ws.target    # "sim" or "real"
@@ -231,7 +234,10 @@ with Robot(target="sim", profile=ws) as robot:
 
 `Robot(profile=ws)` makes the box the safety profile: in the sim with
 `sim_open`'s speed guards; on the real arm the box is **intersected with
-`cart_against_wall`** and that profile's ceilings apply. A sim-taught file is
+`cart_against_wall`** and that profile's ceilings apply. `ws.pose/grid/line`
+generate inside that intersection (`ws.usable_box`); `ws.describe()` prints a
+`!! clipped` line and names taught points (e.g. `home`) that fall outside the
+cell — moving to those is rejected, so they have to be re-taught. A sim-taught file is
 refused for the real arm (`WorkspaceError`).
 
 ## 6. Safety profiles (src/ur5e/safety.py) — numbers
@@ -239,7 +245,7 @@ refused for the real arm (`WorkspaceError`).
 | profile | tcp speed / accel max | joint speed / accel max | workspace box (m, Base) | payload max | real-arm requirements |
 |---|---|---|---|---|---|
 | `sim_open` (sim default) | 0.25 m/s, 0.8 m/s² | 0.8 rad/s, 1.2 rad/s² | x ±0.9, y ±0.9, z −0.25…1.0 | 0.5 kg | — (not validated) |
-| `cart_against_wall` (real default) | 0.15 m/s, 0.5 m/s² | 0.5 rad/s, 0.8 rad/s² | x −0.4853…−0.2013, y −0.2859…0.2401, z 0.0287…0.2337 (captured on the real cell) | 0.5 kg | `allow_real=True`, `validated=True` ✓, payload set, TCP set |
+| `cart_against_wall` (real default) | 0.15 m/s, 0.5 m/s² | 0.5 rad/s, 0.8 rad/s² | x −0.4853…−0.2013, y −0.2859…0.2401, z 0.0287…0.60 (x/y captured on the real cell; z max set 2026-10-29) | 0.5 kg | `allow_real=True`, `validated=True` ✓, payload set, TCP set |
 
 Joint limits ±2π on all joints. The **real-arm gate** (`MotionController`):
 motion to a non-sim host needs all of `allow_real=True`, a validated
@@ -267,7 +273,7 @@ the robot.**
   allow_real=True, payload_kg=…, tcp=…)` or the `ur5e.cli` lines) — only with
   the instructor present, speed slider down, hand near the e-stop. The arm must
   be **over the table** first: the cell box is x −0.485…−0.201,
-  y −0.286…0.240, z ≤ 0.234 m; parked beyond the front edge it is outside,
+  y −0.286…0.240, z 0.03…0.60 m; parked beyond the front edge it is outside,
   and a workspace taught there has no overlap with the cell.
 - No tool mounted by default (payload 0, TCP 0). A `tool_example` preset
   exists in `toolheads/` (80 mm flange plate + probe, TCP ≈ (0, 21, 108) mm —

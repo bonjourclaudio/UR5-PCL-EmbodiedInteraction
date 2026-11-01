@@ -87,6 +87,16 @@ class Workspace:
         b = self.box
         return tuple(round((hi - lo) * 1000) for lo, hi in (b.x, b.y, b.z))
 
+    @property
+    def usable_box(self) -> Box:
+        """The box poses are generated in: the taught box intersected with the
+        cell profile on the real arm (= what Robot(profile=ws) enforces). Same as
+        `box` in the sim or when the taught box lies inside the cell."""
+        try:
+            return self.profile(self.target).workspace
+        except WorkspaceError:
+            return self.box
+
     # ------------------------------------------------------------ geometry --
     def pose(self, u: float, v: float, w: float) -> List[float]:
         """Pose at fractions of the box: u along x, v along y, w along z, each
@@ -94,7 +104,7 @@ class Workspace:
         for name, val in (("u", u), ("v", v), ("w", w)):
             if not 0.0 <= val <= 1.0:
                 raise ValueError(f"{name}={val} is outside 0..1 — fractions of the workspace box")
-        b = self.box
+        b = self.usable_box
 
         def along(lo_hi, f):
             lo, hi = lo_hi
@@ -218,10 +228,26 @@ class Workspace:
     def describe(self) -> str:
         b = self.box
         sx, sy, sz = self.size_mm
-        return (f"workspace '{self.path or '(unsaved)'}' taught on {self.target} {self.taught_at}\n"
-                f"  box x {b.x[0]:+.3f}..{b.x[1]:+.3f}  y {b.y[0]:+.3f}..{b.y[1]:+.3f}  "
-                f"z {b.z[0]:+.3f}..{b.z[1]:+.3f} m   ({sx} x {sy} x {sz} mm)\n"
-                f"  home joints [deg]: {[round(q * 57.2958, 1) for q in self.home_joints]}")
+        out = (f"workspace '{self.path or '(unsaved)'}' taught on {self.target} {self.taught_at}\n"
+               f"  box x {b.x[0]:+.3f}..{b.x[1]:+.3f}  y {b.y[0]:+.3f}..{b.y[1]:+.3f}  "
+               f"z {b.z[0]:+.3f}..{b.z[1]:+.3f} m   ({sx} x {sy} x {sz} mm)\n"
+               f"  home joints [deg]: {[round(q * 57.2958, 1) for q in self.home_joints]}")
+        # On the real arm the usable box is the intersection with the cell profile:
+        # say so when that clips anything, naming the taught points that fall outside.
+        try:
+            c = self.profile(self.target).workspace
+        except WorkspaceError as e:
+            return out + f"\n  !! {e}"
+        if (c.x, c.y, c.z) != (b.x, b.y, b.z):
+            outside = [n for n in ("corner_a", "corner_b", "top", "home")
+                       if not c.contains(getattr(self, n)[:3])]
+            out += (f"\n  !! clipped to the cell profile -> usable x {c.x[0]:+.3f}..{c.x[1]:+.3f}  "
+                    f"y {c.y[0]:+.3f}..{c.y[1]:+.3f}  z {c.z[0]:+.3f}..{c.z[1]:+.3f} m "
+                    f"(ws.pose/grid/line use this box)"
+                    + (f"\n  !! taught points outside the cell: {', '.join(outside)} — "
+                       f"move_joints(home_joints) / moves to them are rejected; teach again inside"
+                       if outside else ""))
+        return out
 
 
 def demo_sim_workspace(start_pose: Sequence[float], start_joints: Sequence[float]) -> Workspace:
