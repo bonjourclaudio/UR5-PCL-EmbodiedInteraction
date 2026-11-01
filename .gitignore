@@ -3,7 +3,7 @@ programs/*
 !programs/.gitkeep
 
 # Students' own work folders (students/<name>/) are not part of this repo
-students/*
+# students/*
 !students/README.md
 
 # local config (optional VIEWER_SCENE etc.)
