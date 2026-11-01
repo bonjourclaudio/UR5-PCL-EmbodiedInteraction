@@ -10,4 +10,4 @@
 ![border collision test](media/test_borders_protective_stop.png)
 
 ## Save installation
-![installation save](media/safety_included_installation)
+![installation save](media/safety_included_installation.png)
