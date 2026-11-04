@@ -1,6 +1,6 @@
 # ur5e framework — source snapshot
 
-Generated 2026-10-29T10:10Z from git 3fa684c
+Generated 2026-11-04T10:30Z from git d4bc79f
 by context/make_source_snapshot.sh. The files below are the student-facing
 framework (src/ur5e/, without the viewer) and the function templates, verbatim.
 When this snapshot and the repo disagree, the repo is right — regenerate.
@@ -287,15 +287,22 @@ def robot_kwargs(args) -> dict:
 
 STATUS: HS26 student framework (sim-validated).
 
-A *workspace* is the part of the table the robot may use, taught in four
-steps by moving the arm there by hand (freedrive button on the pendant) or,
-in the simulator, with the pendant's Move tab — the teach script only READS
-poses (receive-only), it never moves the arm:
+A *workspace* is the part of the table the robot may use, taught by moving
+the arm there by hand (freedrive button on the pendant) or, in the simulator,
+with the pendant's Move tab — the teach script only READS poses
+(receive-only), it never moves the arm:
 
-    1. corner A   — one corner of the work area, tool touching the surface
-    2. corner B   — the diagonally opposite corner, on the surface
-    3. top        — the highest point the tool should ever reach
-    4. home       — a comfortable pose above the area; examples start/end here
+    1-4. four LOW corners  — around the work area, tool touching the surface
+    5-8. four HIGH corners — the ceiling, e.g. straight above each low corner
+                             at the highest height the tool should reach
+    9.   home              — a comfortable pose above the area, inside the box;
+                             examples start/end here
+
+The box is the LARGEST AXIS-ALIGNED BOX THAT FITS INSIDE the eight corners
+(per axis: from the highest of the four low values to the lowest of the four
+high values). So a work area that is slightly rotated against the robot base,
+or a table that is not perfectly level, still gives a box that lies entirely
+within what was taught — never beyond it.
 
 Saved as ``workspace.json`` (git-ignored, one per setup). Examples address the
 box in FRACTIONS, so the same script runs on any table size:
@@ -330,7 +337,8 @@ from typing import List, Sequence
 
 from .safety import Box, SafetyLimits, get_profile
 
-FORMAT = "ur5e-workspace/1"
+FORMAT = "ur5e-workspace/2"
+FORMAT_V1 = "ur5e-workspace/1"       # old 4-point files (corner_a/corner_b/top/home) still load
 DEFAULT_FILE = "workspace.json"
 MIN_SIDE_M = 0.02          # a taught box must be at least 20 mm in x, y and z
 
@@ -342,9 +350,8 @@ class WorkspaceError(Exception):
 @dataclass
 class Workspace:
     target: str                      # "sim" or "real" — where it was taught
-    corner_a: List[float]            # TCP pose [x,y,z,rx,ry,rz] (m, rad)
-    corner_b: List[float]
-    top: List[float]
+    corners_low: List[List[float]]   # 4 TCP poses [x,y,z,rx,ry,rz] (m, rad) on the surface
+    corners_high: List[List[float]]  # 4 TCP poses at the ceiling
     home: List[float]                # TCP pose at home
     home_joints: List[float]         # joint angles at home (rad) — what go_home() uses
     taught_at: str = ""
@@ -354,18 +361,45 @@ class Workspace:
 
     # ----------------------------------------------------------------- box --
     @property
+    def corners(self) -> List[List[float]]:
+        """All eight taught corners, low ones first."""
+        return list(self.corners_low) + list(self.corners_high)
+
+    @property
     def box(self) -> Box:
-        """Axis-aligned bounding box of the four taught points (base frame)."""
-        pts = [self.corner_a, self.corner_b, self.top, self.home]
+        """Largest axis-aligned box INSIDE the eight taught corners (base frame):
+        per axis from the highest of the four low values to the lowest of the
+        four high values. Equals the taught rectangle when the area is aligned
+        with the base axes; shrinks (never grows) when it is rotated or tilted."""
+        return inner_box(self.corners)
+
+    @property
+    def bounding_box(self) -> Box:
+        """Axis-aligned box AROUND all taught corners — for information only;
+        poses are generated inside `box`, never here."""
+        pts = self.corners
         xs, ys, zs = ([p[i] for p in pts] for i in range(3))
         return Box(x=(min(xs), max(xs)), y=(min(ys), max(ys)), z=(min(zs), max(zs)))
 
     @property
     def orientation(self) -> List[float]:
         """Tool orientation used for every generated pose: the one taught at
-        corner A (rotation vector, rad). Teach with the tool pointing the way
-        you want it to work."""
-        return list(self.corner_a[3:6])
+        the FIRST low corner (rotation vector, rad). Teach with the tool
+        pointing the way you want it to work."""
+        return list(self.corners_low[0][3:6])
+
+    # kept for scripts written against the 4-point format
+    @property
+    def corner_a(self) -> List[float]:
+        return list(self.corners_low[0])
+
+    @property
+    def corner_b(self) -> List[float]:
+        return list(self.corners_low[2])
+
+    @property
+    def top(self) -> List[float]:
+        return list(self.corners_high[0])
 
     @property
     def size_mm(self):
@@ -448,29 +482,47 @@ class Workspace:
 
     # ---------------------------------------------------------- persistence --
     @classmethod
-    def from_points(cls, target: str, corner_a, corner_b, top, home, home_joints,
+    def from_points(cls, target: str, corners_low, corners_high, home, home_joints,
                     host: str = "", note: str = "") -> "Workspace":
-        """Build + validate from the four taught poses. Raises WorkspaceError
-        with a plain message if the box is degenerate."""
-        ws = cls(target=target, corner_a=list(corner_a), corner_b=list(corner_b),
-                 top=list(top), home=list(home), home_joints=list(home_joints),
+        """Build + validate from the taught poses: 4 low corners, 4 high corners,
+        home. Raises WorkspaceError with a plain message if the box is
+        degenerate or home lies outside it."""
+        corners_low = [list(p) for p in corners_low]
+        corners_high = [list(p) for p in corners_high]
+        ws = cls(target=target, corners_low=corners_low, corners_high=corners_high,
+                 home=list(home), home_joints=list(home_joints),
                  taught_at=time.strftime("%Y-%m-%d %H:%M"), host=host, note=note)
         if target not in ("sim", "real"):
             raise WorkspaceError(f"target must be 'sim' or 'real', not {target!r}")
-        for name, p in (("corner_a", corner_a), ("corner_b", corner_b), ("top", top), ("home", home)):
+        if len(corners_low) != 4 or len(corners_high) != 4:
+            raise WorkspaceError(f"need 4 low + 4 high corners, got {len(corners_low)} + {len(corners_high)}")
+        for name, p in [(f"low corner {i + 1}", c) for i, c in enumerate(corners_low)] + \
+                       [(f"high corner {i + 1}", c) for i, c in enumerate(corners_high)] + [("home", home)]:
             if len(p) != 6:
                 raise WorkspaceError(f"{name}: expected a 6-element pose, got {len(p)}")
         if len(home_joints) != 6:
             raise WorkspaceError("home_joints: expected 6 joint angles")
-        b = ws.box
-        for axis, (lo, hi) in zip("xyz", (b.x, b.y, b.z)):
+        surface = max(c[2] for c in corners_low)
+        ceiling = min(c[2] for c in corners_high)
+        if ceiling <= surface + MIN_SIDE_M:
+            raise WorkspaceError(
+                f"the high corners must all be clearly above the low corners "
+                f"(lowest high corner {ceiling * 1000:.0f} mm, highest low corner {surface * 1000:.0f} mm)")
+        b, bb = ws.box, ws.bounding_box
+        for axis, (lo, hi), (blo, bhi) in zip("xyz", (b.x, b.y, b.z), (bb.x, bb.y, bb.z)):
             if hi - lo < MIN_SIDE_M:
                 raise WorkspaceError(
-                    f"the taught points span only {round((hi - lo) * 1000)} mm along {axis} "
-                    f"(need >= {MIN_SIDE_M * 1000:.0f} mm). Did the arm actually move between steps?")
-        surface = min(corner_a[2], corner_b[2])
-        if top[2] <= surface + MIN_SIDE_M:
-            raise WorkspaceError("'top' must be clearly above the surface corners")
+                    f"no box of at least {MIN_SIDE_M * 1000:.0f} mm fits inside the taught corners along "
+                    f"{axis} (inner {round((hi - lo) * 1000)} mm, outer {round((bhi - blo) * 1000)} mm). "
+                    f"Either the arm did not move between steps, corners were mixed up, or the area is "
+                    f"rotated too far against the robot's base axes — teach the corners roughly aligned "
+                    f"with the robot's x/y.")
+        if not b.contains(home[:3], tol=0.001):
+            raise WorkspaceError(
+                f"home {[round(v * 1000) for v in home[:3]]} mm lies outside the box that fits inside "
+                f"the corners (x {round(b.x[0] * 1000)}..{round(b.x[1] * 1000)}, "
+                f"y {round(b.y[0] * 1000)}..{round(b.y[1] * 1000)}, z {round(b.z[0] * 1000)}..{round(b.z[1] * 1000)} mm). "
+                f"Teach home above the area, inside the box.")
         return ws
 
     def to_dict(self) -> dict:
@@ -499,39 +551,59 @@ class Workspace:
             d = json.loads(p.read_text())
         except json.JSONDecodeError as e:
             raise WorkspaceError(f"{p}: not valid JSON ({e})") from None
-        if d.get("format") != FORMAT:
-            raise WorkspaceError(f"{p}: unknown format {d.get('format')!r}, expected {FORMAT!r}")
+        fmt = d.get("format")
+        if fmt not in (FORMAT, FORMAT_V1):
+            raise WorkspaceError(f"{p}: unknown format {fmt!r}, expected {FORMAT!r}")
         try:
-            ws = cls(target=d["target"], corner_a=d["corner_a"], corner_b=d["corner_b"],
-                     top=d["top"], home=d["home"], home_joints=d["home_joints"],
+            if fmt == FORMAT_V1:
+                # old 4-point file: synthesise the 8 corners of its bounding box, so the
+                # box (and every pose generated from it) is exactly what it was before
+                pts = [d["corner_a"], d["corner_b"], d["top"], d["home"]]
+                xs, ys, zs = ([q[i] for q in pts] for i in range(3))
+                rot = list(d["corner_a"][3:6])
+                lo, hi = [min(xs), min(ys), min(zs)], [max(xs), max(ys), max(zs)]
+                corners_low = [[x, y, lo[2], *rot] for x, y in ((lo[0], lo[1]), (hi[0], lo[1]), (hi[0], hi[1]), (lo[0], hi[1]))]
+                corners_high = [[c[0], c[1], hi[2], *rot] for c in corners_low]
+                note = (d.get("note", "") + " [converted from 4-point format]").strip()
+            else:
+                corners_low, corners_high, note = d["corners_low"], d["corners_high"], d.get("note", "")
+            ws = cls(target=d["target"], corners_low=corners_low, corners_high=corners_high,
+                     home=d["home"], home_joints=d["home_joints"],
                      taught_at=d.get("taught_at", ""), host=d.get("host", ""),
-                     note=d.get("note", ""), path=str(p))
+                     note=note, path=str(p))
         except KeyError as e:
             raise WorkspaceError(f"{p}: missing field {e}") from None
         return ws
 
     def describe(self) -> str:
-        b = self.box
+        b, bb = self.box, self.bounding_box
         sx, sy, sz = self.size_mm
         out = (f"workspace '{self.path or '(unsaved)'}' taught on {self.target} {self.taught_at}\n"
                f"  box x {b.x[0]:+.3f}..{b.x[1]:+.3f}  y {b.y[0]:+.3f}..{b.y[1]:+.3f}  "
-               f"z {b.z[0]:+.3f}..{b.z[1]:+.3f} m   ({sx} x {sy} x {sz} mm)\n"
+               f"z {b.z[0]:+.3f}..{b.z[1]:+.3f} m   ({sx} x {sy} x {sz} mm) — fits inside the 8 corners\n"
                f"  home joints [deg]: {[round(q * 57.2958, 1) for q in self.home_joints]}")
+        if (bb.x, bb.y, bb.z) != (b.x, b.y, b.z):
+            out += (f"\n  corners span x {bb.x[0]:+.3f}..{bb.x[1]:+.3f}  y {bb.y[0]:+.3f}..{bb.y[1]:+.3f}  "
+                    f"z {bb.z[0]:+.3f}..{bb.z[1]:+.3f} m (area rotated/tilted vs. base -> box is the inner part)")
         # On the real arm the usable box is the intersection with the cell profile:
-        # say so when that clips anything, naming the taught points that fall outside.
+        # say so when that clips anything, and which corners lie outside the cell.
         try:
             c = self.profile(self.target).workspace
         except WorkspaceError as e:
             return out + f"\n  !! {e}"
         if (c.x, c.y, c.z) != (b.x, b.y, b.z):
-            outside = [n for n in ("corner_a", "corner_b", "top", "home")
-                       if not c.contains(getattr(self, n)[:3])]
+            cell = get_profile("cart_against_wall" if self.target == "real" else "sim_open").workspace
+            named = [(f"low corner {i + 1}", q) for i, q in enumerate(self.corners_low)] + \
+                    [(f"high corner {i + 1}", q) for i, q in enumerate(self.corners_high)]
+            outside = [n for n, q in named if not cell.contains(q[:3])]
             out += (f"\n  !! clipped to the cell profile -> usable x {c.x[0]:+.3f}..{c.x[1]:+.3f}  "
                     f"y {c.y[0]:+.3f}..{c.y[1]:+.3f}  z {c.z[0]:+.3f}..{c.z[1]:+.3f} m "
                     f"(ws.pose/grid/line use this box)"
-                    + (f"\n  !! taught points outside the cell: {', '.join(outside)} — "
-                       f"move_joints(home_joints) / moves to them are rejected; teach again inside"
+                    + (f"\n     corners outside the cell: {', '.join(outside)} (fine — the box is clipped)"
                        if outside else ""))
+        if not c.contains(self.home[:3], tol=0.001):
+            out += ("\n  !! home lies outside the usable box — move_joints(home_joints) would be "
+                    "rejected; teach home inside the box")
         return out
 
 
@@ -542,11 +614,23 @@ def demo_sim_workspace(start_pose: Sequence[float], start_joints: Sequence[float
     x, y, z = start_pose[0], start_pose[1], start_pose[2]
     rot = list(start_pose[3:6])
     surface = z - 0.10
-    a = [x - 0.15, y - 0.15, surface, *rot]
-    b = [x + 0.15, y + 0.15, surface, *rot]
-    top = [x, y, surface + 0.20, *rot]
-    return Workspace.from_points("sim", a, b, top, list(start_pose), list(start_joints),
+    xy = [(x - 0.15, y - 0.15), (x + 0.15, y - 0.15), (x + 0.15, y + 0.15), (x - 0.15, y + 0.15)]
+    low = [[cx, cy, surface, *rot] for cx, cy in xy]
+    high = [[cx, cy, surface + 0.20, *rot] for cx, cy in xy]
+    return Workspace.from_points("sim", low, high, list(start_pose), list(start_joints),
                                  note="demo workspace around the URSim start pose (not taught)")
+
+
+def inner_box(points: Sequence[Sequence[float]]) -> Box:
+    """Largest axis-aligned box inside a set of 2n corner points: per axis, the
+    range from the highest of the n lower values to the lowest of the n upper
+    values. For an axis-aligned box's own corners this is the box itself."""
+    n = len(points) // 2
+    rng = []
+    for i in range(3):
+        vals = sorted(p[i] for p in points)
+        rng.append((vals[n - 1], vals[n]))
+    return Box(x=rng[0], y=rng[1], z=rng[2])
 
 ```
 
@@ -1049,7 +1133,7 @@ python examples/function_templates/03_move_to.py --workspace workspace.real.json
 
 | Template | Shows | UR name |
 |---|---|---|
-| `00_teach_workspace.py` | teach the work area in 4 steps → `workspace.json` | — |
+| `00_teach_workspace.py` | teach the work area in 9 steps (8 corners + home) → `workspace.json` | — |
 | `01_read_state.py` | `joints()`, `pose()` — no motion | — |
 | `02_move_joints.py` | `move_joints(q, speed, accel)` | moveJ |
 | `03_move_to.py` | `move_to(pose, speed, accel)`, `ws.pose(u, v, w)` | moveL |
@@ -1063,15 +1147,23 @@ python examples/function_templates/03_move_to.py --workspace workspace.real.json
 ## The workspace: teach once, every example scales to it
 
 All templates (and your own scripts) move inside a **taught box**. You
-teach it once per setup with `00_teach_workspace.py` — four points, the
-script only reads where the arm is, you move it (sim: pendant **Move** tab;
-real robot: **freedrive button** on the pendant, supervised):
+teach it once per setup with `00_teach_workspace.py` — eight corners and
+home, the script only reads where the arm is, you move it (sim: pendant
+**Move** tab; real robot: **freedrive button** on the pendant, supervised):
 
-1. **corner A** — one corner of the work area, tool on the surface
-2. **corner B** — the diagonally opposite corner, on the surface
-3. **top** — the highest point the tool should reach
-4. **home** — a comfortable pose above the area; every example starts and
-   ends here (`robot.move_joints(ws.home_joints)`)
+1. **low corners 1–4** — walk around the work area, tool on the surface at
+   each corner
+2. **high corners 1–4** — the same corners at the highest height the tool
+   should reach (the ceiling)
+3. **home** — a comfortable pose above the area, inside the box; every
+   example starts and ends here (`robot.move_joints(ws.home_joints)`)
+
+The box is the largest axis-aligned box that **fits inside** the eight
+corners (per axis: from the highest of the four low values to the lowest of
+the four high values). A table that is slightly rotated against the robot's
+base axes or not perfectly level therefore gives a box that stays within
+what you taught — never beyond it; `describe()` tells you when it had to
+shrink. Old 4-point `workspace.json` files still load (same box as before).
 
 Result: `workspace.json` in the repo folder (git-ignored, one per setup).
 In a hurry in the sim: `--demo` writes a 300 × 300 × 200 mm box around the
@@ -1090,7 +1182,7 @@ with Robot(target="sim", profile=ws) as robot:
 
 `ws.pose(u, v, w)` takes **fractions 0…1** of the box along x, y, z —
 `(0, 0, 0)` is the low corner on the surface, `(1, 1, 1)` the far top. The
-orientation is the one you taught at corner A (tool pointing down). Because
+orientation is the one you taught at low corner 1 (tool pointing down). Because
 everything is relative to the box, the same script runs on a 300 mm demo
 box in the sim and on the 600 × 500 mm cart in the lab.
 
@@ -1123,7 +1215,7 @@ Order in the lab:
    the clipped part, and a taught point listed as outside (e.g. `home`) must be
    re-taught, because the arm is not allowed to go there.
 3. `python examples/function_templates/00_teach_workspace.py --target real`
-   — all four points over the table, `home` included.
+   — all eight corners over the table, `home` inside the box.
 4. `python examples/function_templates/01_read_state.py --target real`
    (no motion) then `03_move_to.py --target real`, and so on.
 
@@ -1142,15 +1234,22 @@ teaching time; with a long tool, teach `top` and `home` with extra headroom
 ## `examples/function_templates/00_teach_workspace.py`
 
 ```python
-"""00 — Teach the workspace (4 steps). Receive-only: this script never moves the arm.
+"""00 — Teach the workspace (9 steps). Receive-only: this script never moves the arm.
 
 You move the arm; the script records where it is when you press Enter:
 
-    1. corner A  — one corner of the work area, tool touching the surface
-    2. corner B  — the diagonally opposite corner, on the surface
-    3. top       — the highest point the tool should ever go
-    4. home      — a comfortable pose above the area where every example
-                   starts and ends (joint angles are stored too)
+    1-4. LOW corners  — walk around the work area: corner 1, 2, 3, 4 in order,
+                        tool touching the surface at each
+    5-8. HIGH corners — the ceiling: the same four corners at the highest
+                        height the tool should ever reach (straight above
+                        low corner 1, 2, 3, 4)
+    9.   home         — a comfortable pose above the area, inside the box,
+                        where every example starts and ends (joint angles
+                        are stored too)
+
+The workspace is the largest axis-aligned box that FITS INSIDE the eight
+corners — so if the table is a bit rotated against the robot or not quite
+level, the box stays within what you taught, never beyond it.
 
 How to move the arm:
     SIM   pendant tab (localhost:6080): Move tab → arrows / hold the arm icon.
@@ -1177,10 +1276,15 @@ from ur5e.connection import RobotConnection
 from ur5e.workspace import Workspace, WorkspaceError, demo_sim_workspace
 
 STEPS = [
-    ("corner_a", "CORNER A — one corner of the work area, tool on the surface"),
-    ("corner_b", "CORNER B — the diagonally opposite corner, on the surface"),
-    ("top",      "TOP — the highest point the tool should ever reach"),
-    ("home",     "HOME — a comfortable pose above the area (examples start/end here)"),
+    ("low1",  "LOW corner 1 — a corner of the work area, tool on the surface"),
+    ("low2",  "LOW corner 2 — the next corner around the area, on the surface"),
+    ("low3",  "LOW corner 3 — the next corner, on the surface"),
+    ("low4",  "LOW corner 4 — the last corner, on the surface"),
+    ("high1", "HIGH corner 1 — above low corner 1, at the highest height the tool should reach"),
+    ("high2", "HIGH corner 2 — above low corner 2, same height"),
+    ("high3", "HIGH corner 3 — above low corner 3, same height"),
+    ("high4", "HIGH corner 4 — above low corner 4, same height"),
+    ("home",  "HOME — a comfortable pose above the area, inside the box (examples start/end here)"),
 ]
 
 
@@ -1207,15 +1311,17 @@ def main() -> None:
             captured = {}
             print("\nMove the arm to each point, then press Enter here. Ctrl-C aborts.\n")
             for key, text in STEPS:
-                input(f"[{len(captured) + 1}/4] {text}\n      ... move the arm there, then press Enter: ")
+                input(f"[{len(captured) + 1}/{len(STEPS)}] {text}\n      ... move the arm there, then press Enter: ")
                 pose = list(r.receive.getActualTCPPose())
                 captured[key] = pose
                 if key == "home":
                     home_joints = list(r.receive.getActualQ())
                 print(f"      recorded {fmt(pose)}\n")
             try:
-                ws = Workspace.from_points(args.target, captured["corner_a"], captured["corner_b"],
-                                           captured["top"], captured["home"], home_joints, host=host)
+                ws = Workspace.from_points(args.target,
+                                           [captured[k] for k in ("low1", "low2", "low3", "low4")],
+                                           [captured[k] for k in ("high1", "high2", "high3", "high4")],
+                                           captured["home"], home_joints, host=host)
             except WorkspaceError as e:
                 raise SystemExit(f"not saved: {e}")
 

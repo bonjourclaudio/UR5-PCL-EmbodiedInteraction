@@ -67,6 +67,8 @@ src/ur5e/                   the framework (importable as `ur5e`)
 scripts/                    check_connection.py  smoke_test_move.py  rtde_viewer.py
 examples/grid_process.py    grid traversal with sensor-gated actuation
 examples/function_templates/   00_teach_workspace … 09_raw_rtde — one script per API call (see its README)
+examples-gripper/           lab gripper reference (experimental): gripper_two_poses.py, gripper_link.py
+                            (`Gripper`/`MockGripper`: open() close(force_mA) goto(pct) status(); mock in the sim)
 scenes/<name>/              viewer scenes (scene.json + models/)
 toolheads/<id>/             toolhead presets for the viewer (toolhead.json + mesh)
 programs/                   where URSim saves PolyScope programs (.urp) — git-ignored
@@ -174,13 +176,15 @@ ws.pose(u, v, w)                        # fractions 0..1 of the box along x, y, 
 ws.grid(nx, ny, w=0.1, margin=0.05)     # poses over the area at height fraction w, snake order
 ws.line(a_uvw, b_uvw, n)                # n poses between two fractional points
 ws.home_joints                          # taught home, rad  -> robot.move_joints(ws.home_joints)
-ws.home, ws.corner_a, ws.corner_b, ws.top   # the taught poses
-ws.box                                  # taught Box(x=(lo,hi), y=(..), z=(..)) in metres, Base frame
+ws.home, ws.corners_low, ws.corners_high   # the taught poses: home, 4 low corners, 4 high corners
+ws.box                                  # Box(x=(lo,hi), y=(..), z=(..)) in metres, Base frame — the largest
+                                        # axis-aligned box that FITS INSIDE the 8 corners (never beyond them)
+ws.bounding_box                         # box around all corners, information only
 ws.usable_box                           # taught box ∩ cell profile on real (what pose/grid/line and the checks use)
-ws.orientation                          # rotation vector taught at corner A
+ws.orientation                          # rotation vector taught at low corner 1
 ws.profile(target)                      # SafetyLimits for this box (real: clipped to cart_against_wall)
 ws.describe(); ws.size_mm; ws.target    # "sim" or "real"
-Workspace.from_points(target, a, b, top, home, home_joints); ws.save(path)
+Workspace.from_points(target, corners_low, corners_high, home, home_joints); ws.save(path)
 ```
 `WorkspaceError` if the file is missing/invalid or taught on the other target.
 
@@ -211,12 +215,16 @@ accepted — convert with `math.radians`.
 
 Taught once per setup with `examples/function_templates/00_teach_workspace.py`
 (receive-only: the student moves the arm — sim: pendant Move tab; real:
-freedrive button on the pendant — and presses Enter four times):
-**corner A** (surface), **corner B** (diagonally opposite, surface), **top**
-(highest working point), **home** (comfortable pose above the area; pose and
-joint angles stored). Box = bounding box of the four points; orientation =
-corner A's. `--demo` writes a 300 × 300 × 200 mm box around the URSim start
-pose. Format `ur5e-workspace/1`, JSON, metres/rad.
+freedrive button on the pendant — and presses Enter nine times):
+**low corners 1–4** (around the area, tool on the surface), **high corners
+1–4** (the same corners at the highest working height), **home** (comfortable
+pose above the area, inside the box; pose and joint angles stored). Box = the
+largest axis-aligned box that fits INSIDE the eight corners (per axis: highest
+of the four low values .. lowest of the four high values), so a rotated or
+tilted area yields a smaller box, never one that reaches outside the taught
+corners; home must lie inside it. Orientation = low corner 1's. `--demo`
+writes a 300 × 300 × 200 mm box around the URSim start pose. Format
+`ur5e-workspace/2`, JSON, metres/rad (old `/1` 4-point files still load).
 
 Canonical script skeleton:
 

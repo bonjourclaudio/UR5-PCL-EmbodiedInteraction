@@ -74,7 +74,8 @@ docs/            SETUP.md, USAGE.md
 src/ur5e/        the framework: Robot API, connection, motion checks, viewer
 scripts/         check_connection.py, smoke_test_move.py, rtde_viewer.py
 examples/        grid_process.py — copy it to start your own
-examples/function_templates/   one script per API call + 00_teach_workspace.py (teach your work area in 4 steps)
+examples/function_templates/   one script per API call + 00_teach_workspace.py (teach your work area: 8 corners + home)
+examples-gripper/              the lab gripper: two-pose demo + Gripper class (experimental; mock gripper in the sim)
 scenes/          viewer scenes (scene.json + models/)
 toolheads/       toolhead presets for the viewer (mesh + TCP)
 programs/        where the simulator saves PolyScope programs (.urp) — git-ignored
