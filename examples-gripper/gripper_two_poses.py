@@ -15,7 +15,8 @@ SEQUENCE
     move_joints(home)
 
 POSES are defined ONCE at the top as fractions of the taught workspace box
-(u along x, v along y, w = height, 0..1) — edit POSE_A / POSE_B.
+(u along x, v along y, w = height, 0..1; the box is the one that fits inside the
+8 taught corners) — edit POSE_A / POSE_B.
 
 ASSUMPTIONS (flagged per project rules)
     - Tool = gripper v2: pass --payload 0.35 --tcp 0 0 0.136 0 0 0 with --target real

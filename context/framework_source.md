@@ -1,6 +1,6 @@
 # ur5e framework — source snapshot
 
-Generated 2026-11-04T10:30Z from git d4bc79f
+Generated 2026-11-04T10:32Z from git a495018
 by context/make_source_snapshot.sh. The files below are the student-facing
 framework (src/ur5e/, without the viewer) and the function templates, verbatim.
 When this snapshot and the repo disagree, the repo is right — regenerate.
@@ -1224,8 +1224,8 @@ is unchanged; the flag only supplies it. Without `--target real` a script can
 never move the real arm, even with `UR_HOST` set.
 
 Flagged assumptions: poses are TCP poses with the pendant's active TCP at
-teaching time; with a long tool, teach `top` and `home` with extra headroom
-(the joint check looks at the flange). The simulator's inputs always read 0.
+teaching time; with a long tool, teach the high corners and `home` with extra
+headroom (the joint check looks at the flange). The simulator's inputs always read 0.
 
 ```
 

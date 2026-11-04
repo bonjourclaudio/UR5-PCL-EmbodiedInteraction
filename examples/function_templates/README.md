@@ -106,5 +106,5 @@ is unchanged; the flag only supplies it. Without `--target real` a script can
 never move the real arm, even with `UR_HOST` set.
 
 Flagged assumptions: poses are TCP poses with the pendant's active TCP at
-teaching time; with a long tool, teach `top` and `home` with extra headroom
-(the joint check looks at the flange). The simulator's inputs always read 0.
+teaching time; with a long tool, teach the high corners and `home` with extra
+headroom (the joint check looks at the flange). The simulator's inputs always read 0.
