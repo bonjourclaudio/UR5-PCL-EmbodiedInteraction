@@ -141,10 +141,13 @@ python examples/function_templates/00_teach_workspace.py --target sim
 
 The script only *reads* where the arm is; you move it — in the sim with the
 pendant's **Move** tab, on the real robot with the **freedrive button** on the
-back of the pendant (supervised). Press Enter at: **corner A** (on the
-surface), **corner B** (diagonally opposite, on the surface), **top** (highest
-point the tool should reach), **home** (a comfortable pose above the area —
-every example starts and ends there). Result: `workspace.json` in the repo
+back of the pendant (supervised). Press Enter nine times: the **four low
+corners** (walk around the area, tool on the surface), the **four high
+corners** (the same corners at the highest height the tool should reach), and
+**home** (a comfortable pose above the area, inside the box — every example
+starts and ends there). The workspace is the largest box that fits *inside*
+those eight corners, so a slightly rotated or tilted table still gives a box
+that never reaches beyond what you taught. Result: `workspace.json` in the repo
 folder (git-ignored). In a hurry: `--demo` writes a 300 × 300 × 200 mm box
 around the sim's start pose instead.
 
@@ -218,7 +221,7 @@ the host from the `URSIM_HOST` variable (set to `ursim` by compose),
 | examples / templates | `python examples/function_templates/03_move_to.py` | `python examples/function_templates/03_move_to.py --target real` (+ `--payload KG --tcp …` if a tool is mounted) |
 | in your own code | `Robot(target="sim", profile=ws)` | `Robot(target="real", profile=ws, allow_real=True, payload_kg=…, tcp=…)` — or the `ur5e.cli` lines from §3, which do exactly this for `--target real` |
 | profile | `sim_open` (or the taught box) | `cart_against_wall` — the measured work surface of the cart (or the taught box clipped to it); moves outside it are rejected |
-| workspace | `00_teach_workspace.py --target sim` (or `--demo`) | `00_teach_workspace.py --target real` — teach all four points **over the table**, home included |
+| workspace | `00_teach_workspace.py --target sim` (or `--demo`) | `00_teach_workspace.py --target real` — teach all eight corners **over the table**, home inside the box |
 | check | `python scripts/check_connection.py --target sim` | `python scripts/check_connection.py --target real` |
 
 The lab robot's IP is **static: `192.168.1.11`**. If in doubt, the pendant

@@ -132,7 +132,7 @@ is about *how* to help.
 - State assumptions explicitly: which TCP/tool, which height fraction,
   which speed. If the student's tool changes the TCP, remind them that the
   workspace was taught with the pendant's active TCP at the time and the
-  joint check uses the flange position (teach `top`/`home` with headroom).
+  joint check uses the flange position (teach the high corners/`home` with headroom).
 - Do not edit `src/`, `scripts/`, `examples/`, `docs/`, `docker-compose.yml`
   — they are replaced on `git pull`. Student work lives in `students/<name>/`.
 - When unsure about a controller detail (I/O voltages, safety settings,

@@ -15,7 +15,7 @@ python examples/function_templates/03_move_to.py --workspace workspace.real.json
 
 | Template | Shows | UR name |
 |---|---|---|
-| `00_teach_workspace.py` | teach the work area in 4 steps → `workspace.json` | — |
+| `00_teach_workspace.py` | teach the work area in 9 steps (8 corners + home) → `workspace.json` | — |
 | `01_read_state.py` | `joints()`, `pose()` — no motion | — |
 | `02_move_joints.py` | `move_joints(q, speed, accel)` | moveJ |
 | `03_move_to.py` | `move_to(pose, speed, accel)`, `ws.pose(u, v, w)` | moveL |
@@ -29,15 +29,23 @@ python examples/function_templates/03_move_to.py --workspace workspace.real.json
 ## The workspace: teach once, every example scales to it
 
 All templates (and your own scripts) move inside a **taught box**. You
-teach it once per setup with `00_teach_workspace.py` — four points, the
-script only reads where the arm is, you move it (sim: pendant **Move** tab;
-real robot: **freedrive button** on the pendant, supervised):
+teach it once per setup with `00_teach_workspace.py` — eight corners and
+home, the script only reads where the arm is, you move it (sim: pendant
+**Move** tab; real robot: **freedrive button** on the pendant, supervised):
 
-1. **corner A** — one corner of the work area, tool on the surface
-2. **corner B** — the diagonally opposite corner, on the surface
-3. **top** — the highest point the tool should reach
-4. **home** — a comfortable pose above the area; every example starts and
-   ends here (`robot.move_joints(ws.home_joints)`)
+1. **low corners 1–4** — walk around the work area, tool on the surface at
+   each corner
+2. **high corners 1–4** — the same corners at the highest height the tool
+   should reach (the ceiling)
+3. **home** — a comfortable pose above the area, inside the box; every
+   example starts and ends here (`robot.move_joints(ws.home_joints)`)
+
+The box is the largest axis-aligned box that **fits inside** the eight
+corners (per axis: from the highest of the four low values to the lowest of
+the four high values). A table that is slightly rotated against the robot's
+base axes or not perfectly level therefore gives a box that stays within
+what you taught — never beyond it; `describe()` tells you when it had to
+shrink. Old 4-point `workspace.json` files still load (same box as before).
 
 Result: `workspace.json` in the repo folder (git-ignored, one per setup).
 In a hurry in the sim: `--demo` writes a 300 × 300 × 200 mm box around the
@@ -56,7 +64,7 @@ with Robot(target="sim", profile=ws) as robot:
 
 `ws.pose(u, v, w)` takes **fractions 0…1** of the box along x, y, z —
 `(0, 0, 0)` is the low corner on the surface, `(1, 1, 1)` the far top. The
-orientation is the one you taught at corner A (tool pointing down). Because
+orientation is the one you taught at low corner 1 (tool pointing down). Because
 everything is relative to the box, the same script runs on a 300 mm demo
 box in the sim and on the 600 × 500 mm cart in the lab.
 
@@ -89,7 +97,7 @@ Order in the lab:
    the clipped part, and a taught point listed as outside (e.g. `home`) must be
    re-taught, because the arm is not allowed to go there.
 3. `python examples/function_templates/00_teach_workspace.py --target real`
-   — all four points over the table, `home` included.
+   — all eight corners over the table, `home` inside the box.
 4. `python examples/function_templates/01_read_state.py --target real`
    (no motion) then `03_move_to.py --target real`, and so on.
 
@@ -98,5 +106,5 @@ is unchanged; the flag only supplies it. Without `--target real` a script can
 never move the real arm, even with `UR_HOST` set.
 
 Flagged assumptions: poses are TCP poses with the pendant's active TCP at
-teaching time; with a long tool, teach `top` and `home` with extra headroom
-(the joint check looks at the flange). The simulator's inputs always read 0.
+teaching time; with a long tool, teach the high corners and `home` with extra
+headroom (the joint check looks at the flange). The simulator's inputs always read 0.

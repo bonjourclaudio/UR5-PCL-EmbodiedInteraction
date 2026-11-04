@@ -1,12 +1,19 @@
-"""00 — Teach the workspace (4 steps). Receive-only: this script never moves the arm.
+"""00 — Teach the workspace (9 steps). Receive-only: this script never moves the arm.
 
 You move the arm; the script records where it is when you press Enter:
 
-    1. corner A  — one corner of the work area, tool touching the surface
-    2. corner B  — the diagonally opposite corner, on the surface
-    3. top       — the highest point the tool should ever go
-    4. home      — a comfortable pose above the area where every example
-                   starts and ends (joint angles are stored too)
+    1-4. LOW corners  — walk around the work area: corner 1, 2, 3, 4 in order,
+                        tool touching the surface at each
+    5-8. HIGH corners — the ceiling: the same four corners at the highest
+                        height the tool should ever reach (straight above
+                        low corner 1, 2, 3, 4)
+    9.   home         — a comfortable pose above the area, inside the box,
+                        where every example starts and ends (joint angles
+                        are stored too)
+
+The workspace is the largest axis-aligned box that FITS INSIDE the eight
+corners — so if the table is a bit rotated against the robot or not quite
+level, the box stays within what you taught, never beyond it.
 
 How to move the arm:
     SIM   pendant tab (localhost:6080): Move tab → arrows / hold the arm icon.
@@ -33,10 +40,15 @@ from ur5e.connection import RobotConnection
 from ur5e.workspace import Workspace, WorkspaceError, demo_sim_workspace
 
 STEPS = [
-    ("corner_a", "CORNER A — one corner of the work area, tool on the surface"),
-    ("corner_b", "CORNER B — the diagonally opposite corner, on the surface"),
-    ("top",      "TOP — the highest point the tool should ever reach"),
-    ("home",     "HOME — a comfortable pose above the area (examples start/end here)"),
+    ("low1",  "LOW corner 1 — a corner of the work area, tool on the surface"),
+    ("low2",  "LOW corner 2 — the next corner around the area, on the surface"),
+    ("low3",  "LOW corner 3 — the next corner, on the surface"),
+    ("low4",  "LOW corner 4 — the last corner, on the surface"),
+    ("high1", "HIGH corner 1 — above low corner 1, at the highest height the tool should reach"),
+    ("high2", "HIGH corner 2 — above low corner 2, same height"),
+    ("high3", "HIGH corner 3 — above low corner 3, same height"),
+    ("high4", "HIGH corner 4 — above low corner 4, same height"),
+    ("home",  "HOME — a comfortable pose above the area, inside the box (examples start/end here)"),
 ]
 
 
@@ -63,15 +75,17 @@ def main() -> None:
             captured = {}
             print("\nMove the arm to each point, then press Enter here. Ctrl-C aborts.\n")
             for key, text in STEPS:
-                input(f"[{len(captured) + 1}/4] {text}\n      ... move the arm there, then press Enter: ")
+                input(f"[{len(captured) + 1}/{len(STEPS)}] {text}\n      ... move the arm there, then press Enter: ")
                 pose = list(r.receive.getActualTCPPose())
                 captured[key] = pose
                 if key == "home":
                     home_joints = list(r.receive.getActualQ())
                 print(f"      recorded {fmt(pose)}\n")
             try:
-                ws = Workspace.from_points(args.target, captured["corner_a"], captured["corner_b"],
-                                           captured["top"], captured["home"], home_joints, host=host)
+                ws = Workspace.from_points(args.target,
+                                           [captured[k] for k in ("low1", "low2", "low3", "low4")],
+                                           [captured[k] for k in ("high1", "high2", "high3", "high4")],
+                                           captured["home"], home_joints, host=host)
             except WorkspaceError as e:
                 raise SystemExit(f"not saved: {e}")
 
