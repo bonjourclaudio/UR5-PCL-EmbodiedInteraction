@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wax Canvas</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6a66; --line: #dedbd3;
+    --wax: #f1e3bf; --frame: #8a8f96; --border: #c98a2c; --box: #2f7d5b; --cell: #7a8fb3;
+    --dot: #2a2622; --travel: #d9534f; --err: #b3261e; --warn: #9a6400; --accent: #2f6fb3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1b1b1a; --panel: #242423; --ink: #ecebe7; --muted: #a4a29c; --line: #3a3936;
+      --wax: #5a4d2e; --frame: #9aa1a9; --border: #e0a648; --box: #5fc196; --cell: #8ea4cc;
+      --dot: #f4eee2; --travel: #ff7b72; --err: #ff8a80; --warn: #f0b94a; --accent: #7fb2ff; color-scheme: dark; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink);
+    display: grid; grid-template-columns: 340px 1fr; height: 100vh; }
+  aside { background: var(--panel); border-right: 1px solid var(--line); overflow-y: auto; padding: 14px 16px 40px; }
+  main { position: relative; overflow: hidden; }
+  h1 { font-size: 16px; margin: 0 0 2px; }
+  .sub { color: var(--muted); margin-bottom: 12px; }
+  fieldset { border: 0; border-top: 1px solid var(--line); margin: 12px 0 0; padding: 10px 0 0; }
+  legend { font-weight: 600; padding: 0 6px 0 0; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+  label { display: flex; flex-direction: column; gap: 2px; color: var(--muted); font-size: 12px; }
+  label.check { flex-direction: row; align-items: center; gap: 6px; color: var(--ink); }
+  input[type=number], select { width: 100%; padding: 4px 6px; border: 1px solid var(--line); border-radius: 4px;
+    background: var(--bg); color: var(--ink); font: inherit; }
+  .full { grid-column: 1 / -1; }
+  .derived { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .derived b { color: var(--ink); font-weight: 600; }
+  button { font: inherit; padding: 6px 12px; border-radius: 5px; border: 1px solid var(--line); background: var(--bg);
+    color: var(--ink); cursor: pointer; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .msgs div { margin-top: 6px; padding: 6px 8px; border-radius: 4px; font-size: 12px; }
+  .msgs .err { background: color-mix(in srgb, var(--err) 12%, transparent); color: var(--err); }
+  .msgs .warn { background: color-mix(in srgb, var(--warn) 12%, transparent); color: var(--warn); }
+  .msgs .ok { background: color-mix(in srgb, var(--box) 14%, transparent); color: var(--box); white-space: pre-wrap; }
+  .stats { margin-top: 8px; font-size: 12px; }
+  .stats b { font-size: 15px; }
+  svg { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+  svg.panning { cursor: grabbing; }
+  .handle { cursor: move; }
+  .hud { position: absolute; left: 12px; bottom: 10px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 5px; padding: 6px 10px; font-size: 12px; color: var(--muted); }
+  .legend { position: absolute; right: 12px; top: 10px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 5px; padding: 8px 10px; font-size: 12px; }
+  .legend label { flex-direction: row; align-items: center; gap: 6px; color: var(--ink); }
+  .sw { display: inline-block; width: 14px; height: 3px; vertical-align: middle; }
+  .busy { position: absolute; right: 12px; bottom: 10px; color: var(--muted); font-size: 12px; }
+  @media (max-width: 760px) { body { grid-template-columns: 1fr; grid-template-rows: auto 60vh; height: auto; }
+    aside { border-right: 0; border-bottom: 1px solid var(--line); } main { height: 60vh; } }
+</style>
+</head>
+<body>
+<aside>
+  <h1>Wax canvas</h1>
+  <div class="sub" id="sub">loading…</div>
+  <div class="row">
+    <button class="primary" id="save" disabled>Save</button>
+    <button id="reset">Reload saved</button>
+    <button id="fit">Fit view</button>
+  </div>
+  <div class="msgs" id="msgs"></div>
+
+  <fieldset><legend>Taught corners (real tip, mm)</legend>
+    <div class="grid">
+      <label>bottom-left x<input type="number" step="0.5" data-key="bl.0"></label>
+      <label>bottom-left y<input type="number" step="0.5" data-key="bl.1"></label>
+      <label>top-left x<input type="number" step="0.5" data-key="tl.0"></label>
+      <label>top-left y<input type="number" step="0.5" data-key="tl.1"></label>
+    </div>
+    <div class="derived">Drag the BL / TL handles, or type. Top = towards the robot. Heights stay as taught
+      (<span id="zs"></span>).</div>
+  </fieldset>
+
+  <fieldset><legend>Frame</legend>
+    <div class="grid">
+      <label>inner size, mm<input type="number" step="1" data-key="frame_mm"></label>
+      <label>border, mm<input type="number" step="1" data-key="border_mm"></label>
+      <label>tip–wall gap, mm<input type="number" step="0.5" data-key="gap_mm"></label>
+      <label>wall height, mm<input type="number" step="1" data-key="wall_mm"></label>
+      <label>ceiling, mm<input type="number" step="5" data-key="ceiling_mm"></label>
+      <label>&nbsp;<button id="estgap" type="button">Gap from corners</button></label>
+    </div>
+    <div class="derived" id="derived"></div>
+  </fieldset>
+
+  <fieldset><legend>Image</legend>
+    <div class="grid">
+      <label class="full">file<select data-key="draw.image" id="imgsel"></select></label>
+      <label class="full"><span>upload (PNG; JPEG only if Pillow is installed)</span>
+        <input type="file" id="upload" accept=".png,.pgm,.ppm,.jpg,.jpeg"></label>
+      <label>style<select data-key="draw.style"><option value="dots">dots</option><option value="hatch">lines</option></select></label>
+      <label>rotate<select data-key="draw.rotate" data-type="int">
+        <option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select></label>
+      <label>max size, mm (empty = fit)<input type="number" step="5" data-key="draw.size_mm" data-null="1"></label>
+      <label>margin in box, mm<input type="number" step="1" data-key="draw.margin_mm"></label>
+      <label class="check"><input type="checkbox" data-key="draw.mirror"> mirror</label>
+      <label class="check"><input type="checkbox" data-key="draw.invert"> invert</label>
+    </div>
+  </fieldset>
+
+  <fieldset id="dotset"><legend>Dots</legend>
+    <div class="grid">
+      <label>grid, mm<input type="number" step="0.1" min="0.5" data-key="draw.dot_mm"></label>
+      <label>gamma<input type="number" step="0.05" min="0.2" data-key="draw.gamma"></label>
+      <label>sharpen<input type="number" step="0.1" min="0" data-key="draw.sharpen"></label>
+      <label>lightest kept (0–1)<input type="number" step="0.01" min="0" max="1" data-key="draw.min_dark"></label>
+      <label>melt min, s<input type="number" step="0.05" min="0" data-key="draw.dwell_min"></label>
+      <label>melt max, s<input type="number" step="0.05" min="0" data-key="draw.dwell_max"></label>
+      <label class="check full"><input type="checkbox" data-key="draw.no_levels" data-invert="1"> stretch contrast</label>
+    </div>
+  </fieldset>
+
+  <fieldset id="hatchset"><legend>Lines</legend>
+    <div class="grid">
+      <label>line spacing, mm<input type="number" step="0.5" min="0.5" data-key="draw.hatch_mm"></label>
+      <label>threshold (0–1)<input type="number" step="0.05" min="0" max="1" data-key="draw.threshold"></label>
+    </div>
+  </fieldset>
+
+  <div class="stats" id="stats"></div>
+</aside>
+
+<main>
+  <svg id="view" xmlns="http://www.w3.org/2000/svg"></svg>
+  <div class="legend">
+    <label><input type="checkbox" data-layer="cell" checked><span class="sw" style="background:var(--cell)"></span> lab cell</label>
+    <label><input type="checkbox" data-layer="frame" checked><span class="sw" style="background:var(--frame)"></span> frame</label>
+    <label><input type="checkbox" data-layer="border" checked><span class="sw" style="background:var(--border)"></span> border</label>
+    <label><input type="checkbox" data-layer="box" checked><span class="sw" style="background:var(--box)"></span> robot box</label>
+    <label><input type="checkbox" data-layer="image"> image</label>
+    <label><input type="checkbox" data-layer="marks" checked> dots / lines</label>
+    <label><input type="checkbox" data-layer="travel"><span class="sw" style="background:var(--travel)"></span> travel</label>
+  </div>
+  <div class="hud" id="hud">robot ↑ · drag to pan · wheel to zoom</div>
+  <div class="busy" id="busy"></div>
+</main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const svg = $("#view");
+let P = null, R = null, view = null, timer = null, seq = 0;
+const layers = { cell: true, frame: true, border: true, box: true, image: false, marks: true, travel: false };
+
+// world (robot base, mm) -> screen: robot at the top, your left on the left
+const S = (x, y) => [-y, -x];
+const W = (sx, sy) => [-sy, -sx];
+
+function get(obj, path) { return path.split(".").reduce((o, k) => (o == null ? o : o[k]), obj); }
+function set(obj, path, v) { const ks = path.split("."); const last = ks.pop();
+  const o = ks.reduce((o, k) => o[k], obj); o[last] = v; }
+
+function fillInputs() {
+  document.querySelectorAll("[data-key]").forEach((el) => {
+    let v = get(P, el.dataset.key);
+    if (el.type === "checkbox") el.checked = el.dataset.invert ? !v : !!v;
+    else el.value = v == null ? "" : (typeof v === "number" ? +v.toFixed(2) : v);
+  });
+  toggleSets();
+}
+function readInput(el) {
+  let v;
+  if (el.type === "checkbox") v = el.dataset.invert ? !el.checked : el.checked;
+  else if (el.type === "number") v = el.value === "" ? (el.dataset.null ? null : 0) : parseFloat(el.value);
+  else if (el.dataset.type === "int") v = parseInt(el.value, 10);
+  else v = el.value === "" ? null : el.value;
+  set(P, el.dataset.key, v);
+  toggleSets();
+  schedule();
+}
+function toggleSets() {
+  $("#dotset").hidden = P.draw.style !== "dots";
+  $("#hatchset").hidden = P.draw.style !== "hatch";
+}
+document.querySelectorAll("[data-key]").forEach((el) => el.addEventListener("input", () => readInput(el)));
+document.querySelectorAll("[data-layer]").forEach((el) => el.addEventListener("change", () => {
+  layers[el.dataset.layer] = el.checked; draw(); }));
+
+function schedule(ms = 180) { clearTimeout(timer); timer = setTimeout(update, ms); }
+
+async function update() {
+  const my = ++seq;
+  $("#busy").textContent = "updating…";
+  const r = await fetch("/api/preview", { method: "POST", body: JSON.stringify(P) }).then((r) => r.json());
+  if (my !== seq) return;
+  R = r; $("#busy").textContent = "";
+  if (!view) fitView();
+  draw(); info();
+}
+
+function info() {
+  const m = $("#msgs"); m.innerHTML = "";
+  (R.errors || []).forEach((t) => m.insertAdjacentHTML("beforeend", `<div class="err">${esc(t)}</div>`));
+  (R.warnings || []).forEach((t) => m.insertAdjacentHTML("beforeend", `<div class="warn">${esc(t)}</div>`));
+  $("#save").disabled = (R.errors || []).length > 0;
+  const g = R.geo;
+  if (g) {
+    const box = R.box ? `${(R.box.y[1] - R.box.y[0]).toFixed(0)} × ${(R.box.x[1] - R.box.x[0]).toFixed(0)} mm` : "—";
+    $("#derived").innerHTML = `rotation <b>${g.rot_deg.toFixed(2)}°</b> · depth <b>${g.depth_mm.toFixed(1)} mm</b>
+      · corners ${g.tip_dist_mm.toFixed(1)} mm apart<br>drawable <b>${(g.width_mm - 2 * P.border_mm).toFixed(0)} ×
+      ${(g.depth_mm - 2 * P.border_mm).toFixed(0)} mm</b> · robot box <b>${box}</b> · level ${g.level_mm.toFixed(1)} mm`;
+    $("#zs").textContent = `wax at tip z ${(g.wax_z * 1000).toFixed(1)} mm`;
+  }
+  const s = R.stats;
+  $("#stats").innerHTML = s ? `<b>${s.count}</b> ${R.style === "dots" ? "dots" : "lines"} · <b>${s.minutes}</b> min
+    · ${s.size_mm[0]} × ${s.size_mm[1]} mm<br><span style="color:var(--muted)">${esc(s.detail)} · ${esc(R.image_name || "")}</span>` : "";
+}
+const esc = (t) => String(t).replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+
+function pts(list) { return list.map(([x, y]) => S(x, y).join(",")).join(" "); }
+function mm(list) { return list.map(([x, y]) => [x * 1000, y * 1000]); }
+function rect(r) { return [[r.x[0], r.y[0]], [r.x[1], r.y[0]], [r.x[1], r.y[1]], [r.x[0], r.y[1]]]; }
+
+function draw() {
+  if (!R || !view) return;
+  const k = view.w / svg.clientWidth;            // svg units per pixel
+  let h = "";
+  h += `<defs><pattern id="hatch" width="${6 * k}" height="${6 * k}" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="${6 * k}" stroke="var(--frame)" stroke-width="${1.2 * k}" opacity=".45"/></pattern></defs>`;
+  if (layers.cell && R.cell)
+    h += `<polygon points="${pts(rect(R.cell))}" fill="none" stroke="var(--cell)" stroke-width="${1.2 * k}" stroke-dasharray="${6 * k} ${4 * k}"/>
+      <text x="${S(R.cell.x[0], R.cell.y[0])[0] - 4 * k}" y="${S(R.cell.x[0], R.cell.y[0])[1] - 4 * k}" font-size="${11 * k}" fill="var(--cell)" text-anchor="end">lab cell</text>`;
+  const g = R.geo;
+  if (g) {
+    const fr = mm(g.frame);
+    const wallW = 8;                               // drawn wall thickness, mm (visual only)
+    if (layers.frame) {
+      h += `<polygon points="${pts(fr)}" fill="none" stroke="url(#hatch)" stroke-width="${wallW * 2}" stroke-linejoin="miter"/>`;
+      h += `<polygon points="${pts(fr)}" fill="var(--wax)" stroke="var(--frame)" stroke-width="${1.5 * k}"/>`;
+    } else h += `<polygon points="${pts(fr)}" fill="var(--wax)"/>`;
+    if (layers.image && R.image_png) {
+      const [a, b, c] = R.image_rect.map(([x, y]) => S(x, y));
+      h += `<image href="${R.image_png}" width="1" height="1" preserveAspectRatio="none" opacity=".45"
+        transform="matrix(${b[0] - a[0]} ${b[1] - a[1]} ${c[0] - a[0]} ${c[1] - a[1]} ${a[0]} ${a[1]})"/>`;
+    }
+    if (layers.border)
+      h += `<polygon points="${pts(mm(g.drawable))}" fill="none" stroke="var(--border)" stroke-width="${1.3 * k}" stroke-dasharray="${5 * k} ${3 * k}"/>`;
+    if (layers.box && R.box)
+      h += `<polygon points="${pts(rect(R.box))}" fill="none" stroke="var(--box)" stroke-width="${1.6 * k}"/>`;
+  }
+  if (R.marks && (layers.marks || layers.travel)) {
+    let travel = [], marks = "";
+    const r0 = R.dot_r_mm;
+    for (const m of R.marks) {
+      if (m.length === 3) { const [sx, sy] = S(m[0], m[1]);
+        if (layers.marks) marks += `<circle cx="${sx}" cy="${sy}" r="${(r0 * (0.4 + 0.6 * m[2])).toFixed(2)}" stroke="none"/>`;
+        travel.push([sx, sy]); }
+      else { const a = S(m[0], m[1]), b = S(m[2], m[3]);
+        if (layers.marks) marks += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;
+        travel.push(a, b); }
+    }
+    if (layers.travel && travel.length)
+      h += `<polyline points="${travel.map((p) => p.join(",")).join(" ")}" fill="none" stroke="var(--travel)" stroke-width="${0.8 * k}" opacity=".7"/>`;
+    if (layers.marks) h += `<g fill="var(--dot)" stroke="var(--dot)" stroke-width="0.8" stroke-linecap="round">${marks}</g>`;
+  }
+  if (R.home) { const [sx, sy] = S(R.home[0], R.home[1]);
+    h += `<g stroke="var(--accent)" stroke-width="${1.5 * k}"><line x1="${sx - 6 * k}" y1="${sy}" x2="${sx + 6 * k}" y2="${sy}"/>
+      <line x1="${sx}" y1="${sy - 6 * k}" x2="${sx}" y2="${sy + 6 * k}"/></g>
+      <text x="${sx + 8 * k}" y="${sy - 6 * k}" font-size="${11 * k}" fill="var(--accent)">home</text>`; }
+  for (const [key, label] of [["bl", "BL"], ["tl", "TL"]]) {
+    const [sx, sy] = S(P[key][0], P[key][1]);
+    h += `<g class="handle" data-handle="${key}"><circle cx="${sx}" cy="${sy}" r="${9 * k}" fill="var(--accent)" opacity=".18"/>
+      <circle cx="${sx}" cy="${sy}" r="${4 * k}" fill="var(--accent)" stroke="var(--panel)" stroke-width="${1.5 * k}"/>
+      <text x="${sx + 10 * k}" y="${sy + 4 * k}" font-size="${12 * k}" font-weight="600" fill="var(--accent)">${label}</text></g>`;
+  }
+  svg.innerHTML = h;
+}
+
+// ---- view: fit, zoom, pan, drag handles
+function fitView() {
+  const g = R && R.geo; if (!g) return;
+  const s = mm(g.frame).map(([x, y]) => S(x, y));
+  const xs = s.map((p) => p[0]), ys = s.map((p) => p[1]);
+  const pad = 45, w = Math.max(...xs) - Math.min(...xs) + 2 * pad, hh = Math.max(...ys) - Math.min(...ys) + 2 * pad;
+  const ar = svg.clientWidth / svg.clientHeight;
+  const vw = Math.max(w, hh * ar), vh = vw / ar;
+  view = { x: (Math.min(...xs) + Math.max(...xs)) / 2 - vw / 2, y: (Math.min(...ys) + Math.max(...ys)) / 2 - vh / 2, w: vw, h: vh };
+  applyView();
+}
+function applyView() { svg.setAttribute("viewBox", `${view.x} ${view.y} ${view.w} ${view.h}`); draw(); }
+function toSvg(e) { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); }
+
+svg.addEventListener("wheel", (e) => {
+  e.preventDefault(); if (!view) return;
+  const p = toSvg(e), f = Math.exp(e.deltaY * 0.0015);
+  view = { x: p.x - (p.x - view.x) * f, y: p.y - (p.y - view.y) * f, w: view.w * f, h: view.h * f }; applyView();
+}, { passive: false });
+
+let drag = null;
+svg.addEventListener("pointerdown", (e) => {
+  const h = e.target.closest("[data-handle]");
+  svg.setPointerCapture(e.pointerId);
+  if (h) drag = { kind: "handle", key: h.dataset.handle };
+  else { drag = { kind: "pan", start: toSvg(e), view: { ...view } }; svg.classList.add("panning"); }
+});
+svg.addEventListener("pointermove", (e) => {
+  const p = toSvg(e), [wx, wy] = W(p.x, p.y);
+  $("#hud").textContent = `robot ↑ · x ${wx.toFixed(1)}  y ${wy.toFixed(1)} mm (base frame)`;
+  if (!drag) return;
+  if (drag.kind === "pan") {
+    const dx = p.x - drag.start.x, dy = p.y - drag.start.y;
+    view = { ...view, x: view.x - dx, y: view.y - dy }; applyView();
+  } else {
+    P[drag.key][0] = Math.round(wx * 2) / 2; P[drag.key][1] = Math.round(wy * 2) / 2;
+    fillInputs(); draw(); schedule(120);
+  }
+});
+const endDrag = () => { drag = null; svg.classList.remove("panning"); };
+svg.addEventListener("pointerup", endDrag); svg.addEventListener("pointercancel", endDrag);
+window.addEventListener("resize", () => { if (view) fitView(); });
+
+// ---- buttons
+$("#fit").onclick = fitView;
+$("#reset").onclick = () => load();
+$("#estgap").onclick = () => {
+  const d = Math.hypot(P.tl[0] - P.bl[0], P.tl[1] - P.bl[1]);
+  P.gap_mm = Math.max(0, Math.round((P.frame_mm - d)) / 2); fillInputs(); schedule(0);
+};
+$("#save").onclick = async () => {
+  const r = await fetch("/api/save", { method: "POST", body: JSON.stringify(P) }).then((r) => r.json());
+  const m = $("#msgs");
+  if (r.ok) m.innerHTML = `<div class="ok">Saved ${r.saved.map(esc).join(" and ")}\n\n${esc(r.describe)}</div>`;
+  else m.innerHTML = (r.errors || ["save failed"]).map((t) => `<div class="err">${esc(t)}</div>`).join("");
+};
+$("#upload").onchange = async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const r = await fetch("/api/upload", { method: "POST", headers: { "X-Filename": f.name }, body: f }).then((r) => r.json());
+  if (r.error) { $("#msgs").innerHTML = `<div class="err">${esc(r.error)}</div>`; return; }
+  fillImages(r.images); P.draw.image = r.name; fillInputs(); schedule(0);
+};
+function fillImages(list) {
+  $("#imgsel").innerHTML = `<option value="">demo picture</option>` +
+    list.map((n) => `<option value="${esc(n)}">${esc(n)}</option>`).join("");
+}
+
+async function load() {
+  const st = await fetch("/api/state").then((r) => r.json());
+  P = st.params;
+  fillImages(st.images);
+  if (P.draw.image && !st.images.includes(P.draw.image)) P.draw.image = null;
+  $("#sub").textContent = `target ${st.target} · ${st.has_setup ? st.setup_file : "no setup file yet (defaults)"}`;
+  fillInputs(); view = null; update();
+}
+load();
+</script>
+</body>
+</html>
