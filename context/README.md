@@ -14,13 +14,14 @@ it will work with the same API, units and rules you have.
 |---|---|---|
 | `INSTRUCTIONS.md` | **always** — the rules: how to help, what not to do (system prompt / custom instructions) | 8 KB |
 | `KNOWLEDGE.md` | **always** — the facts: environment, the `ur5e` API with signatures, workspace, safety profiles, lab robot, typical errors | 16 KB |
-| `framework_source.md` | the AI needs to see the actual implementation (it is `src/ur5e/*.py` + the templates concatenated; regenerate with `./context/make_source_snapshot.sh` after a `git pull`) | ~65 KB |
+| `CART_360.md` | **always, once you work on the real arm or around the cart** — the lab safety setup `cart_360`: what is checked, how to route moves around the cart, what each rejection means | 8 KB |
+| `framework_source.md` | the AI needs to see the actual implementation (it is `src/ur5e/*.py` + the templates concatenated; regenerate with `./context/make_source_snapshot.sh` after a `git pull`) | ~110 KB |
 | `ur_rtde/api_reference.txt` | you go below the framework (`robot.conn.control…`) and need exact `ur_rtde` call signatures | 95 KB |
 | `ur_rtde/guides.txt`, `examples.txt`, `faq.txt`, `rtde_protocol_guide.txt`, `installation.txt`, `introduction.txt` | background on RTDE, realtime loops, servo/speed commands, the record/replay example | 150 KB total |
 | `manual/UR5e_User_Manual_en_Global.txt` | pendant menus, I/O wiring and voltages, tool flange connector, safety settings, freedrive, installation variables — the official UR5e user manual (PolyScope 5.x) as searchable text | 720 KB |
 | `manual/UR5e_User_Manual_en_Global.pdf` | the same manual with figures, for you (and for assistants that read PDFs) | 17 MB |
 
-Start with the first two. Add the rest when a question needs it — most
+Start with the first three. Add the rest when a question needs it — most
 tools have a context limit, and the manual alone is ~200k tokens.
 
 ## How to feed it to your tool
@@ -29,7 +30,7 @@ tools have a context limit, and the manual alone is ~200k tokens.
 Projects, Gemini Gems, Perplexity Spaces, Mistral Le Chat agents…)**
 Create one project for the course. Paste `INSTRUCTIONS.md` into the
 project's custom instructions / system prompt. Upload `KNOWLEDGE.md`,
-`framework_source.md` and `ur_rtde/api_reference.txt` as knowledge files;
+`CART_360.md`, `framework_source.md` and `ur_rtde/api_reference.txt` as knowledge files;
 upload the manual `.txt` (or `.pdf`) too if the tool allows the size. Every
 new chat in that project then starts informed. When you ask for a script,
 also paste the template you are starting from and your current
@@ -44,8 +45,8 @@ tool can read `context/` and `src/ur5e/` itself. For Cursor you can
 additionally add `context/INSTRUCTIONS.md` under *Settings → Rules*.
 
 **Plain chat without files (free tiers, local models)**
-Paste `INSTRUCTIONS.md` + `KNOWLEDGE.md` as the first message of the
-conversation (~6k tokens together), then your template and your question.
+Paste `INSTRUCTIONS.md` + `KNOWLEDGE.md` + `CART_360.md` as the first message of the
+conversation (~9k tokens together), then your template and your question.
 
 ## Keep your own notes in the loop
 
@@ -56,7 +57,7 @@ it is inventing; say "only use methods from KNOWLEDGE.md" and it will stop.
 
 ## Sources
 
-- `INSTRUCTIONS.md`, `KNOWLEDGE.md`, `framework_source.md`: written for
+- `INSTRUCTIONS.md`, `KNOWLEDGE.md`, `CART_360.md`, `framework_source.md`: written for
   this course from the framework code (status lines in the code mark what is
   validated for student use).
 - `ur_rtde/`: text conversion of the ur_rtde 1.6.3 documentation,

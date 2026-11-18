@@ -13,6 +13,11 @@ Before doing anything else, read:
 2. `context/KNOWLEDGE.md` — the facts: environment, full `Robot` /
    `Workspace` API, safety profiles, lab robot, typical errors.
 
+3. `context/CART_360.md` — the lab's safety setup (`cart_360`): the arm on
+   the cart may work around and below the cart top, the cart body is a
+   keep-out and every move is checked along its path. Read it before writing
+   anything that moves beside or below the cart top.
+
 Then look at `examples/function_templates/` — new scripts start as a copy of
 the closest template. Reference material for deeper questions:
 `context/ur_rtde/` (ur_rtde docs as text) and `context/manual/` (UR5e user

@@ -13,7 +13,7 @@ Run (dev container, URSim ON/STARTED, viewer open to watch):
     python examples/grid_process.py
     python examples/grid_process.py --target real      # lab, supervised: the grid
         # starts at the arm's CURRENT pose, so freedrive it over the table first
-        # (inside the cart_against_wall box); --payload/--tcp if a tool is mounted
+        # (inside the cell, see `python -m ur5e.cell`); --payload/--tcp if a tool is mounted
 """
 
 from ur5e import Robot, grid_poses

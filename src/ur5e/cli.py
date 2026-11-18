@@ -17,12 +17,22 @@ arm with ``--target real``.  ``--target real`` is the conscious act that enables
 real-arm motion: it sets ``allow_real=True`` and declares the tool
 (``--payload`` kg, ``--tcp`` x y z rx ry rz; defaults = nothing mounted, TCP at
 the flange).  The host comes from ``UR_HOST`` (lab: 192.168.1.11) or ``--host``.
+``--cell cart_360`` checks a sim run against the lab cell (the cart keep-out)
+— what the real arm will enforce.
 """
 
 from __future__ import annotations
 
 import argparse
 import os
+
+
+class _SetCell(argparse.Action):
+    """--cell NAME: select the cell profile for this run (sets UR5E_CELL)."""
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        os.environ["UR5E_CELL"] = values
+        setattr(namespace, self.dest, values)
 
 
 def argument_parser(description: str | None = None) -> argparse.ArgumentParser:
@@ -35,6 +45,9 @@ def argument_parser(description: str | None = None) -> argparse.ArgumentParser:
                     help="override the robot IP/hostname (default: URSIM_HOST / UR_HOST)")
     ap.add_argument("--workspace", default=None, metavar="FILE",
                     help="workspace file (default: workspace.json or $UR5E_WORKSPACE)")
+    ap.add_argument("--cell", action=_SetCell, default=None, metavar="NAME",
+                    help="cell profile to check against (default: sim_open in the sim, cart_360 on the "
+                         "real arm). '--cell cart_360' in the sim rehearses against the cart keep-out")
     ap.add_argument("--payload", type=float, default=0.0, metavar="KG",
                     help="real only: mass of the mounted tool in kg (default 0.0 = nothing mounted)")
     ap.add_argument("--tcp", type=float, nargs=6, default=(0, 0, 0, 0, 0, 0),

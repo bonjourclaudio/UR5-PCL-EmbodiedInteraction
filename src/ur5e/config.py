@@ -29,3 +29,38 @@ _SIM_HOSTS = {"127.0.0.1", "localhost", "ursim"}
 
 def is_sim(host: str) -> bool:
     return host in _SIM_HOSTS or host == HOSTS["sim"]
+
+
+# --- which cell profile bounds the arm -------------------------------------------
+# The cell profile is the measured physical setup (safety.py PROFILES). A taught
+# Workspace is clipped to it; Robot(profile=None) uses it directly.
+REAL_CELL_DEFAULT = "cart_360"       # arm on the free-standing cart (HS26, from 2026-11-18)
+SIM_CELL_DEFAULT = "sim_open"
+
+_warned_open = False
+
+
+def cell_profile_name(target: str) -> str:
+    """Name of the cell profile for 'sim' / 'real'.
+
+    Default: sim -> sim_open (free exploration), real -> cart_360.
+    Environment variable UR5E_CELL (or the examples' --cell flag) overrides it:
+      UR5E_CELL=cart_360            use the cart cell in the SIM too — rehearse a
+                                    script against the cart keep-out before the lab
+      UR5E_CELL=cart_against_wall   the earlier table-only cell
+      UR5E_CELL=open                real arm, INSTRUCTOR OVERRIDE: no cell — only the
+                                    taught workspace box limits the arm ('real_open')
+    """
+    global _warned_open
+    choice = os.environ.get("UR5E_CELL", "").strip()
+    if choice.lower() in ("open", "none", "off"):
+        if target != "real":
+            return SIM_CELL_DEFAULT
+        if not _warned_open:
+            print("[ur5e] !! UR5E_CELL=open: the measured cell profile is NOT applied — only the taught "
+                  "workspace box limits the real arm (instructor override; PolyScope planes still apply)")
+            _warned_open = True
+        return "real_open"
+    if choice:
+        return choice
+    return REAL_CELL_DEFAULT if target == "real" else SIM_CELL_DEFAULT

@@ -70,7 +70,8 @@ box in the sim and on the 600 × 500 mm cart in the lab.
 
 `Robot(profile=ws)` turns the box into the safety profile for that run: moves
 outside it are rejected before they are sent. On the **real robot** the box
-is additionally clipped to the measured cell (`cart_against_wall`) and keeps
+is additionally clipped to the measured cell (`cart_360`: the arm on the cart,
+with the cart body as a keep-out — see `docs/SAFETY_SETUP.md`) and keeps
 its speed ceilings — you can make the space smaller, never larger. A
 workspace taught in the sim is refused on the real robot: teach it again
 there (two minutes with freedrive).
@@ -89,15 +90,16 @@ Order in the lab:
 
 1. Pendant: robot ON → START, header icon → **Remote Control**, speed slider
    down (30 %), hand near the stop.
-2. Freedrive the arm **over the table** — the cell box is
-   x −0.485…−0.201, y −0.286…0.240, z 0.03…0.60 m (`cart_against_wall`);
-   anything beyond the table's front edge is outside and would be rejected as
-   a target. After teaching, the script prints the box; a `!! clipped` line
-   means part of your box lies outside the cell — `ws.pose/grid/line` then use
-   the clipped part, and a taught point listed as outside (e.g. `home`) must be
-   re-taught, because the arm is not allowed to go there.
+2. Freedrive the arm to where you will work. The cell (`cart_360`, print it
+   with `python -m ur5e.cell`) allows the space above the cart top and around
+   the cart down towards the floor; the cart body itself is a keep-out. After
+   teaching, the script prints the box; a `!! clipped` line means part of your
+   box lies outside the cell — `ws.pose/grid/line` then use the clipped part,
+   and a taught point listed as outside (e.g. `home`) must be re-taught. A
+   `note: … reaches into the keep-out` line means the lower part of the box
+   overlaps the cart: poses there are rejected.
 3. `python examples/function_templates/00_teach_workspace.py --target real`
-   — all eight corners over the table, `home` inside the box.
+   — all eight corners where you work, `home` inside the box.
 4. `python examples/function_templates/01_read_state.py --target real`
    (no motion) then `03_move_to.py --target real`, and so on.
 

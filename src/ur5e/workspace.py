@@ -28,9 +28,10 @@ box in FRACTIONS, so the same script runs on any table size:
 
 Safety (flagged): the taught box is turned into a SafetyLimits profile with
 ``ws.profile(target)``. On the REAL arm it is the INTERSECTION of the taught
-box with the measured cell profile ``cart_against_wall`` — students can only
-shrink the space, never enlarge it — and the profile's speed ceilings are
-kept. A box taught in the sim is refused for the real arm (and vice versa).
+box with the measured cell profile (``cart_360``: the arm on the free-standing
+cart; see config.cell_profile_name) — students can only shrink the space,
+never enlarge it — and the cell's speed ceilings and keep-outs (the cart body)
+are kept. A box taught in the sim is refused for the real arm (and vice versa).
 As everywhere in this framework, PolyScope's own safety configuration stays
 the authoritative layer; this is the secondary software guard.
 
@@ -50,6 +51,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Sequence
 
+from .config import cell_profile_name
 from .safety import Box, SafetyLimits, get_profile
 
 FORMAT = "ur5e-workspace/2"
@@ -174,14 +176,14 @@ class Workspace:
     # -------------------------------------------------------------- safety --
     def profile(self, target: str) -> SafetyLimits:
         """SafetyLimits for `target` whose workspace box is this workspace —
-        clamped to the cell profile on the real arm (never larger than
-        cart_against_wall); sim_open's speed guards in the sim."""
+        clamped to the cell profile (never larger than the cell; its keep-outs
+        and speed ceilings are kept). Cell: config.cell_profile_name(target)."""
         if target != self.target:
             raise WorkspaceError(
                 f"this workspace was taught on target '{self.target}' but you are "
                 f"connecting to '{target}'. Teach a workspace on the real setup "
                 f"before using it there (examples/function_templates/00_teach_workspace.py).")
-        base = get_profile("cart_against_wall" if target == "real" else "sim_open")
+        base = get_profile(cell_profile_name(target))
         b, c = self.box, base.workspace
         clamped = Box(x=(max(b.x[0], c.x[0]), min(b.x[1], c.x[1])),
                       y=(max(b.y[0], c.y[0]), min(b.y[1], c.y[1])),
@@ -307,7 +309,7 @@ class Workspace:
         except WorkspaceError as e:
             return out + f"\n  !! {e}"
         if (c.x, c.y, c.z) != (b.x, b.y, b.z):
-            cell = get_profile("cart_against_wall" if self.target == "real" else "sim_open").workspace
+            cell = get_profile(cell_profile_name(self.target)).workspace
             named = [(f"low corner {i + 1}", q) for i, q in enumerate(self.corners_low)] + \
                     [(f"high corner {i + 1}", q) for i, q in enumerate(self.corners_high)]
             outside = [n for n, q in named if not cell.contains(q[:3])]
@@ -316,6 +318,12 @@ class Workspace:
                     f"(ws.pose/grid/line use this box)"
                     + (f"\n     corners outside the cell: {', '.join(outside)} (fine — the box is clipped)"
                        if outside else ""))
+        for k in self.profile(self.target).keepout:
+            z = k.tool_zone()
+            if (c.x[0] < z.x[1] and c.x[1] > z.x[0] and c.y[0] < z.y[1] and c.y[1] > z.y[0]
+                    and c.z[0] < z.z[1] and c.z[1] > z.z[0]):
+                out += (f"\n  note: part of this box reaches into the keep-out {k.describe()} "
+                        f"+ {k.side_clearance * 1000:.0f} mm — poses there are rejected; above the top is fine")
         if not c.contains(self.home[:3], tol=0.001):
             out += ("\n  !! home lies outside the usable box — move_joints(home_joints) would be "
                     "rejected; teach home inside the box")

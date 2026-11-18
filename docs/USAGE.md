@@ -132,7 +132,7 @@ need. Raw calls skip the framework's checks.
 
 `examples/function_templates/` has **one short script per API call**
 (`01_read_state.py` … `09_raw_rtde.py`, table in its README). They all move
-inside a **taught workspace** — a box you teach once per setup, in four steps,
+inside a **taught workspace** — a box you teach once per setup, in nine steps,
 with `00_teach_workspace.py`:
 
 ```bash
@@ -172,8 +172,9 @@ orientation is the one you taught. The same script therefore runs on the
 small demo box in the sim and on the full cart in the lab. `Robot(profile=ws)`
 makes the box the safety profile for that run — moves outside it are
 rejected. On the **real robot** the box is clipped to the measured cell
-(`cart_against_wall`) and keeps its speed ceilings; a workspace taught in the
-sim is refused there (teach it again in the lab — two minutes).
+(`cart_360`: the arm on the cart, with the cart body as a keep-out — see
+[SAFETY_SETUP.md](SAFETY_SETUP.md)) and keeps its speed ceilings; a workspace
+taught in the sim is refused there (teach it again in the lab — two minutes).
 
 Run the templates in order once — `02_move_joints.py` (moveJ),
 `03_move_to.py` (moveL), `04_move_through.py`, `05_grid_poses.py`,
@@ -181,7 +182,8 @@ Run the templates in order once — `02_move_joints.py` (moveJ),
 then copy whatever you need into `students/<name>/`.
 
 Every template (and `grid_process.py`) takes the same flags — `--help` lists
-them: `--target sim|real` (default sim), `--workspace FILE`, `--host`, and for
+them: `--target sim|real` (default sim), `--workspace FILE`, `--host`,
+`--cell NAME` (`--cell cart_360` checks a sim run against the lab cell), and for
 the real arm `--payload KG` and `--tcp X Y Z RX RY RZ`. Your own scripts get
 them with two lines:
 
@@ -220,8 +222,8 @@ the host from the `URSIM_HOST` variable (set to `ursim` by compose),
 | start shell | `docker compose run --rm dev bash` | `docker compose run --rm --no-deps -e UR_HOST=192.168.1.11 dev bash` (`--no-deps`: don't start URSim) |
 | examples / templates | `python examples/function_templates/03_move_to.py` | `python examples/function_templates/03_move_to.py --target real` (+ `--payload KG --tcp …` if a tool is mounted) |
 | in your own code | `Robot(target="sim", profile=ws)` | `Robot(target="real", profile=ws, allow_real=True, payload_kg=…, tcp=…)` — or the `ur5e.cli` lines from §3, which do exactly this for `--target real` |
-| profile | `sim_open` (or the taught box) | `cart_against_wall` — the measured work surface of the cart (or the taught box clipped to it); moves outside it are rejected |
-| workspace | `00_teach_workspace.py --target sim` (or `--demo`) | `00_teach_workspace.py --target real` — teach all eight corners **over the table**, home inside the box |
+| profile | `sim_open` (or the taught box); `--cell cart_360` to rehearse against the lab cell | `cart_360` — above, around and below the cart top, the cart body is a keep-out (or the taught box clipped to it); see [SAFETY_SETUP.md](SAFETY_SETUP.md) |
+| workspace | `00_teach_workspace.py --target sim` (or `--demo`) | `00_teach_workspace.py --target real` — teach all eight corners where you work (over the table or beside the cart), home inside the box |
 | check | `python scripts/check_connection.py --target sim` | `python scripts/check_connection.py --target real` |
 
 The lab robot's IP is **static: `192.168.1.11`**. If in doubt, the pendant
@@ -264,8 +266,8 @@ Set the address back to *DHCP/Automatic* when you leave the lab if you use
 that adapter elsewhere.
 
 Real motion is refused
-unless **all** of: `allow_real=True`, the profile is validated (the shipped
-`cart_against_wall` is), and the tool was declared (`set_tool(...)` or the
+unless **all** of: `allow_real=True`, the profile is validated (the lab cell
+`cart_360` is, once the instructor has measured the cart), and the tool was declared (`set_tool(...)` or the
 `payload_kg=`/`tcp=` arguments) with the mounted tool's **payload (kg)** and
 **TCP offset** `[x, y, z, rx, ry, rz]` (m, rad) — the same values as the
 pendant's *Installation → General → TCP / Payload*. `--target real` on an
@@ -276,15 +278,16 @@ example does all three (defaults: 0 kg, flange = nothing mounted) and prints a
 You normally work in simulation; driving the real arm happens only in the lab,
 supervised.
 
-Where the arm is parked matters: the first target of every script must be
-inside the box. The cell box is x −0.485…−0.201, y −0.286…0.240, z 0.03…0.60 m
-(Base frame, the table in front of the robot) — an arm hanging beyond the
-table's front edge is outside, and a workspace taught there would have no
-overlap with the cell (`WorkspaceError`). Freedrive it over the table before
-teaching. If only part of your taught box sticks out, `00_teach_workspace.py`
-/ `ws.describe()` print a `!! clipped` line: `ws.pose/grid/line` then use the
-clipped part automatically, but a taught point listed as outside (`home`,
-`top`, …) is a place the arm may not go — teach it again inside.
+Where the arm is parked matters: every move is checked from where the arm is
+*now* to its target. The lab cell `cart_360` (print it with
+`python -m ur5e.cell`) allows the space above the cart top and around the cart
+down towards the floor; the cart body is a keep-out, and a straight line that
+cuts through it is rejected — [SAFETY_SETUP.md](SAFETY_SETUP.md) shows how to
+route around it and what each rejection means. If only part of your taught box
+sticks out of the cell, `00_teach_workspace.py` / `ws.describe()` print a
+`!! clipped` line: `ws.pose/grid/line` then use the clipped part automatically,
+but a taught point listed as outside (`home`, …) is a place the arm may not
+go — teach it again inside.
 
 `scripts/smoke_test_move.py` is wired to the sim host and bypasses the checks —
 it is not meant for the real arm.

@@ -17,6 +17,8 @@ FILES=(
   src/ur5e/connection.py
   src/ur5e/config.py
   src/ur5e/kinematics.py
+  src/ur5e/cell.py
+  src/ur5e/cells/cart_360.json
   examples/function_templates/README.md
   examples/function_templates/00_teach_workspace.py
   examples/function_templates/01_read_state.py

@@ -57,6 +57,7 @@ class RobotConnection:
         self.io: Optional[RTDEIOInterface] = None
         self._payload_set = False
         self._tcp_set = False
+        self.tcp = None                    # [x,y,z,rx,ry,rz] once set_tcp() was called
 
     @property
     def payload_set(self) -> bool:
@@ -120,6 +121,7 @@ class RobotConnection:
         """
         self._require_control()
         self.control.setTcp(list(pose6_m_rad))
+        self.tcp = list(pose6_m_rad)
         self._tcp_set = True
 
     def _require_control(self) -> None:

@@ -95,8 +95,9 @@ edit `src/`, `scripts/`, `examples/` (replaced on `git pull`).
 - The TCP is the pendant's **active TCP**; with no tool mounted it is the
   flange (`tool0`). `Robot.set_tool(payload_kg, tcp)` sets payload + TCP for a
   session; required on the real arm.
-- Base frame on the lab cart: table surface at z ≈ 0, **front of the robot
-  = −X** (the measured work area is at x ≈ −0.49…−0.20 m).
+- Base frame on the lab cart: z = 0 is the robot's mounting plane, the cart
+  top is 10 mm below (z = −0.010 m); **front of the robot = −X** (cart top from
+  x = −0.566 to +0.124 m, y = ±0.345 m; below the cart top z is negative).
 
 ## 4. The `ur5e` package — public API
 
@@ -113,7 +114,8 @@ Robot(target="sim", *, profile=None, allow_real=False, host=None,
 ```
 - `target`: `"sim"` (host from `URSIM_HOST`, default 127.0.0.1) or `"real"`
   (host from `UR_HOST`). `host=` overrides.
-- `profile`: `None` → `"sim_open"` for sim, `"cart_against_wall"` for real;
+- `profile`: `None` → the cell profile: `"sim_open"` for sim, `"cart_360"` for real
+  (`ur5e.config.cell_profile_name`; `--cell NAME` / env `UR5E_CELL` overrides, also in the sim);
   a profile name; a `SafetyLimits`; or a **`Workspace`** (→ `ws.profile(target)`).
 - `payload_kg` / `tcp`: if given, `set_tool(payload_kg, tcp)` runs right after
   connecting (what `--target real` does). For `target="real"` a
@@ -125,7 +127,7 @@ Robot(target="sim", *, profile=None, allow_real=False, host=None,
 
 ```python
 from ur5e.cli import argument_parser, robot_kwargs
-args = argument_parser(__doc__).parse_args()     # --target sim|real  --host  --workspace FILE  --payload KG  --tcp X Y Z RX RY RZ
+args = argument_parser(__doc__).parse_args()     # --target sim|real  --host  --workspace FILE  --cell NAME  --payload KG  --tcp X Y Z RX RY RZ
 ws = Workspace.load(args.workspace)
 with Robot(**robot_kwargs(args), profile=ws) as robot: ...
 ```
@@ -158,7 +160,11 @@ position from nominal forward kinematics, with 5 mm tolerance
 (`FK_TOLERANCE_M`) because the controller's calibrated model differs by up to
 a few mm), speed/accel ≤ ceilings, joints within ±2π. A
 violation raises `SafetyViolation` with a readable message and **nothing
-moves**; values are never clamped.
+moves**; values are never clamped. With a cell that has a **keep-out**
+(`cart_360`, §6) the *path* is checked too: `move_to` — the straight TCP line,
+the flange line and the arm links at up to 12 points along it (joint angles
+from the framework's own inverse kinematics, iterated from the current joints); `move_joints` — the arm links every
+≤ 3° of joint travel from the current joints to the target.
 
 ### Pattern generators (geometry only, no motion)
 
@@ -182,7 +188,7 @@ ws.box                                  # Box(x=(lo,hi), y=(..), z=(..)) in metr
 ws.bounding_box                         # box around all corners, information only
 ws.usable_box                           # taught box ∩ cell profile on real (what pose/grid/line and the checks use)
 ws.orientation                          # rotation vector taught at low corner 1
-ws.profile(target)                      # SafetyLimits for this box (real: clipped to cart_against_wall)
+ws.profile(target)                      # SafetyLimits for this box (clipped to the cell: cart_360 on real; keeps its keep-out)
 ws.describe(); ws.size_mm; ws.target    # "sim" or "real"
 Workspace.from_points(target, corners_low, corners_high, home, home_joints); ws.save(path)
 ```
@@ -198,8 +204,9 @@ Workspace.from_points(target, corners_low, corners_high, home, home_joints); ws.
   `move_j`, `move_l`; holds the real-arm gate.
 - `ur5e.safety` — `SafetyLimits`, `Box`, `PROFILES`, `get_profile(name)`,
   `SafetyViolation`.
-- `ur5e.config` — `resolve_host("sim"|"real")`, `is_sim(host)`.
-- `ur5e.kinematics` — DH forward kinematics (flange).
+- `ur5e.config` — `resolve_host("sim"|"real")`, `is_sim(host)`, `cell_profile_name(target)`.
+- `ur5e.cell` — `python -m ur5e.cell [name|--all]` prints the cell profile's numbers.
+- `ur5e.kinematics` — DH forward kinematics (flange, TCP offset, arm link points).
 - `ur5e.viewer` — the viser-based viewer (scenes, safety-plane drawing).
 
 ### Not implemented (do not invent these)
@@ -241,8 +248,8 @@ with Robot(target="sim", profile=ws) as robot:
 ```
 
 `Robot(profile=ws)` makes the box the safety profile: in the sim with
-`sim_open`'s speed guards; on the real arm the box is **intersected with
-`cart_against_wall`** and that profile's ceilings apply. `ws.pose/grid/line`
+`sim_open`'s speed guards; on the real arm the box is **intersected with the
+cell `cart_360`** and that profile's ceilings and keep-out (the cart) apply. `ws.pose/grid/line`
 generate inside that intersection (`ws.usable_box`); `ws.describe()` prints a
 `!! clipped` line and names taught points (e.g. `home`) that fall outside the
 cell — moving to those is rejected, so they have to be re-taught. A sim-taught file is
@@ -255,20 +262,44 @@ refused for the real arm (`WorkspaceError`).
 | `sim_open` (sim default) | 0.25 m/s, 0.8 m/s² | 0.8 rad/s, 1.2 rad/s² | x ±0.9, y ±0.9, z −0.25…1.0 | 0.5 kg | — (not validated) |
 | `cart_against_wall` (real default) | 0.15 m/s, 0.5 m/s² | 0.5 rad/s, 0.8 rad/s² | x −0.4853…−0.2013, y −0.2859…0.2401, z 0.0287…0.60 (x/y captured on the real cell; z max set 2026-10-29) | 0.5 kg | `allow_real=True`, `validated=True` ✓, payload set, TCP set |
 
+`cart_360` (**real default from 2026-11-18**, same ceilings as
+`cart_against_wall`, payload 0.5 kg): the arm on the free-standing cart, allowed
+above the cart top, around the cart and below the level of its top. Numbers
+come from `src/ur5e/cells/cart_360.json` (measured by the instructor) — print
+them with `python -m ur5e.cell`, do not quote them from memory. It has
+
+- a TCP box of reach size (about ±0.95 m, floor + 50 mm … 1.0 m),
+- **keep-outs** = the cart body (690 × 690 × 790 mm: x −0.566…+0.124,
+  y ±0.345, z −0.800…−0.010 m), a handle on its −Y side just below the top, and
+  the robot's mounting plate: the TCP and the line flange → TCP stay 20 mm from
+  a keep-out's sides and underside (its top may be touched); the arm links
+  (upper arm, elbow, forearm, wrists as 60 mm spheres) stay clear on all sides,
+- a floor (z = −0.800 m): the TCP stays 50 mm above it, arm links above it.
+
+Not checked: the tool's shape beyond the flange → TCP line, cables, objects
+beside the cart, people. In the sim, `--cell cart_360` (or env
+`UR5E_CELL=cart_360`) applies this cell; viewer scene `cart_360` draws it.
+`cart_against_wall` is the earlier table-only cell (`--cell cart_against_wall`).
+Student-facing description: `docs/SAFETY_SETUP.md`; how to plan moves around
+the cart and what each rejection means: **`context/CART_360.md`**.
+
 Joint limits ±2π on all joints. The **real-arm gate** (`MotionController`):
 motion to a non-sim host needs all of `allow_real=True`, a validated
 profile, `set_payload` and `set_tcp` done — otherwise `SafetyViolation`.
 Software limits are deliberately **below** the controller's: PolyScope on
 the lab robot is set to the "most restrictive" preset (tool speed 250 mm/s,
-tool force 100 N, power 80 W, momentum 5 kg·m/s) plus a wall plane and a
-table plane. **PolyScope's Safety Configuration is the authoritative layer;
+tool force 100 N, power 80 W, momentum 5 kg·m/s); the installation `cart_360`
+has **no safety planes**; the limits are the same everywhere, there is no slow
+zone below the cart top. Cart and floor are guarded by the framework's checks only. **PolyScope's Safety Configuration is the authoritative layer;
 the framework checks are a secondary guard. Nothing in the viewer protects
 the robot.**
 
 ## 7. The lab robot
 
-- UR5e on a steel cart against a wall (~180° usable), controller in the
-  cart, work surface ~600 × 500 mm in front at mounting height (z ≈ 0).
+- UR5e on a steel cart, controller in the cart, work surface ~600 × 500 mm in
+  front at mounting height (z ≈ 0). From 2026-11-18 the cart is used
+  free-standing: the arm works above the top, around the cart and below the
+  level of its top (cell `cart_360`, §6).
 - PolyScope **5.9.1** (hence URSim 5.9.4). Static IP **192.168.1.11**,
   mask 255.255.255.0 (pendant ☰ → About). Remote Control enabled. The robot
   sits on its own wired network **without DHCP**: the laptop needs a manual
@@ -279,10 +310,9 @@ the robot.**
   `docker compose run --rm --no-deps -e UR_HOST=192.168.1.11 dev bash`, then
   any example with `--target real` (own code: `Robot(target="real",
   allow_real=True, payload_kg=…, tcp=…)` or the `ur5e.cli` lines) — only with
-  the instructor present, speed slider down, hand near the e-stop. The arm must
-  be **over the table** first: the cell box is x −0.485…−0.201,
-  y −0.286…0.240, z 0.03…0.60 m; parked beyond the front edge it is outside,
-  and a workspace taught there has no overlap with the cell.
+  the instructor present, speed slider down, hand near the e-stop. Every move
+  is checked from where the arm stands to the target (§6): a straight line
+  through the cart is rejected, so route around it (`docs/SAFETY_SETUP.md`).
 - No tool mounted by default (payload 0, TCP 0). A `tool_example` preset
   exists in `toolheads/` (80 mm flange plate + probe, TCP ≈ (0, 21, 108) mm —
   assumed from geometry, not measured).
@@ -316,6 +346,11 @@ sliders. Scene format `ur5e-scene/1` (metres, degrees unless `_rad`).
 | `Failed to start RTDE data synchronization` | pendant not in Remote Control (or robot not ON/STARTED) |
 | `control interface not connected` | same; or URSim still booting (1–3 min on Apple Silicon) |
 | `SafetyViolation: target (...) outside workspace box of profile '...'` | pose outside the box — check fractions / the taught box (`ws.describe()`) |
+| `SafetyViolation: ... is inside the keep-out 'cart'` | target in the cart body or < 20 mm from its side (below the top) — move it out or above the top |
+| `SafetyViolation: linear move, TCP path: the straight line ... passes through the keep-out` | the line cuts through the cart — add a waypoint above the top or outside the corner |
+| `SafetyViolation: ... the forearm (upper arm / wrist N) would come closer than 60 mm to the keep-out` | the arm itself gets too close to the cart on the way — move the path further out or approach from another side |
+| `SafetyViolation: linear move: no joint solution at ...` | the straight line leaves the reach — shorter legs / other route |
+| `SafetyViolation: profile 'cart_360' is not validated` | the lab cell is not released for the real arm yet — instructor |
 | `SafetyViolation: tcp speed X out of (0, 0.25] m/s` | speed above the ceiling; use ≤ profile max |
 | `SafetyViolation: joint 1 = ... outside limit` | joint target beyond ±2π (degrees passed as radians?) |
 | `SafetyViolation: refusing real-arm motion ... allow_real=True` | real arm without `allow_real=True` (deliberate) |

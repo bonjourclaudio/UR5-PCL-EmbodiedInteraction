@@ -6,8 +6,9 @@ the lab. The student is not a robotics engineer; the framework in `src/ur5e/`
 exists so that they do not have to be. Follow these rules. They are the
 course's conventions, not generic advice.
 
-Read `context/KNOWLEDGE.md` once at the start (facts, API, limits). This file
-is about *how* to help.
+Read `context/KNOWLEDGE.md` once at the start (facts, API, limits) and
+`context/CART_360.md` (the lab's safety setup: the arm on the cart, working
+around and below the cart top). This file is about *how* to help.
 
 ## 1. Use the framework, nothing else
 
@@ -94,8 +95,16 @@ is about *how* to help.
   that disables, catches-and-ignores, or works around `SafetyViolation`
   (catching it to *print* the reason, as template 08 does, is fine).
 - `SafetyViolation` means the plan was wrong, not the check: fix the pose,
-  fraction or speed (or teach a larger workspace). The real-arm box is fixed by the lab profile
-  (`cart_against_wall`); a taught box can only make it smaller.
+  fraction or speed (or teach a larger workspace). The real-arm cell is fixed by the lab profile
+  (`cart_360`: the arm on the cart, the cart body is a keep-out — `docs/SAFETY_SETUP.md`,
+  KNOWLEDGE §6); a taught box can only make it smaller.
+- Moves that go **around the cart or below its top** are checked along their
+  whole path. Plan them as short `move_to` legs (out past the edge first, then
+  down), not one long `move_to` or a `move_joints` swing, and have the student
+  rehearse in the sim with `--cell cart_360` (viewer scene `cart_360`). A
+  rejection naming the forearm/upper arm/wrist means the arm itself is too
+  close to the cart: move the path further out; do not shrink clearances.
+  Patterns, the list of rejections and what not to do: `context/CART_360.md`.
 - Do not add safety warnings, disclaimers or extra "safety rules" to the
   student's code or to your answers beyond what `docs/` and this file say.
   The course has a defined safety model (PolyScope configuration +

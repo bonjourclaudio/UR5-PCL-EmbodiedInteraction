@@ -1,0 +1,69 @@
+{
+  "format": "ur5e-cell/1",
+  "name": "cart_360",
+  "validated": true,
+  "units_note": "metres, robot Base frame; z = 0 is the robot's mounting plane. Written by scripts/teach_cart_cell.py (instructor) - do not edit in a student clone.",
+  "cart": {
+    "x": [
+      -0.566,
+      0.124
+    ],
+    "y": [
+      -0.345,
+      0.345
+    ],
+    "top_z": -0.01
+  },
+  "floor_z": -0.8,
+  "side_clearance": 0.02,
+  "arm_radius": 0.06,
+  "floor_clearance": 0.05,
+  "reach": {
+    "x": [
+      -0.95,
+      0.95
+    ],
+    "y": [
+      -0.95,
+      0.95
+    ],
+    "z_max": 1.0
+  },
+  "measured_at": "2026-11-18 09:16",
+  "measured_with": "drawing 'cart' by Johannes Reck, 2026-11-18 (Documentation/assets/cart_Drawing.pdf), entered by hand",
+  "note": "From the drawing; confirmed by JReck 2026-11-18: base frame aligned with the cart, long part of the top (566 mm from the robot axis) = -X, handle on the -Y side at the drawn position, 790 mm = floor to cart top, robot mounting plane 10 mm above the cart top.",
+  "extras": [
+    {
+      "name": "handle",
+      "x": [
+        -0.455,
+        0.01
+      ],
+      "y": [
+        -0.405,
+        -0.345
+      ],
+      "z": [
+        -0.075,
+        -0.035
+      ],
+      "source": "450 x 60 mm from the drawing; position read off the drawing's geometry and padded; confirmed by JReck 2026-11-18"
+    },
+    {
+      "name": "mounting plate",
+      "x": [
+        -0.09,
+        0.09
+      ],
+      "y": [
+        -0.09,
+        0.09
+      ],
+      "z": [
+        -0.01,
+        0.0
+      ],
+      "source": "180 x 180 x 10 mm, robot centred on it"
+    }
+  ]
+}

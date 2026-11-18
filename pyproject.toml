@@ -24,3 +24,5 @@ where = ["src"]
 [tool.setuptools.package-data]
 # UR5e link meshes (GLB) + license shipped with the viewer.
 "ur5e.viewer" = ["assets/ur5e/*.glb", "assets/ur5e/LICENSE", "assets/ur5e/SOURCE.md"]
+# Measured cell geometry (cart_360) read by ur5e.safety.
+"ur5e" = ["cells/*.json"]

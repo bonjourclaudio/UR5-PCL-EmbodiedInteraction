@@ -30,7 +30,7 @@ from __future__ import annotations
 
 from typing import Iterable, Sequence
 
-from .config import resolve_host
+from .config import cell_profile_name, resolve_host
 from .connection import RobotConnection
 from .motion import MotionController
 from .safety import SafetyLimits, get_profile
@@ -43,14 +43,15 @@ class Robot:
     def __init__(self, target: str = "sim", *, profile=None,
                  allow_real: bool = False, host: str | None = None,
                  payload_kg: float | None = None, tcp: Sequence[float] | None = None):
-        """target 'sim' | 'real'; profile: name, SafetyLimits or Workspace;
+        """target 'sim' | 'real'; profile: name, SafetyLimits or Workspace
+        (None = the cell profile: sim_open in the sim, cart_360 on the real arm);
         payload_kg / tcp: if given, set_tool() is called right after connecting
         (what the examples do for --target real)."""
         self.host = host or resolve_host(target)
         self.target = target
         self._tool = (payload_kg, tuple(tcp) if tcp is not None else (0, 0, 0, 0, 0, 0))
         if profile is None:
-            profile = "sim_open" if target == "sim" else "cart_against_wall"
+            profile = cell_profile_name(target)      # sim_open / cart_360 (or $UR5E_CELL)
         if isinstance(profile, Workspace):          # a taught workspace -> its profile
             profile = profile.profile(target)
         self.limits: SafetyLimits = get_profile(profile) if isinstance(profile, str) else profile

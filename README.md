@@ -7,6 +7,9 @@ the exact same code that later runs on the real arm in the lab.
 **→ [docs/SETUP.md](docs/SETUP.md)** — install Docker Desktop, VS Code, Git;
 first start; checks. Do this before the first session.
 
+**→ [docs/SAFETY_SETUP.md](docs/SAFETY_SETUP.md)** — the lab safety setup for all
+groups: arm on the cart, reaching around and below the cart top.
+
 **→ [docs/USAGE.md](docs/USAGE.md)** — the Python API, examples, sim vs. real
 robot, the 3D viewer (scenes, models, toolheads, safety planes), PolyScope
 programs → USB → pendant.
@@ -70,7 +73,7 @@ with Robot(target="sim", profile=ws) as robot:
 ## What's in the repo
 
 ```
-docs/            SETUP.md, USAGE.md
+docs/            SETUP.md, USAGE.md, SAFETY_SETUP.md
 src/ur5e/        the framework: Robot API, connection, motion checks, viewer
 scripts/         check_connection.py, smoke_test_move.py, rtde_viewer.py
 examples/        grid_process.py — copy it to start your own
