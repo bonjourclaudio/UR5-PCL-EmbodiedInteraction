@@ -71,11 +71,14 @@ def estimate_gap_mm(bl_tip, tl_tip, frame_mm: float) -> float:
 
 
 def frame_geometry(bl_tip, tl_tip, *, frame_mm: float, border_mm: float, gap_mm: float,
-                   extra_m: float, ceiling_mm: float) -> dict:
+                   extra_m: float, ceiling_mm: float, width_mm: float | None = None,
+                   cut_offset_mm: float = 0.0) -> dict:
     """From the two recorded REAL tip positions (m) to the canvas.
 
-    The frame is a square of frame_mm (inner); its 'up' direction and depth come from the
-    two corners, its width is frame_mm. gap_mm = how far the tip stayed from the walls.
+    The frame's 'up' direction and depth come from the two corners; its width (left -> right,
+    not measured by the corners) is width_mm (default frame_mm). gap_mm = how far the tip
+    stayed from the walls. cut_offset_mm raises (+) or lowers (-) the cutting level against
+    the taught wax height (e.g. +10 when the tip reached the plate under the wax).
     Returns metres unless the key says _mm / _deg:
       frame      4 inner frame corners (x, y): BL, TL, TR, BR
       drawable   4 corners inside the border  (x, y): BL, TL, TR, BR
@@ -94,7 +97,7 @@ def frame_geometry(bl_tip, tl_tip, *, frame_mm: float, border_mm: float, gap_mm:
     blc = bl_t[:2] - g * (u + right)
     tlc = tl_t[:2] + g * u - g * right
     depth = float(np.linalg.norm(tlc - blc))
-    width = frame_mm / 1000
+    width = (width_mm or frame_mm) / 1000
     if depth - 2 * b < 0.02 or width - 2 * b < 0.02:
         raise ValueError("frame minus border leaves no drawable area")
     frame = [blc, tlc, tlc + width * right, blc + width * right]
@@ -102,12 +105,13 @@ def frame_geometry(bl_tip, tl_tip, *, frame_mm: float, border_mm: float, gap_mm:
     tld = blc + (depth - b) * u + b * right
     drawable = [bld, tld, tld + (width - 2 * b) * right, bld + (width - 2 * b) * right]
     wax_z = max(bl_t[2], tl_t[2])
-    zs = wax_z + extra_m
+    zs = wax_z + extra_m + cut_offset_mm / 1000
     return {
         "frame": [tuple(map(float, p)) for p in frame],
         "drawable": [tuple(map(float, p)) for p in drawable],
         "zs": float(zs), "zt": float(zs + ceiling_mm / 1000), "wax_z": float(wax_z),
         "rot_deg": math.degrees(math.atan2(u[1], u[0])),
-        "depth_mm": depth * 1000, "width_mm": frame_mm, "tip_dist_mm": tip_dist * 1000,
+        "depth_mm": depth * 1000, "width_mm": width * 1000, "tip_dist_mm": tip_dist * 1000,
+        "cut_offset_mm": cut_offset_mm,
         "level_mm": abs(bl_t[2] - tl_t[2]) * 1000,
     }

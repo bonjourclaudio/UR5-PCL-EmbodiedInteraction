@@ -40,6 +40,7 @@ from ur5e import Robot
 from ur5e.config import resolve_host
 from ur5e.connection import RobotConnection
 from ur5e.kinematics import fk_frames
+from ur5e.config import cell_profile_name
 from ur5e.safety import get_profile
 from ur5e.workspace import Workspace, WorkspaceError, inner_box
 
@@ -47,7 +48,6 @@ from geometry import (estimate_gap_mm, frame_geometry, mat_to_rotvec, rotvec_to_
                       straight_down, tilt_deg)
 
 HERE = Path(__file__).resolve().parent
-CELL = "cart_against_wall"
 TCP_TOLERANCE_MM = 8.0          # nominal FK vs. controller differ by a few mm
 MAX_TILT_DEG = 15.0
 JOINT_NAMES = ("base", "shoulder", "elbow", "wrist 1", "wrist 2", "wrist 3")
@@ -209,9 +209,14 @@ def main() -> None:
         top = ask("workspace ceiling above the wax, mm", prev.get("ceiling_mm", 80.0))
         if top < wall + 40:
             raise SystemExit(f"ceiling must be at least {wall + 40:.0f} mm (walls + 30 mm clearing + margin)")
+        width_mm = prev.get("frame_width_mm") or frame
+        cut_off = prev.get("cut_offset_mm", 0.0)
+        if width_mm != frame or cut_off:
+            print(f"  from the setup file (canvas_tool.py): frame width {width_mm:.0f} mm, "
+                  f"cutting level {cut_off:+.1f} mm against the taught wax height")
         try:
             geo = frame_geometry(bl_t, tl_t, frame_mm=frame, border_mm=border, gap_mm=gap,
-                                 extra_m=extra, ceiling_mm=top)
+                                 extra_m=extra, ceiling_mm=top, width_mm=width_mm, cut_offset_mm=cut_off)
         except ValueError as e:
             raise SystemExit(str(e))
         corners, zs, zt, rot = geo["drawable"], geo["zs"], geo["zt"], geo["rot_deg"]
@@ -227,12 +232,12 @@ def main() -> None:
             print("  !! the canvas is not level — with 1 mm of wax the tip may miss or dig in; shim it")
         box = inner_box([[x, y, z] for z in (zs, zt) for x, y in corners])
         bw, bd = (box.y[1] - box.y[0]) * 1000, (box.x[1] - box.x[0]) * 1000
-        print(f"  drawable area (inside the border): {frame - 2 * border:.0f} x {depth - 2 * border:.0f} mm; "
+        print(f"  drawable area (inside the border): {width_mm - 2 * border:.0f} x {depth - 2 * border:.0f} mm; "
               f"largest box the robot can use inside it: {bw:.0f} x {bd:.0f} mm")
         if abs(rot) > 1.0:
             print(f"  (rotating the frame {-rot:+.1f} deg to line up with the robot would give the full area)")
         if args.target == "real":
-            cell = get_profile(CELL).workspace
+            cell = get_profile(cell_profile_name("real")).workspace
             bad = [f"{n} {mm([x, y, z])}" for z in (zs, zt) for n, (x, y) in zip(("BL", "TL", "TR", "BR"), corners)
                    if not cell.contains([x, y, z])]
             if bad:
@@ -311,7 +316,7 @@ def main() -> None:
     setup = {"target": args.target, "workspace": str(out), "payload_kg": payload, "tcp": tcp,
              "tip_mm": real,
              "frame_mm": frame, "border_mm": border, "wall_mm": wall, "ceiling_mm": top,
-             "clear_mm": wall + 15,
+             "clear_mm": wall + 15, "frame_width_mm": width_mm, "cut_offset_mm": cut_off,
              "corners": {"bl": [float(v) for v in bl_t], "tl": [float(v) for v in tl_t], "gap_mm": gap},
              "home": {"pose": list(home), "q": list(home_q), "tcp": tcp}}
     setup_file.write_text(json.dumps(setup, indent=2))

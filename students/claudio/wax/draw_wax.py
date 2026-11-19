@@ -242,6 +242,62 @@ def estimate_s(marks, args) -> float:
     return total
 
 
+def cut_heights(ws, args):
+    """Box fractions (w) for cutting, lifting between marks and clearing the frame walls."""
+    box_h = (ws.usable_box.z[1] - ws.usable_box.z[0]) * 1000
+    w_cut = args.hover_mm / box_h                                  # 0 = engraving depth
+    w_lift = min((args.hover_mm + args.lift_mm) / box_h, 1.0)      # heights incl. hover
+    w_clear = min((args.hover_mm + args.clear_mm) / box_h, 1.0)
+    return w_cut, w_lift, w_clear, box_h
+
+
+# A step is what the robot is sent, in order:
+#   ("joints", q, speed or None, label)      robot.move_joints(q)        (None = profile default)
+#   ("line", pose, speed, label)             robot.move_to(pose, speed, accel=args.accel)
+#   ("dwell", seconds, None, label)          time.sleep — the tool melts the wax
+# main() and the 3D simulation (sim3d.py) both use these functions, so the
+# simulation shows exactly the moves a run sends.
+def mark_steps(canvas, mark, i, args, w_cut, w_lift):
+    (x0, y0), (x1, y1), _ = mark
+    steps = [("line", canvas.pose(x0, y0, w_lift), args.travel_speed, f"mark {i}: travel above start"),
+             ("line", canvas.pose(x0, y0, w_cut), args.plunge_speed, f"mark {i}: plunge"),
+             ("dwell", dwell_s(mark, args), None, f"mark {i}: melt")]
+    if (x0, y0) != (x1, y1):
+        steps.append(("line", canvas.pose(x1, y1, w_cut), args.engrave_speed, f"mark {i}: engrave"))
+    steps.append(("line", canvas.pose(x1, y1, w_lift), args.plunge_speed, f"mark {i}: lift"))
+    return steps
+
+
+def enter_step(canvas, marks, args, w_clear):
+    (fx, fy), _, _ = marks[0]
+    return ("line", canvas.pose(fx, fy, w_clear), args.travel_speed, "enter canvas")
+
+
+def leave_step(canvas, last_xy, args, w_clear):
+    return ("line", canvas.pose(*last_xy, w_clear), args.plunge_speed, "leave canvas")
+
+
+def plan_steps(ws, canvas, marks, args):
+    """The whole run without heater waits: home, enter, every mark, leave, home."""
+    w_cut, w_lift, w_clear, _ = cut_heights(ws, args)
+    steps = [("joints", ws.home_joints, None, "home"), enter_step(canvas, marks, args, w_clear)]
+    for i, mark in enumerate(marks, 1):
+        steps += mark_steps(canvas, mark, i, args, w_cut, w_lift)
+    steps += [leave_step(canvas, marks[-1][1], args, w_clear), ("joints", ws.home_joints, None, "home")]
+    return steps
+
+
+def run_step(robot, step, args) -> None:
+    kind, target, speed, label = step
+    if kind == "joints":
+        ok = robot.move_joints(target) if speed is None else robot.move_joints(target, speed=speed)
+        check_move(robot, ok, label)
+    elif kind == "line":
+        check_move(robot, robot.move_to(target, speed=speed, accel=args.accel), label)
+    else:
+        time.sleep(target)
+
+
 def main() -> None:
     args = parse_args()
     ws = Workspace.load(args.workspace)
@@ -256,10 +312,7 @@ def main() -> None:
     out_dir.mkdir(exist_ok=True)
     svg = write_svg(strokes, w_mm, h_mm, out_dir / "preview.svg", dot_r_mm=args.dot_mm * 0.4)
 
-    box_h = (ws.usable_box.z[1] - ws.usable_box.z[0]) * 1000
-    w_cut = args.hover_mm / box_h                                  # 0 = engraving depth
-    w_lift = min((args.hover_mm + args.lift_mm) / box_h, 1.0)          # heights incl. hover
-    w_clear = min((args.hover_mm + args.clear_mm) / box_h, 1.0)
+    w_cut, w_lift, w_clear, box_h = cut_heights(ws, args)
     if w_cut >= w_lift:
         raise SystemExit(f"--hover-mm {args.hover_mm} leaves no room in a {box_h:.0f} mm high box")
     print(f"\nimage    {name}  ({gray.shape[1]} x {gray.shape[0]} px)")
@@ -298,21 +351,20 @@ def main() -> None:
             volts_range=tuple(args.sensor_volts), temp_range=tuple(args.sensor_temp), fake=fake)
         with guard as heater:
             print("\nhome")
-            check_move(robot, robot.move_joints(ws.home_joints), "home")
+            run_step(robot, ("joints", ws.home_joints, None, "home"), args)
 
             if heater:
                 print(f"heating to {args.setpoint:.0f} degC (cutoff {args.max_temp:.0f}) — tool at home")
                 heater.enable()
                 if not heater.wait_until_hot(args.heat_timeout):
                     print(f"aborted before drawing: {heater.tripped}")
-                    check_move(robot, robot.move_joints(ws.home_joints), "home")
+                    run_step(robot, ("joints", ws.home_joints, None, "home"), args)
                     return
 
             warned, last = False, None
             t_start = time.monotonic()
-            (fx, fy), _, _ = strokes[0]
             print("above the first mark at clearing height")
-            check_move(robot, robot.move_to(canvas.pose(fx, fy, w_clear), speed=args.travel_speed, accel=args.accel), "enter canvas")
+            run_step(robot, enter_step(canvas, strokes, args, w_clear), args)
             for i, mark in enumerate(strokes, 1):
                 (x0, y0), (x1, y1), _ = mark
                 is_dot = (x0, y0) == (x1, y1)
@@ -327,14 +379,9 @@ def main() -> None:
                 what = (f"dot {i}/{len(strokes)}  ({x0:.0f},{y0:.0f}) mm  melt {dwell:.2f} s" if is_dot else
                         f"line {i}/{len(strokes)}  ({x0:.0f},{y0:.0f}) -> ({x1:.0f},{y1:.0f}) mm")
                 print(what + temp)
-                check_move(robot, robot.move_to(canvas.pose(x0, y0, w_lift), speed=args.travel_speed, accel=args.accel), f"mark {i}: travel above start")
-                last = (x0, y0)
-                check_move(robot, robot.move_to(canvas.pose(x0, y0, w_cut), speed=args.plunge_speed, accel=args.accel), f"mark {i}: plunge")
-                time.sleep(dwell)
-                if not is_dot:
-                    check_move(robot, robot.move_to(canvas.pose(x1, y1, w_cut), speed=args.engrave_speed, accel=args.accel), f"mark {i}: engrave")
-                    last = (x1, y1)
-                check_move(robot, robot.move_to(canvas.pose(x1, y1, w_lift), speed=args.plunge_speed, accel=args.accel), f"mark {i}: lift")
+                for step in mark_steps(canvas, mark, i, args, w_cut, w_lift):
+                    run_step(robot, step, args)
+                last = (x1, y1)
                 if heater and heater.max_gap > 1.0 and not warned:
                     warned = True
                     print(f"!! heater watchdog paused {heater.max_gap:.1f} s during a move — "
@@ -346,7 +393,7 @@ def main() -> None:
                 print(f"\nfinished in {(time.monotonic() - t_start) / 60:.1f} min")
             if last:
                 print("straight up to clearing height")
-                check_move(robot, robot.move_to(canvas.pose(*last, w_clear), speed=args.plunge_speed, accel=args.accel), "leave canvas")
+                run_step(robot, leave_step(canvas, last, args, w_clear), args)
             if heater:
                 heater.disable()
             print("home")

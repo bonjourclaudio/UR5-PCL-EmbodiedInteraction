@@ -46,6 +46,7 @@
   svg { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
   svg.panning { cursor: grabbing; }
   .handle { cursor: move; }
+  iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: var(--bg); }
   .hud { position: absolute; left: 12px; bottom: 10px; background: var(--panel); border: 1px solid var(--line);
     border-radius: 5px; padding: 6px 10px; font-size: 12px; color: var(--muted); }
   .legend { position: absolute; right: 12px; top: 10px; background: var(--panel); border: 1px solid var(--line);
@@ -66,6 +67,11 @@
     <button id="reset">Reload saved</button>
     <button id="fit">Fit view</button>
   </div>
+  <div class="row" style="margin-top:8px">
+    <button id="sim">Simulate in 3D</button>
+    <button id="tab">Show 3D</button>
+    <span id="simstat" class="derived" style="margin:0"></span>
+  </div>
   <div class="msgs" id="msgs"></div>
 
   <fieldset><legend>Taught corners (real tip, mm)</legend>
@@ -82,6 +88,8 @@
   <fieldset><legend>Frame</legend>
     <div class="grid">
       <label>inner size, mm<input type="number" step="1" data-key="frame_mm"></label>
+      <label>inner width L–R, mm<input type="number" step="0.5" data-key="frame_width_mm"></label>
+      <label>cutting level, mm (+ higher)<input type="number" step="0.5" data-key="cut_offset_mm"></label>
       <label>border, mm<input type="number" step="1" data-key="border_mm"></label>
       <label>tip–wall gap, mm<input type="number" step="0.5" data-key="gap_mm"></label>
       <label>wall height, mm<input type="number" step="1" data-key="wall_mm"></label>
@@ -130,8 +138,9 @@
 
 <main>
   <svg id="view" xmlns="http://www.w3.org/2000/svg"></svg>
+  <iframe id="v3d" title="3D simulation" hidden></iframe>
   <div class="legend">
-    <label><input type="checkbox" data-layer="cell" checked><span class="sw" style="background:var(--cell)"></span> lab cell</label>
+    <label><input type="checkbox" data-layer="cell" checked><span class="sw" style="background:var(--cell)"></span> cart</label>
     <label><input type="checkbox" data-layer="frame" checked><span class="sw" style="background:var(--frame)"></span> frame</label>
     <label><input type="checkbox" data-layer="border" checked><span class="sw" style="background:var(--border)"></span> border</label>
     <label><input type="checkbox" data-layer="box" checked><span class="sw" style="background:var(--box)"></span> robot box</label>
@@ -146,7 +155,7 @@
 <script>
 const $ = (s) => document.querySelector(s);
 const svg = $("#view");
-let P = null, R = null, view = null, timer = null, seq = 0;
+let P = null, R = null, view = null, timer = null, seq = 0, PORT3D = null, INFERRED = false;
 const layers = { cell: true, frame: true, border: true, box: true, image: false, marks: true, travel: false };
 
 // world (robot base, mm) -> screen: robot at the top, your left on the left
@@ -197,16 +206,23 @@ async function update() {
 
 function info() {
   const m = $("#msgs"); m.innerHTML = "";
+  if (INFERRED) m.insertAdjacentHTML("beforeend", `<div class="warn">Width ${P.frame_width_mm} mm and cutting level
+    ${P.cut_offset_mm > 0 ? "+" : ""}${P.cut_offset_mm} mm were read from your saved workspace (corrections made by hand).
+    Save keeps them.</div>`);
   (R.errors || []).forEach((t) => m.insertAdjacentHTML("beforeend", `<div class="err">${esc(t)}</div>`));
   (R.warnings || []).forEach((t) => m.insertAdjacentHTML("beforeend", `<div class="warn">${esc(t)}</div>`));
   $("#save").disabled = (R.errors || []).length > 0;
   const g = R.geo;
   if (g) {
     const box = R.box ? `${(R.box.y[1] - R.box.y[0]).toFixed(0)} × ${(R.box.x[1] - R.box.x[0]).toFixed(0)} mm` : "—";
-    $("#derived").innerHTML = `rotation <b>${g.rot_deg.toFixed(2)}°</b> · depth <b>${g.depth_mm.toFixed(1)} mm</b>
+    $("#derived").innerHTML = `cell <b>${esc(R.cell_name)}</b> · rotation <b>${g.rot_deg.toFixed(2)}°</b> · depth <b>${g.depth_mm.toFixed(1)} mm</b>
       · corners ${g.tip_dist_mm.toFixed(1)} mm apart<br>drawable <b>${(g.width_mm - 2 * P.border_mm).toFixed(0)} ×
       ${(g.depth_mm - 2 * P.border_mm).toFixed(0)} mm</b> · robot box <b>${box}</b> · level ${g.level_mm.toFixed(1)} mm`;
-    $("#zs").textContent = `wax at tip z ${(g.wax_z * 1000).toFixed(1)} mm`;
+    $("#zs").textContent = `taught wax at tip z ${(g.wax_z * 1000).toFixed(1)} mm`;
+    if (R.saved_match_mm != null)
+      $("#derived").innerHTML += R.saved_match_mm < 0.5
+        ? `<br><span style="color:var(--box)">✓ same as the saved workspace</span>`
+        : `<br><span style="color:var(--warn)">differs from the saved workspace by ${R.saved_match_mm.toFixed(1)} mm — Save writes these settings</span>`;
   }
   const s = R.stats;
   $("#stats").innerHTML = s ? `<b>${s.count}</b> ${R.style === "dots" ? "dots" : "lines"} · <b>${s.minutes}</b> min
@@ -224,9 +240,12 @@ function draw() {
   let h = "";
   h += `<defs><pattern id="hatch" width="${6 * k}" height="${6 * k}" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
         <line x1="0" y1="0" x2="0" y2="${6 * k}" stroke="var(--frame)" stroke-width="${1.2 * k}" opacity=".45"/></pattern></defs>`;
-  if (layers.cell && R.cell)
-    h += `<polygon points="${pts(rect(R.cell))}" fill="none" stroke="var(--cell)" stroke-width="${1.2 * k}" stroke-dasharray="${6 * k} ${4 * k}"/>
-      <text x="${S(R.cell.x[0], R.cell.y[0])[0] - 4 * k}" y="${S(R.cell.x[0], R.cell.y[0])[1] - 4 * k}" font-size="${11 * k}" fill="var(--cell)" text-anchor="end">lab cell</text>`;
+  if (layers.cell && R.keepouts)
+    for (const ko of R.keepouts) {
+      const c = S(ko.x[0], ko.y[1]);
+      h += `<polygon points="${pts(rect(ko))}" fill="var(--cell)" fill-opacity=".08" stroke="var(--cell)" stroke-width="${1.2 * k}" stroke-dasharray="${6 * k} ${4 * k}"/>
+        <text x="${c[0] + 4 * k}" y="${c[1] - 4 * k}" font-size="${11 * k}" fill="var(--cell)">${esc(ko.name)}</text>`;
+    }
   const g = R.geo;
   if (g) {
     const fr = mm(g.frame);
@@ -316,6 +335,32 @@ const endDrag = () => { drag = null; svg.classList.remove("panning"); };
 svg.addEventListener("pointerup", endDrag); svg.addEventListener("pointercancel", endDrag);
 window.addEventListener("resize", () => { if (view) fitView(); });
 
+// ---- 3D
+function show3d(on) {
+  const f = $("#v3d");
+  if (on && !f.src) f.src = `http://${location.hostname}:${PORT3D}`;
+  f.hidden = !on; $("#tab").textContent = on ? "Show 2D" : "Show 3D";
+  document.querySelector(".legend").hidden = on; $("#hud").hidden = on;
+}
+$("#tab").onclick = () => show3d($("#v3d").hidden);
+$("#sim").onclick = async () => {
+  const r = await fetch("/api/simulate", { method: "POST", body: JSON.stringify(P) }).then((r) => r.json());
+  if (!r.ok) { $("#msgs").innerHTML = (r.errors || ["simulation failed"]).map((t) => `<div class="err">${esc(t)}</div>`).join(""); return; }
+  show3d(true); $("#sim").disabled = true;
+  const poll = async () => {
+    const st = await fetch("/api/simstatus").then((r) => r.json());
+    if (st.running) { $("#simstat").textContent = `simulating ${r.moves} moves… ${Math.round(st.progress * 100)}%`; setTimeout(poll, 400); return; }
+    $("#sim").disabled = false;
+    if (st.error) { $("#simstat").textContent = ""; $("#msgs").innerHTML = `<div class="err">${esc(st.error)}</div>`; return; }
+    const res = st.result, v = res.violation;
+    $("#simstat").textContent = v ? "refused move found" : `all ${res.moves} moves pass · ~${res.minutes} min`;
+    $("#msgs").innerHTML = v
+      ? `<div class="err"><b>The run would stop at step ${v.step} of ${v.of}</b> (${esc(v.label)}):<br>${esc(v.message)}</div>`
+      : `<div class="ok">All ${res.moves} moves pass the robot's checks (cell ${esc(R.cell_name)}). About ${res.minutes} min.</div>`;
+  };
+  poll();
+};
+
 // ---- buttons
 $("#fit").onclick = fitView;
 $("#reset").onclick = () => load();
@@ -346,6 +391,10 @@ async function load() {
   fillImages(st.images);
   if (P.draw.image && !st.images.includes(P.draw.image)) P.draw.image = null;
   $("#sub").textContent = `target ${st.target} · ${st.has_setup ? st.setup_file : "no setup file yet (defaults)"}`;
+  PORT3D = st.port3d;
+  $("#sim").disabled = $("#tab").disabled = !PORT3D;
+  if (!PORT3D) $("#simstat").textContent = "3D off (needs the dev container)";
+  INFERRED = P.inferred;
   fillInputs(); view = null; update();
 }
 load();
