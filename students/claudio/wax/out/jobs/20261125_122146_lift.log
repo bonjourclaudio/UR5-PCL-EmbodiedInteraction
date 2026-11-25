@@ -1,0 +1,8 @@
+$ /usr/local/bin/python /workspace/students/claudio/wax/lift_home.py --target real
+
+using wax_setup.real.json: workspace workspace.wax-real.json, payload 0.35 kg, TCP [0.0, 0.0, 0.0] mm
+[ur5e] REAL ARM 192.168.1.11 — profile 'cart_360', payload 0.35 kg, TCP (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+lift 20 mm from z 240.7 mm
+[ur5e] REAL ARM 192.168.1.11 — profile 'workspace:workspace.wax-real.json', payload 0.35 kg, TCP (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+home
+at home.

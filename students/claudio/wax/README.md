@@ -42,6 +42,27 @@ mm; its lowest face = the face on the robot flange, tool along +z; `--tool-rot D
 about the flange axis). The view marks the STL's tip and the tip from your settings; if they
 are more than 3 mm apart the page warns — moves and checks always use the settings (TCP).
 
+## Webcam engraving station (browser)
+
+The button wall (`webcam-buttons/webcams.py`) saves one frame per button press into
+`webcam-buttons/frames/cam1..cam4/`. The station shows one card per cam: newest frame, capture
+time, dot preview with estimated time, and the state (to be engraved / in progress / engraved).
+**Update engraving** → confirm → `draw_wax.py` engraves that frame on the whole canvas (settings
+from `wax_setup.<target>.json`, as in the canvas tool). One job at a time; **STOP** halts the robot
+program, **Lift & home** (`lift_home.py`) takes the tip out of the wax afterwards.
+
+```bash
+docker compose run --rm --no-deps -p 8770:8770 -e UR_HOST=192.168.1.11 dev \
+    python students/claudio/wax/engrave_server.py --target real
+# extra draw_wax.py flags after --, e.g. a plate that needs 1.2 mm less depth:
+#   ... engrave_server.py --target real -- --hover-mm 0.8
+```
+
+Open http://localhost:8770. Before starting a job it checks the robot is RUNNING, NORMAL and in
+Remote Control. State per target in `engrave_state.<target>.json`, job logs in `out/jobs/`.
+If `webcams.py` runs on another computer, set `WAX_URL = "http://<this laptop>:8770"` there —
+the frames are uploaded into `frames/<cam>/` here. Stopping the server stops a running job.
+
 ## Draw
 
 Run inside `docker compose run --rm dev bash`:

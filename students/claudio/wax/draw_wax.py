@@ -47,7 +47,9 @@ from heater import FakeHotend, HeaterGuard
 from imaging import demo_image, dot_marks, hatch_strokes, load_gray, newest_image, write_svg
 
 HERE = Path(__file__).resolve().parent
-MOVE_OVERHEAD_S = 0.4      # rough per-move stop/start cost, for the time estimate only
+MOVE_OVERHEAD_S = 0.12     # per-move stop/start cost, for the time estimate
+JOB_OVERHEAD_S = 20.0      # home, enter, leave, home
+# fitted to 3 real runs: 33 dots 2.7 min (lift 12), 440 dots 8.8 min (lift 4), 440 dots 11.8 min (lift 7)
 
 ROBOT_MODES = {-1: "NO_CONTROLLER", 0: "DISCONNECTED", 1: "CONFIRM_SAFETY", 2: "BOOTING",
                3: "POWER_OFF", 4: "POWER_ON", 5: "IDLE", 6: "BACKDRIVE", 7: "RUNNING",
@@ -239,7 +241,7 @@ def estimate_s(marks, args) -> float:
             moves = 4
         total += moves * MOVE_OVERHEAD_S
         last = p1
-    return total
+    return total + (JOB_OVERHEAD_S if marks else 0.0)
 
 
 def cut_heights(ws, args):

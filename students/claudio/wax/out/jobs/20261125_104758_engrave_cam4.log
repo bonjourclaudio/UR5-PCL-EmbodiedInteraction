@@ -1,0 +1,26 @@
+$ /usr/local/bin/python /workspace/students/claudio/wax/draw_wax.py --target sim --image /workspace/students/claudio/wax/webcam-buttons/frames/cam4/frame_20261125_112842_487.jpg --no-heat --size-mm 30 --dot-mm 3 --gamma 1.6
+
+workspace 'workspace.json' taught on sim 2026-11-17 09:38
+  box x -0.294..+0.006  y -0.586..-0.286  z +0.102..+0.302 m   (300 x 300 x 200 mm) — fits inside the 8 corners
+  home joints [deg]: [-91.7, -99.0, -126.2, -46.3, 91.4, -1.8]
+
+image    /workspace/students/claudio/wax/webcam-buttons/frames/cam4/frame_20261125_112842_487.jpg  (352 x 288 px)
+drawing  30 x 25 mm, 37 dots on a 3.0 mm grid, melt 0.2-0.8 s
+motion   travel 60 mm/s, plunge 10 mm/s, lift 3.0 mm, clear 30 mm
+estimate 1.4 min
+preview  /workspace/students/claudio/wax/out/preview.svg
+Traceback (most recent call last):
+  File "/workspace/students/claudio/wax/draw_wax.py", line 407, in <module>
+    main()
+  File "/workspace/students/claudio/wax/draw_wax.py", line 349, in main
+    with Robot(**robot_kwargs(args), profile=ws) as robot:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/src/ur5e/robot.py", line 80, in __enter__
+    return self.connect()
+           ^^^^^^^^^^^^^^
+  File "/workspace/src/ur5e/robot.py", line 64, in connect
+    self.conn.connect()
+  File "/workspace/src/ur5e/connection.py", line 74, in connect
+    self.control = RTDEControlInterface(self.host, self.frequency)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: ur_rtde: Please enable remote control on the robot!

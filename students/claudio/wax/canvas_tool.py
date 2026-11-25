@@ -68,7 +68,8 @@ draw_wax.load_gray = cached_load_gray                # draw_wax.load_picture use
 
 # draw_wax options the tool edits and saves into setup["draw"]
 DRAW_KEYS = ("image", "style", "dot_mm", "gamma", "sharpen", "no_levels", "min_dark", "dwell_min",
-             "dwell_max", "invert", "rotate", "mirror", "size_mm", "margin_mm", "hatch_mm", "threshold")
+             "dwell_max", "invert", "rotate", "mirror", "size_mm", "margin_mm", "hatch_mm", "threshold",
+             "lift_mm", "travel_speed", "plunge_speed", "accel")
 
 
 # ------------------------------------------------------------------ state --
@@ -251,7 +252,8 @@ def compose(target, p):
         setattr(ns, k, d.get(k, getattr(ns, k)))
     ns.demo_image = not d.get("image")
     ns.image = str(INBOX / d["image"]) if d.get("image") else None
-    ns.lift_mm = 3.0 if ns.style == "dots" else 8.0
+    if not ns.lift_mm:
+        ns.lift_mm = 3.0 if ns.style == "dots" else 8.0
     ns.clear_mm = p["wall_mm"] + 15
     ns.hover_mm = 0.0
     try:

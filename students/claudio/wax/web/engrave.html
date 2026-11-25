@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wax Engraving Station</title>
+<style>
+  :root {
+    --ink: #000; --paper: #fff; --grey: #6b6b6b; --rule: #000; --hair: #d4d4d4; --red: #e2001a;
+    --gut: 24px; --pad: clamp(16px, 3vw, 40px);
+    font-family: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", "Nimbus Sans", sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-size: 15px; line-height: 1.35;
+         -webkit-font-smoothing: antialiased; font-feature-settings: "tnum" 1; }
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; border-radius: 0; }
+  button:disabled { cursor: not-allowed; }
+  .wrap { padding-inline: var(--pad); }
+  header.wrap, footer.wrap { padding-inline: 0; margin-inline: var(--pad); }
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gut); }
+
+  /* ---------------- header */
+  header { padding-top: calc(var(--pad) * .8); padding-bottom: 18px; border-bottom: 3px solid var(--rule); align-items: end; }
+  h1 { grid-column: 1 / span 6; margin: 0; font-size: clamp(24px, 2.6vw, 36px); line-height: 1;
+       font-weight: 700; letter-spacing: -.03em; padding-bottom: 4px; }
+  .robot { grid-column: 7 / span 3; font-size: 13px; line-height: 1.4; padding-bottom: 4px; }
+  .robot b { display: block; font-size: 15px; letter-spacing: -.01em; }
+  .robot .sim b::after { content: " — simulator"; font-weight: 400; }
+  .tools { grid-column: 10 / span 3; display: flex; gap: 8px; justify-content: flex-end; padding-bottom: 2px; }
+  .btn { height: 44px; padding: 0 18px; font-weight: 700; font-size: 14px; letter-spacing: .01em;
+         border: 2px solid var(--ink); }
+  .btn:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+  .btn:disabled { border-color: var(--hair); color: var(--hair); }
+  .btn.stop { background: var(--red); border-color: var(--red); color: #fff; min-width: 96px; }
+  .btn.stop:hover { background: #b30015; border-color: #b30015; }
+
+  /* ---------------- messages + job band */
+  #msg { display: none; border-bottom: 1px solid var(--rule); padding: 12px var(--pad); font-weight: 700; }
+  #msg.show { display: block; }
+  #msg.err { color: var(--red); }
+  #job { display: none; background: var(--ink); color: var(--paper); padding: 22px var(--pad) 0; }
+  #job.show { display: block; }
+  #job .grid { align-items: end; row-gap: 12px; }
+  .jk { grid-column: 1 / span 3; font-size: 13px; }
+  .jk b { display: block; font-size: 22px; letter-spacing: -.02em; }
+  .jcount { grid-column: 4 / span 4; font-size: clamp(40px, 6vw, 84px); font-weight: 700; line-height: .85;
+            letter-spacing: -.045em; }
+  .jcount small { font-size: .38em; font-weight: 400; letter-spacing: -.01em; color: #bdbdbd; }
+  .jtime { grid-column: 8 / span 3; font-size: 13px; }
+  .jtime b { display: block; font-size: 22px; letter-spacing: -.02em; }
+  #job .btn.stop { grid-column: 11 / span 2; justify-self: end; }
+  .bar { height: 6px; background: #333; margin-top: 22px; }
+  .bar > div { height: 100%; width: 0; background: var(--paper); transition: width .6s linear; }
+  details { padding: 10px 0 16px; }
+  summary { cursor: pointer; font-size: 12px; color: #bdbdbd; list-style: none; }
+  summary::before { content: "+ "; }
+  details[open] summary::before { content: "– "; }
+  pre { margin: 10px 0 0; font: 12px/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #e6e6e6;
+        max-height: 180px; overflow: auto; white-space: pre-wrap; }
+
+  /* ---------------- cams */
+  main { padding-top: 32px; padding-bottom: 64px; row-gap: 48px; }
+  .cam { grid-column: span 3; display: flex; flex-direction: column; min-width: 0; }
+  .num { display: flex; justify-content: space-between; align-items: baseline; }
+  .num span:first-child { font-size: clamp(36px, 3.6vw, 52px); font-weight: 700; line-height: .85;
+                          letter-spacing: -.05em; margin-left: -.03em; }
+  .oncanvas { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+              border: 1.5px solid var(--ink); padding: 3px 6px; align-self: flex-start; margin-top: 4px; }
+  .state { display: inline-flex; align-self: flex-start; align-items: center; margin: 12px 0 12px;
+           padding: 5px 10px; font-size: 17px; font-weight: 700; letter-spacing: -.015em;
+           border: 2px solid transparent; }
+  .state.todo { border-color: var(--ink); }
+  .state.busy { background: var(--ink); color: var(--paper); border-color: var(--ink); animation: blink 1.2s steps(2) infinite; }
+  .state.done { background: #ececec; border-color: #ececec; }
+  .state.none { color: var(--grey); border-color: var(--hair); }
+  @keyframes blink { 50% { opacity: .55; } }
+
+  .pic { position: relative; aspect-ratio: 4 / 3; background: #f2f2f2; overflow: hidden; }
+  .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .pic img.photo { filter: grayscale(1) contrast(1.05); }
+  .pic img.dots { background: #fff; display: none; }
+  .pic.showdots img.dots { display: block; }
+  .pic .empty { position: absolute; inset: 0; display: grid; place-items: center; color: var(--grey); font-size: 13px; }
+  .tabs { display: flex; gap: 16px; margin-top: 8px; font-size: 12px; }
+  .tabs button { color: var(--grey); padding-bottom: 2px; border-bottom: 1.5px solid transparent; }
+  .tabs button.on { color: var(--ink); border-bottom-color: var(--ink); font-weight: 700; }
+
+  dl { margin: 18px 0 0; border-top: 1px solid var(--rule); }
+  dl > div { display: grid; grid-template-columns: 38% 1fr; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--hair); }
+  dt { font-size: 12px; color: var(--grey); padding-top: 2px; }
+  dd { margin: 0; font-size: 14px; }
+  dd small { display: block; color: var(--grey); font-size: 12px; }
+  .warn { color: var(--red); font-size: 13px; font-weight: 700; margin-top: 10px; }
+
+  .act { margin-top: auto; padding-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .go { height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px;
+        background: var(--ink); color: var(--paper); font-weight: 700; font-size: 15px; border: 2px solid var(--ink); }
+  .go::after { content: "→"; font-size: 20px; font-weight: 400; }
+  .go:hover:not(:disabled) { background: var(--paper); color: var(--ink); }
+  .go:disabled { background: var(--paper); color: var(--hair); border-color: var(--hair); }
+  .go.confirm { background: var(--red); border-color: var(--red); color: #fff; }
+  .go.confirm:hover { background: #b30015; color: #fff; }
+  .ask { font-size: 13px; font-weight: 700; }
+  .cancel { font-size: 13px; color: var(--grey); text-align: left; text-decoration: underline; text-underline-offset: 3px; }
+
+  footer { font-size: 12px; color: var(--grey); border-top: 1px solid var(--rule); padding-top: 10px; padding-bottom: 24px; }
+
+  @media (max-width: 1100px) {
+    .cam { grid-column: span 6; }
+    h1 { grid-column: 1 / -1; margin-bottom: 18px; }
+    .robot { grid-column: 1 / span 6; }
+    .tools { grid-column: 7 / span 6; }
+    .jk { grid-column: 1 / span 6; } .jcount { grid-column: 7 / span 6; }
+    .jtime { grid-column: 1 / span 6; } #job .btn.stop { grid-column: 7 / span 6; }
+  }
+  @media (max-width: 640px) {
+    .cam, .robot, .tools, .jk, .jcount, .jtime, #job .btn.stop { grid-column: 1 / -1; }
+    .tools { justify-content: flex-start; margin-top: 14px; }
+    #job .btn.stop { justify-self: stretch; }
+  }
+</style>
+</head>
+<body>
+<header class="wrap grid">
+  <h1>Wax Engraving Station</h1>
+  <div class="robot" id="robot"></div>
+  <div class="tools">
+    <button class="btn" id="lift" title="Lift the tool 20 mm straight up, then go home">Lift &amp; home</button>
+    <button class="btn stop" id="stopTop">STOP</button>
+  </div>
+</header>
+<div id="msg"></div>
+<section id="job">
+  <div class="grid">
+    <div class="jk" id="jobKind"></div>
+    <div class="jcount" id="jobCount"></div>
+    <div class="jtime" id="jobTime"></div>
+    <button class="btn stop" id="stopJob">STOP</button>
+  </div>
+  <div class="bar"><div id="jobBar"></div></div>
+  <details id="logbox"><summary>Log</summary><pre id="jobLog"></pre></details>
+</section>
+<main class="wrap grid" id="cams"></main>
+<footer class="wrap" id="foot"></footer>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const STATE = {
+  "to be engraved": ["todo", "To be engraved"],
+  "in progress": ["busy", "In progress"],
+  "engraved": ["done", "Engraved"],
+  "no capture": ["none", "No capture yet"],
+};
+let status = null, armed = null, armTimer = null;
+const previews = {};      // "cam/frame" -> preview | "loading" | {error}
+const showDots = {};      // cam -> bool
+const pad2 = n => String(n).padStart(2, "0");
+
+function ago(iso) {
+  if (!iso) return "";
+  const s = (Date.now() - new Date(iso)) / 1000;
+  if (s < 60) return "just now";
+  if (s < 3600) return `${Math.round(s / 60)} min ago`;
+  if (s < 86400) return `${Math.round(s / 3600)} h ago`;
+  return `${Math.round(s / 86400)} d ago`;
+}
+function when(iso) {
+  if (!iso) return "—";
+  const d = new Date(iso);
+  return `${pad2(d.getDate())}.${pad2(d.getMonth() + 1)}. ${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+}
+const mins = s => s == null ? "—" : s < 90 ? `${Math.round(s)} s` : `${(s / 60).toFixed(1)} min`;
+const camNo = cam => pad2(+cam.replace(/\D/g, ""));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+
+function flash(text, ok) {
+  const m = $("#msg");
+  m.textContent = text; m.className = "show " + (ok ? "ok" : "err");
+  clearTimeout(flash.t); flash.t = setTimeout(() => m.className = "", ok ? 4000 : 12000);
+}
+async function post(path, body) {
+  const r = await fetch(path, {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body || {})});
+  return r.json();
+}
+async function loadPreview(cam, frame) {
+  const key = `${cam}/${frame}`;
+  if (previews[key]) return;
+  previews[key] = "loading";
+  try {
+    const r = await fetch(`/api/preview?cam=${encodeURIComponent(cam)}&frame=${encodeURIComponent(frame)}`);
+    previews[key] = await r.json();
+  } catch (e) { previews[key] = {error: String(e)}; }
+  render();
+}
+
+function row(label, value) { return `<div><dt>${label}</dt><dd>${value}</dd></div>`; }
+
+function card(c) {
+  const [cls, label] = STATE[c.state] || ["none", c.state];
+  const busy = !!status.job;
+  const key = c.latest ? `${c.cam}/${c.latest}` : null;
+  const p = key ? previews[key] : null;
+  if (c.latest && !p) loadPreview(c.cam, c.latest);
+  const pv = p && p !== "loading" ? p : null;
+  const dots = !!showDots[c.cam] && pv && pv.svg;
+
+  const el = document.createElement("article");
+  el.className = "cam";
+  el.innerHTML = `
+    <div class="num"><span>${camNo(c.cam)}</span>${c.on_canvas ? '<span class="oncanvas" title="the last finished engraving">On canvas</span>' : ""}</div>
+    <div class="state ${cls}">${label}</div>
+    <div class="pic ${dots ? "showdots" : ""}">
+      ${c.latest ? `<img class="photo" alt="newest frame, cam ${camNo(c.cam)}" src="/frame/${c.cam}/${encodeURIComponent(c.latest)}">
+                    ${pv && pv.svg ? `<img class="dots" alt="dot preview" src="${pv.svg}">` : ""}`
+                 : `<div class="empty">Waiting for a button press</div>`}
+    </div>
+    ${pv && pv.svg ? `<div class="tabs"><button data-v="0" class="${dots ? "" : "on"}">Photo</button><button data-v="1" class="${dots ? "on" : ""}">Dots</button></div>` : ""}
+    <dl>
+      ${row("Last capture", c.captured_at ? `${when(c.captured_at)}<small>${ago(c.captured_at)}</small>` : "—")}
+      ${row("Captures", c.captures)}
+      ${row("Engraved", c.engraved_at ? `${when(c.engraved_at)}<small>capture of ${when(c.engraved_captured_at)}</small>` : "—")}
+      ${row("Preview", !c.latest ? "—" : !pv ? "computing …" : pv.error ? `<span class="warn">${esc(pv.error)}</span>` :
+            `${pv.marks} dots<small>${pv.size_mm[0]} × ${pv.size_mm[1]} mm · ≈ ${mins(pv.estimate_s)}</small>`)}
+    </dl>
+    ${pv && pv.too_many ? `<div class="warn">${esc(pv.too_many)}</div>` : ""}
+    ${c.error ? `<div class="warn">Last attempt: ${esc(c.error)}</div>` : ""}
+    <div class="act"></div>`;
+
+  el.querySelectorAll(".tabs button").forEach(b => b.onclick = () => { showDots[c.cam] = b.dataset.v === "1"; render(); });
+
+  const act = $(".act", el);
+  if (armed === key && !busy) {
+    act.innerHTML = `<div class="ask">Wax plate ready, tool hot, nobody at the canvas?</div>`;
+    const yes = document.createElement("button");
+    yes.className = "go confirm"; yes.textContent = `Start · ≈ ${mins(pv && pv.estimate_s)}`;
+    yes.onclick = () => start(c);
+    const no = document.createElement("button");
+    no.className = "cancel"; no.textContent = "Cancel";
+    no.onclick = () => { armed = null; render(); };
+    act.append(yes, no);
+  } else {
+    const b = document.createElement("button");
+    b.className = "go";
+    b.textContent = c.state === "in progress" ? "Engraving" : "Update engraving";
+    b.disabled = busy || !c.latest || !pv || !!pv.error || !!pv.too_many;
+    b.title = busy ? "the robot is busy" : !c.latest ? "no frame yet" : c.state === "engraved" ? "engrave the same frame again" : "";
+    b.onclick = () => {
+      armed = key; render();
+      clearTimeout(armTimer); armTimer = setTimeout(() => { armed = null; render(); }, 15000);
+    };
+    act.append(b);
+  }
+  return el;
+}
+
+async function start(c) {
+  armed = null;
+  const r = await post("/api/engrave", {cam: c.cam, frame: c.latest});
+  if (r.error) flash(r.error, false); else flash(`Cam ${camNo(c.cam)} — engraving started`, true);
+  poll();
+}
+
+function renderJob() {
+  const j = status.job, box = $("#job");
+  box.classList.toggle("show", !!j);
+  if (!j) return;
+  if (j.kind === "engrave") {
+    $("#jobKind").innerHTML = `Engraving<b>Cam ${camNo(j.cam)}</b>`;
+    $("#jobCount").innerHTML = j.total ? `${j.done}<small> / ${j.total} dots</small>` : `<small>starting …</small>`;
+    $("#jobBar").style.width = j.total ? `${100 * j.done / j.total}%` : "0";
+    $("#jobTime").innerHTML = j.left_s != null ? `Time left<b>${mins(j.left_s)}</b>` : `Running<b>${mins(j.elapsed_s)}</b>`;
+  } else {
+    $("#jobKind").innerHTML = `Robot<b>Lift &amp; home</b>`;
+    $("#jobCount").innerHTML = `<small>moving …</small>`;
+    $("#jobBar").style.width = "100%";
+    $("#jobTime").innerHTML = `Running<b>${mins(j.elapsed_s)}</b>`;
+  }
+  const log = $("#jobLog"), atEnd = log.scrollTop + log.clientHeight >= log.scrollHeight - 4;
+  log.textContent = j.log;
+  if (atEnd) log.scrollTop = log.scrollHeight;
+}
+
+function render() {
+  if (!status) return;
+  const real = status.target === "real";
+  $("#robot").innerHTML = `<div class="${real ? "" : "sim"}"><b>${real ? "Real robot" : "UR5e"}</b>${esc(status.host)}` +
+    (status.extra.length ? `<br>${esc(status.extra.join(" "))}` : "") + `</div>`;
+  const lj = status.last_job;
+  $("#foot").textContent = lj ? `Last job — ${lj.kind}${lj.cam ? " cam " + camNo(lj.cam) : ""}, ${when(lj.ended)}: ${lj.ok ? "finished" : lj.error}` : "No job yet.";
+  $("#lift").disabled = !!status.job;
+  renderJob();
+  const grid = $("#cams");
+  grid.replaceChildren(...status.cams.map(card));
+  if (!status.cams.length) grid.innerHTML = `<p class="cam">No cam folders yet (frames/cam1 …).</p>`;
+}
+
+let lastSig = "";
+async function poll() {
+  try {
+    const r = await fetch("/api/status");
+    status = await r.json();
+    const sig = JSON.stringify([status.cams, !!status.job, status.last_job]);
+    if (sig !== lastSig) { lastSig = sig; render(); } else { renderJob(); }
+  } catch (e) {
+    $("#robot").innerHTML = `<b>Server not reachable</b>is engrave_server.py running?`;
+  }
+}
+async function stop() {
+  const r = await post("/api/stop");
+  flash(r.note || r.error, !r.error);
+  poll();
+}
+$("#stopTop").onclick = stop;
+$("#stopJob").onclick = stop;
+$("#lift").onclick = async () => {
+  const r = await post("/api/lift_home");
+  if (r.error) flash(r.error, false); else flash("Lifting 20 mm, then home", true);
+  poll();
+};
+poll();
+setInterval(poll, 1500);
+setInterval(() => { lastSig = ""; }, 30000);   // refresh the "… min ago" labels
+</script>
+</body>
+</html>

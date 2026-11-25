@@ -33,6 +33,7 @@ from ur5e.kinematics import fk_frames, ik_near, interpolate_pose, matrix_to_rotv
 from ur5e.safety import SafetyViolation
 
 KEY_STEP_M = 0.01            # keyframe spacing along straight moves (animation only)
+STOP_S = 0.12                # per-move stop/start cost of the real arm (fitted to 3 real runs, see draw_wax), added to times
 
 
 def tcp_pose(q, tcp):
@@ -63,7 +64,7 @@ def simulate(ws, steps, accel, tcp, progress=None):
                 if limits.has_obstacles:
                     limits.check_joint_path(q, target, tcp=tcp)
                 dq = float(np.max(np.abs(np.asarray(target) - np.asarray(q))))
-                dur = dq / sp + (sp / ac if dq > 1e-6 else 0.0)
+                dur = dq / sp + (sp / ac if dq > 1e-6 else 0.0) + STOP_S
                 keys = [(0.0, q), (1.0, [float(v) for v in target])]
                 q_new = keys[-1][1]
                 pose_new = tcp_pose(q_new, tcp)
@@ -80,7 +81,7 @@ def simulate(ws, steps, accel, tcp, progress=None):
                     if qq is None:
                         raise SafetyViolation(f"no joint solution {i / n:.0%} of the way (out of reach / singular)")
                     keys.append((i / n, qq))
-                dur = dist / speed + (speed / accel if dist > 1e-6 else 0.0)
+                dur = dist / speed + (speed / accel if dist > 1e-6 else 0.0) + STOP_S
                 q_new, pose_new = qq, [float(v) for v in target]
             else:
                 dur, keys, q_new, pose_new = float(target), [(0.0, q), (1.0, q)], q, pose

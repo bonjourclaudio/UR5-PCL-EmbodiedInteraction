@@ -1,0 +1,11 @@
+{
+  "cams": {},
+  "last_job": {
+    "kind": "lift",
+    "cam": null,
+    "ok": true,
+    "error": null,
+    "log": "20261125_122146_lift.log",
+    "ended": "2026-11-25T12:21:57"
+  }
+}

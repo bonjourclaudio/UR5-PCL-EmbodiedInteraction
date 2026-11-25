@@ -126,6 +126,17 @@
     </div>
   </fieldset>
 
+  <fieldset><legend>Motion</legend>
+    <div class="grid">
+      <label>lift between marks, mm above the cut<input type="number" step="0.5" min="1" data-key="draw.lift_mm"></label>
+      <label>travel speed, mm/s<input type="number" step="5" min="5" max="150" data-key="draw.travel_speed" data-scale="1000"></label>
+      <label>plunge speed, mm/s<input type="number" step="5" min="1" max="150" data-key="draw.plunge_speed" data-scale="1000"></label>
+      <label>acceleration, m/s²<input type="number" step="0.05" min="0.05" max="0.5" data-key="draw.accel"></label>
+    </div>
+    <div class="derived">The cut is the engraving depth below the wax: lift 4 with depth 2 = 2 mm above the wax.
+      Robot limits: 150 mm/s, 0.5 m/s².</div>
+  </fieldset>
+
   <fieldset id="hatchset"><legend>Lines</legend>
     <div class="grid">
       <label>line spacing, mm<input type="number" step="0.5" min="0.5" data-key="draw.hatch_mm"></label>
@@ -170,6 +181,7 @@ function fillInputs() {
   document.querySelectorAll("[data-key]").forEach((el) => {
     let v = get(P, el.dataset.key);
     if (el.type === "checkbox") el.checked = el.dataset.invert ? !v : !!v;
+    else if (el.dataset.scale && typeof v === "number") el.value = +(v * el.dataset.scale).toFixed(1);
     else el.value = v == null ? "" : (typeof v === "number" ? +v.toFixed(2) : v);
   });
   toggleSets();
@@ -177,7 +189,7 @@ function fillInputs() {
 function readInput(el) {
   let v;
   if (el.type === "checkbox") v = el.dataset.invert ? !el.checked : el.checked;
-  else if (el.type === "number") v = el.value === "" ? (el.dataset.null ? null : 0) : parseFloat(el.value);
+  else if (el.type === "number") v = el.value === "" ? (el.dataset.null ? null : 0) : parseFloat(el.value) / (el.dataset.scale || 1);
   else if (el.dataset.type === "int") v = parseInt(el.value, 10);
   else v = el.value === "" ? null : el.value;
   set(P, el.dataset.key, v);

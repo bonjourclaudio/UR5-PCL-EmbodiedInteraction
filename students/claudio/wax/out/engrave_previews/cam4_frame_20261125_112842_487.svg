@@ -1,0 +1,2030 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100mm" height="81.81818181818181mm" viewBox="0 0 100.00 81.82">
+<rect width="100.00" height="81.82" fill="#f3e6c4"/>
+<circle cx="77.00" cy="1.00" r="0.55" fill="#222"/>
+<line x1="77.00" y1="1.00" x2="87.00" y2="1.00" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="1.00" r="0.59" fill="#222"/>
+<line x1="87.00" y1="1.00" x2="97.00" y2="1.00" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="1.00" r="0.54" fill="#222"/>
+<line x1="97.00" y1="1.00" x2="99.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="2.99" r="0.64" fill="#222"/>
+<line x1="99.00" y1="2.99" x2="97.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="2.99" r="0.62" fill="#222"/>
+<line x1="97.00" y1="2.99" x2="93.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="2.99" r="0.53" fill="#222"/>
+<line x1="93.00" y1="2.99" x2="89.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="2.99" r="0.71" fill="#222"/>
+<line x1="89.00" y1="2.99" x2="87.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="2.99" r="0.72" fill="#222"/>
+<line x1="87.00" y1="2.99" x2="85.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="2.99" r="0.66" fill="#222"/>
+<line x1="85.00" y1="2.99" x2="81.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="2.99" r="0.51" fill="#222"/>
+<line x1="81.00" y1="2.99" x2="77.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="2.99" r="0.62" fill="#222"/>
+<line x1="77.00" y1="2.99" x2="75.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="2.99" r="0.68" fill="#222"/>
+<line x1="75.00" y1="2.99" x2="37.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="2.99" r="0.69" fill="#222"/>
+<line x1="37.00" y1="2.99" x2="35.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="2.99" r="0.64" fill="#222"/>
+<line x1="35.00" y1="2.99" x2="31.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="2.99" r="0.76" fill="#222"/>
+<line x1="31.00" y1="2.99" x2="25.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="2.99" r="0.51" fill="#222"/>
+<line x1="25.00" y1="2.99" x2="21.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="2.99" r="0.59" fill="#222"/>
+<line x1="21.00" y1="2.99" x2="17.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="2.99" r="0.60" fill="#222"/>
+<line x1="17.00" y1="2.99" x2="13.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="2.99" r="0.48" fill="#222"/>
+<line x1="13.00" y1="2.99" x2="11.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="2.99" r="0.67" fill="#222"/>
+<line x1="11.00" y1="2.99" x2="7.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="2.99" r="0.61" fill="#222"/>
+<line x1="7.00" y1="2.99" x2="5.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="2.99" r="0.67" fill="#222"/>
+<line x1="5.00" y1="2.99" x2="3.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="2.99" r="0.79" fill="#222"/>
+<line x1="3.00" y1="2.99" x2="1.00" y2="2.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="2.99" r="0.56" fill="#222"/>
+<line x1="1.00" y1="2.99" x2="3.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="3.00" y1="4.99" x2="5.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="5.00" y1="4.99" x2="7.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="4.99" r="0.69" fill="#222"/>
+<line x1="7.00" y1="4.99" x2="9.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="9.00" y1="4.99" x2="11.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="4.99" r="0.68" fill="#222"/>
+<line x1="11.00" y1="4.99" x2="15.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="4.99" r="0.63" fill="#222"/>
+<line x1="15.00" y1="4.99" x2="17.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="4.99" r="0.68" fill="#222"/>
+<line x1="17.00" y1="4.99" x2="19.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="4.99" r="0.73" fill="#222"/>
+<line x1="19.00" y1="4.99" x2="21.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="21.00" y1="4.99" x2="23.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="23.00" y1="4.99" x2="29.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="4.99" r="0.79" fill="#222"/>
+<line x1="29.00" y1="4.99" x2="31.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="31.00" y1="4.99" x2="35.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="35.00" y1="4.99" x2="37.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="4.99" r="0.80" fill="#222"/>
+<line x1="37.00" y1="4.99" x2="41.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="4.99" r="0.53" fill="#222"/>
+<line x1="41.00" y1="4.99" x2="43.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="4.99" r="0.69" fill="#222"/>
+<line x1="43.00" y1="4.99" x2="45.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="4.99" r="0.61" fill="#222"/>
+<line x1="45.00" y1="4.99" x2="53.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="4.99" r="0.52" fill="#222"/>
+<line x1="53.00" y1="4.99" x2="55.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="4.99" r="0.69" fill="#222"/>
+<line x1="55.00" y1="4.99" x2="59.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="4.99" r="0.53" fill="#222"/>
+<line x1="59.00" y1="4.99" x2="63.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="63.00" cy="4.99" r="0.50" fill="#222"/>
+<line x1="63.00" y1="4.99" x2="67.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="4.99" r="0.56" fill="#222"/>
+<line x1="67.00" y1="4.99" x2="71.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="4.99" r="0.45" fill="#222"/>
+<line x1="71.00" y1="4.99" x2="83.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="4.99" r="0.57" fill="#222"/>
+<line x1="83.00" y1="4.99" x2="87.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="4.99" r="0.66" fill="#222"/>
+<line x1="87.00" y1="4.99" x2="89.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="4.99" r="0.68" fill="#222"/>
+<line x1="89.00" y1="4.99" x2="91.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="4.99" r="0.65" fill="#222"/>
+<line x1="91.00" y1="4.99" x2="95.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="4.99" r="0.63" fill="#222"/>
+<line x1="95.00" y1="4.99" x2="99.00" y2="4.99" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="4.99" r="0.62" fill="#222"/>
+<line x1="99.00" y1="4.99" x2="99.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="6.98" r="0.62" fill="#222"/>
+<line x1="99.00" y1="6.98" x2="97.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="6.98" r="0.63" fill="#222"/>
+<line x1="97.00" y1="6.98" x2="95.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="6.98" r="0.64" fill="#222"/>
+<line x1="95.00" y1="6.98" x2="93.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="6.98" r="0.67" fill="#222"/>
+<line x1="93.00" y1="6.98" x2="89.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="6.98" r="0.71" fill="#222"/>
+<line x1="89.00" y1="6.98" x2="85.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="6.98" r="0.61" fill="#222"/>
+<line x1="85.00" y1="6.98" x2="81.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="6.98" r="0.58" fill="#222"/>
+<line x1="81.00" y1="6.98" x2="49.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="6.98" r="0.48" fill="#222"/>
+<line x1="49.00" y1="6.98" x2="41.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="6.98" r="0.56" fill="#222"/>
+<line x1="41.00" y1="6.98" x2="11.00" y2="6.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="6.98" r="0.57" fill="#222"/>
+<line x1="11.00" y1="6.98" x2="3.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="8.98" r="0.49" fill="#222"/>
+<line x1="3.00" y1="8.98" x2="9.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="8.98" r="0.58" fill="#222"/>
+<line x1="9.00" y1="8.98" x2="15.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="8.98" r="0.72" fill="#222"/>
+<line x1="15.00" y1="8.98" x2="25.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="8.98" r="0.45" fill="#222"/>
+<line x1="25.00" y1="8.98" x2="29.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="8.98" r="0.53" fill="#222"/>
+<line x1="29.00" y1="8.98" x2="33.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="8.98" r="0.55" fill="#222"/>
+<line x1="33.00" y1="8.98" x2="39.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="8.98" r="0.44" fill="#222"/>
+<line x1="39.00" y1="8.98" x2="65.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="8.98" r="0.43" fill="#222"/>
+<line x1="65.00" y1="8.98" x2="73.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="8.98" r="0.42" fill="#222"/>
+<line x1="73.00" y1="8.98" x2="81.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="8.98" r="0.72" fill="#222"/>
+<line x1="81.00" y1="8.98" x2="83.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="8.98" r="0.64" fill="#222"/>
+<line x1="83.00" y1="8.98" x2="85.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="8.98" r="0.68" fill="#222"/>
+<line x1="85.00" y1="8.98" x2="87.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="8.98" r="0.60" fill="#222"/>
+<line x1="87.00" y1="8.98" x2="89.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="8.98" r="0.65" fill="#222"/>
+<line x1="89.00" y1="8.98" x2="91.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="8.98" r="0.67" fill="#222"/>
+<line x1="91.00" y1="8.98" x2="93.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="8.98" r="0.70" fill="#222"/>
+<line x1="93.00" y1="8.98" x2="97.00" y2="8.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="8.98" r="0.64" fill="#222"/>
+<line x1="97.00" y1="8.98" x2="99.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="10.98" r="0.66" fill="#222"/>
+<line x1="99.00" y1="10.98" x2="97.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="10.98" r="0.64" fill="#222"/>
+<line x1="97.00" y1="10.98" x2="95.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="10.98" r="0.70" fill="#222"/>
+<line x1="95.00" y1="10.98" x2="91.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="10.98" r="0.66" fill="#222"/>
+<line x1="91.00" y1="10.98" x2="87.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="10.98" r="0.66" fill="#222"/>
+<line x1="87.00" y1="10.98" x2="83.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="10.98" r="0.64" fill="#222"/>
+<line x1="83.00" y1="10.98" x2="81.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="10.98" r="0.70" fill="#222"/>
+<line x1="81.00" y1="10.98" x2="79.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="10.98" r="0.61" fill="#222"/>
+<line x1="79.00" y1="10.98" x2="61.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="10.98" r="0.38" fill="#222"/>
+<line x1="61.00" y1="10.98" x2="55.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="10.98" r="0.37" fill="#222"/>
+<line x1="55.00" y1="10.98" x2="51.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="10.98" r="0.46" fill="#222"/>
+<line x1="51.00" y1="10.98" x2="27.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="10.98" r="0.50" fill="#222"/>
+<line x1="27.00" y1="10.98" x2="23.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="10.98" r="0.57" fill="#222"/>
+<line x1="23.00" y1="10.98" x2="21.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="10.98" r="0.68" fill="#222"/>
+<line x1="21.00" y1="10.98" x2="15.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="10.98" r="0.80" fill="#222"/>
+<line x1="15.00" y1="10.98" x2="7.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="10.98" r="0.61" fill="#222"/>
+<line x1="7.00" y1="10.98" x2="3.00" y2="10.98" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="10.98" r="0.62" fill="#222"/>
+<line x1="3.00" y1="10.98" x2="1.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="12.97" r="0.55" fill="#222"/>
+<line x1="1.00" y1="12.97" x2="9.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="12.97" r="0.74" fill="#222"/>
+<line x1="9.00" y1="12.97" x2="13.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="12.97" r="0.60" fill="#222"/>
+<line x1="13.00" y1="12.97" x2="15.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="12.97" r="0.80" fill="#222"/>
+<line x1="15.00" y1="12.97" x2="17.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="12.97" r="0.55" fill="#222"/>
+<line x1="17.00" y1="12.97" x2="23.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="12.97" r="0.58" fill="#222"/>
+<line x1="23.00" y1="12.97" x2="31.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="12.97" r="0.46" fill="#222"/>
+<line x1="31.00" y1="12.97" x2="35.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="12.97" r="0.48" fill="#222"/>
+<line x1="35.00" y1="12.97" x2="65.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="12.97" r="0.43" fill="#222"/>
+<line x1="65.00" y1="12.97" x2="69.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="12.97" r="0.60" fill="#222"/>
+<line x1="69.00" y1="12.97" x2="71.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="12.97" r="0.52" fill="#222"/>
+<line x1="71.00" y1="12.97" x2="79.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="12.97" r="0.65" fill="#222"/>
+<line x1="79.00" y1="12.97" x2="83.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="12.97" r="0.65" fill="#222"/>
+<line x1="83.00" y1="12.97" x2="85.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="12.97" r="0.75" fill="#222"/>
+<line x1="85.00" y1="12.97" x2="87.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="12.97" r="0.76" fill="#222"/>
+<line x1="87.00" y1="12.97" x2="89.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="12.97" r="0.75" fill="#222"/>
+<line x1="89.00" y1="12.97" x2="91.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="12.97" r="0.71" fill="#222"/>
+<line x1="91.00" y1="12.97" x2="93.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="12.97" r="0.76" fill="#222"/>
+<line x1="93.00" y1="12.97" x2="95.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="12.97" r="0.79" fill="#222"/>
+<line x1="95.00" y1="12.97" x2="97.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="12.97" r="0.79" fill="#222"/>
+<line x1="97.00" y1="12.97" x2="99.00" y2="12.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="12.97" r="0.76" fill="#222"/>
+<line x1="99.00" y1="12.97" x2="99.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="14.97" r="0.80" fill="#222"/>
+<line x1="99.00" y1="14.97" x2="97.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="14.97" r="0.80" fill="#222"/>
+<line x1="97.00" y1="14.97" x2="95.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="14.97" r="0.76" fill="#222"/>
+<line x1="95.00" y1="14.97" x2="93.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="14.97" r="0.75" fill="#222"/>
+<line x1="93.00" y1="14.97" x2="91.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="14.97" r="0.75" fill="#222"/>
+<line x1="91.00" y1="14.97" x2="87.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="14.97" r="0.70" fill="#222"/>
+<line x1="87.00" y1="14.97" x2="83.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="14.97" r="0.58" fill="#222"/>
+<line x1="83.00" y1="14.97" x2="77.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="14.97" r="0.45" fill="#222"/>
+<line x1="77.00" y1="14.97" x2="61.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="14.97" r="0.49" fill="#222"/>
+<line x1="61.00" y1="14.97" x2="55.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="14.97" r="0.60" fill="#222"/>
+<line x1="55.00" y1="14.97" x2="53.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="14.97" r="0.54" fill="#222"/>
+<line x1="53.00" y1="14.97" x2="47.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="14.97" r="0.41" fill="#222"/>
+<line x1="47.00" y1="14.97" x2="43.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="14.97" r="0.41" fill="#222"/>
+<line x1="43.00" y1="14.97" x2="31.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="14.97" r="0.51" fill="#222"/>
+<line x1="31.00" y1="14.97" x2="23.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="14.97" r="0.54" fill="#222"/>
+<line x1="23.00" y1="14.97" x2="19.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="14.97" r="0.55" fill="#222"/>
+<line x1="19.00" y1="14.97" x2="15.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="14.97" r="0.71" fill="#222"/>
+<line x1="15.00" y1="14.97" x2="11.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="14.97" r="0.65" fill="#222"/>
+<line x1="11.00" y1="14.97" x2="9.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="14.97" r="0.69" fill="#222"/>
+<line x1="9.00" y1="14.97" x2="7.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="14.97" r="0.71" fill="#222"/>
+<line x1="7.00" y1="14.97" x2="5.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="14.97" r="0.62" fill="#222"/>
+<line x1="5.00" y1="14.97" x2="1.00" y2="14.97" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="14.97" r="0.54" fill="#222"/>
+<line x1="1.00" y1="14.97" x2="1.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="16.96" r="0.70" fill="#222"/>
+<line x1="1.00" y1="16.96" x2="3.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="16.96" r="0.67" fill="#222"/>
+<line x1="3.00" y1="16.96" x2="5.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="16.96" r="0.79" fill="#222"/>
+<line x1="5.00" y1="16.96" x2="7.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="16.96" r="0.67" fill="#222"/>
+<line x1="7.00" y1="16.96" x2="11.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="16.96" r="0.59" fill="#222"/>
+<line x1="11.00" y1="16.96" x2="13.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="16.96" r="0.58" fill="#222"/>
+<line x1="13.00" y1="16.96" x2="17.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="16.96" r="0.65" fill="#222"/>
+<line x1="17.00" y1="16.96" x2="19.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="16.96" r="0.58" fill="#222"/>
+<line x1="19.00" y1="16.96" x2="25.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="16.96" r="0.54" fill="#222"/>
+<line x1="25.00" y1="16.96" x2="29.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="16.96" r="0.55" fill="#222"/>
+<line x1="29.00" y1="16.96" x2="33.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="16.96" r="0.51" fill="#222"/>
+<line x1="33.00" y1="16.96" x2="37.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="16.96" r="0.46" fill="#222"/>
+<line x1="37.00" y1="16.96" x2="39.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="16.96" r="0.51" fill="#222"/>
+<line x1="39.00" y1="16.96" x2="49.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="16.96" r="0.47" fill="#222"/>
+<line x1="49.00" y1="16.96" x2="57.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="16.96" r="0.49" fill="#222"/>
+<line x1="57.00" y1="16.96" x2="65.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="16.96" r="0.45" fill="#222"/>
+<line x1="65.00" y1="16.96" x2="75.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="16.96" r="0.52" fill="#222"/>
+<line x1="75.00" y1="16.96" x2="79.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="16.96" r="0.57" fill="#222"/>
+<line x1="79.00" y1="16.96" x2="81.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="16.96" r="0.59" fill="#222"/>
+<line x1="81.00" y1="16.96" x2="85.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="16.96" r="0.54" fill="#222"/>
+<line x1="85.00" y1="16.96" x2="89.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="16.96" r="0.50" fill="#222"/>
+<line x1="89.00" y1="16.96" x2="95.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="16.96" r="0.59" fill="#222"/>
+<line x1="95.00" y1="16.96" x2="97.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="16.96" r="0.72" fill="#222"/>
+<line x1="97.00" y1="16.96" x2="99.00" y2="16.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="16.96" r="0.80" fill="#222"/>
+<line x1="99.00" y1="16.96" x2="97.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="18.96" r="0.62" fill="#222"/>
+<line x1="97.00" y1="18.96" x2="93.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="18.96" r="0.55" fill="#222"/>
+<line x1="93.00" y1="18.96" x2="91.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="18.96" r="0.64" fill="#222"/>
+<line x1="91.00" y1="18.96" x2="87.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="18.96" r="0.52" fill="#222"/>
+<line x1="87.00" y1="18.96" x2="81.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="18.96" r="0.57" fill="#222"/>
+<line x1="81.00" y1="18.96" x2="73.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="18.96" r="0.49" fill="#222"/>
+<line x1="73.00" y1="18.96" x2="63.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="63.00" cy="18.96" r="0.47" fill="#222"/>
+<line x1="63.00" y1="18.96" x2="55.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="18.96" r="0.47" fill="#222"/>
+<line x1="55.00" y1="18.96" x2="51.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="18.96" r="0.52" fill="#222"/>
+<line x1="51.00" y1="18.96" x2="47.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="18.96" r="0.51" fill="#222"/>
+<line x1="47.00" y1="18.96" x2="43.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="18.96" r="0.52" fill="#222"/>
+<line x1="43.00" y1="18.96" x2="41.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="18.96" r="0.59" fill="#222"/>
+<line x1="41.00" y1="18.96" x2="33.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="18.96" r="0.60" fill="#222"/>
+<line x1="33.00" y1="18.96" x2="27.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="18.96" r="0.49" fill="#222"/>
+<line x1="27.00" y1="18.96" x2="25.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="18.96" r="0.68" fill="#222"/>
+<line x1="25.00" y1="18.96" x2="21.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="18.96" r="0.56" fill="#222"/>
+<line x1="21.00" y1="18.96" x2="17.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="18.96" r="0.55" fill="#222"/>
+<line x1="17.00" y1="18.96" x2="13.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="18.96" r="0.58" fill="#222"/>
+<line x1="13.00" y1="18.96" x2="9.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="18.96" r="0.69" fill="#222"/>
+<line x1="9.00" y1="18.96" x2="5.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="18.96" r="0.58" fill="#222"/>
+<line x1="5.00" y1="18.96" x2="1.00" y2="18.96" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="18.96" r="0.68" fill="#222"/>
+<line x1="1.00" y1="18.96" x2="1.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="20.95" r="0.78" fill="#222"/>
+<line x1="1.00" y1="20.95" x2="3.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="20.95" r="0.80" fill="#222"/>
+<line x1="3.00" y1="20.95" x2="7.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="20.95" r="0.59" fill="#222"/>
+<line x1="7.00" y1="20.95" x2="11.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="20.95" r="0.59" fill="#222"/>
+<line x1="11.00" y1="20.95" x2="19.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="20.95" r="0.54" fill="#222"/>
+<line x1="19.00" y1="20.95" x2="29.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="20.95" r="0.51" fill="#222"/>
+<line x1="29.00" y1="20.95" x2="31.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="20.95" r="0.58" fill="#222"/>
+<line x1="31.00" y1="20.95" x2="35.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="20.95" r="0.55" fill="#222"/>
+<line x1="35.00" y1="20.95" x2="39.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="20.95" r="0.54" fill="#222"/>
+<line x1="39.00" y1="20.95" x2="45.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="20.95" r="0.54" fill="#222"/>
+<line x1="45.00" y1="20.95" x2="49.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="20.95" r="0.60" fill="#222"/>
+<line x1="49.00" y1="20.95" x2="53.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="20.95" r="0.54" fill="#222"/>
+<line x1="53.00" y1="20.95" x2="59.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="20.95" r="0.45" fill="#222"/>
+<line x1="59.00" y1="20.95" x2="69.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="20.95" r="0.36" fill="#222"/>
+<line x1="69.00" y1="20.95" x2="75.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="20.95" r="0.56" fill="#222"/>
+<line x1="75.00" y1="20.95" x2="81.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="20.95" r="0.53" fill="#222"/>
+<line x1="81.00" y1="20.95" x2="85.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="20.95" r="0.59" fill="#222"/>
+<line x1="85.00" y1="20.95" x2="89.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="20.95" r="0.70" fill="#222"/>
+<line x1="89.00" y1="20.95" x2="91.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="20.95" r="0.63" fill="#222"/>
+<line x1="91.00" y1="20.95" x2="95.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="20.95" r="0.66" fill="#222"/>
+<line x1="95.00" y1="20.95" x2="97.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="20.95" r="0.67" fill="#222"/>
+<line x1="97.00" y1="20.95" x2="99.00" y2="20.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="20.95" r="0.64" fill="#222"/>
+<line x1="99.00" y1="20.95" x2="97.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="22.95" r="0.73" fill="#222"/>
+<line x1="97.00" y1="22.95" x2="95.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="22.95" r="0.71" fill="#222"/>
+<line x1="95.00" y1="22.95" x2="91.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="22.95" r="0.71" fill="#222"/>
+<line x1="91.00" y1="22.95" x2="89.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="22.95" r="0.75" fill="#222"/>
+<line x1="89.00" y1="22.95" x2="87.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="22.95" r="0.59" fill="#222"/>
+<line x1="87.00" y1="22.95" x2="85.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="22.95" r="0.65" fill="#222"/>
+<line x1="85.00" y1="22.95" x2="81.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="22.95" r="0.53" fill="#222"/>
+<line x1="81.00" y1="22.95" x2="77.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="22.95" r="0.60" fill="#222"/>
+<line x1="77.00" y1="22.95" x2="53.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="22.95" r="0.60" fill="#222"/>
+<line x1="53.00" y1="22.95" x2="49.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="22.95" r="0.55" fill="#222"/>
+<line x1="49.00" y1="22.95" x2="45.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="22.95" r="0.65" fill="#222"/>
+<line x1="45.00" y1="22.95" x2="43.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="22.95" r="0.64" fill="#222"/>
+<line x1="43.00" y1="22.95" x2="41.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="22.95" r="0.69" fill="#222"/>
+<line x1="41.00" y1="22.95" x2="39.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="22.95" r="0.64" fill="#222"/>
+<line x1="39.00" y1="22.95" x2="35.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="22.95" r="0.59" fill="#222"/>
+<line x1="35.00" y1="22.95" x2="31.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="22.95" r="0.60" fill="#222"/>
+<line x1="31.00" y1="22.95" x2="25.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="22.95" r="0.47" fill="#222"/>
+<line x1="25.00" y1="22.95" x2="21.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="22.95" r="0.47" fill="#222"/>
+<line x1="21.00" y1="22.95" x2="19.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="22.95" r="0.72" fill="#222"/>
+<line x1="19.00" y1="22.95" x2="15.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="22.95" r="0.62" fill="#222"/>
+<line x1="15.00" y1="22.95" x2="13.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="22.95" r="0.56" fill="#222"/>
+<line x1="13.00" y1="22.95" x2="9.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="22.95" r="0.65" fill="#222"/>
+<line x1="9.00" y1="22.95" x2="5.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="22.95" r="0.74" fill="#222"/>
+<line x1="5.00" y1="22.95" x2="3.00" y2="22.95" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="22.95" r="0.80" fill="#222"/>
+<line x1="3.00" y1="22.95" x2="3.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="24.94" r="0.66" fill="#222"/>
+<line x1="3.00" y1="24.94" x2="5.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="24.94" r="0.80" fill="#222"/>
+<line x1="5.00" y1="24.94" x2="7.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="24.94" r="0.72" fill="#222"/>
+<line x1="7.00" y1="24.94" x2="9.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="24.94" r="0.74" fill="#222"/>
+<line x1="9.00" y1="24.94" x2="11.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="24.94" r="0.69" fill="#222"/>
+<line x1="11.00" y1="24.94" x2="15.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="24.94" r="0.50" fill="#222"/>
+<line x1="15.00" y1="24.94" x2="19.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="24.94" r="0.80" fill="#222"/>
+<line x1="19.00" y1="24.94" x2="25.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="24.94" r="0.58" fill="#222"/>
+<line x1="25.00" y1="24.94" x2="29.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="24.94" r="0.58" fill="#222"/>
+<line x1="29.00" y1="24.94" x2="33.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="24.94" r="0.51" fill="#222"/>
+<line x1="33.00" y1="24.94" x2="37.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="24.94" r="0.57" fill="#222"/>
+<line x1="37.00" y1="24.94" x2="41.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="24.94" r="0.64" fill="#222"/>
+<line x1="41.00" y1="24.94" x2="43.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="24.94" r="0.79" fill="#222"/>
+<line x1="43.00" y1="24.94" x2="47.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="24.94" r="0.68" fill="#222"/>
+<line x1="47.00" y1="24.94" x2="51.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="24.94" r="0.54" fill="#222"/>
+<line x1="51.00" y1="24.94" x2="59.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="24.94" r="0.44" fill="#222"/>
+<line x1="59.00" y1="24.94" x2="73.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="24.94" r="0.80" fill="#222"/>
+<line x1="73.00" y1="24.94" x2="77.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="24.94" r="0.65" fill="#222"/>
+<line x1="77.00" y1="24.94" x2="81.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="24.94" r="0.58" fill="#222"/>
+<line x1="81.00" y1="24.94" x2="85.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="24.94" r="0.60" fill="#222"/>
+<line x1="85.00" y1="24.94" x2="91.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="24.94" r="0.64" fill="#222"/>
+<line x1="91.00" y1="24.94" x2="93.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="24.94" r="0.71" fill="#222"/>
+<line x1="93.00" y1="24.94" x2="97.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="24.94" r="0.58" fill="#222"/>
+<line x1="97.00" y1="24.94" x2="99.00" y2="24.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="24.94" r="0.64" fill="#222"/>
+<line x1="99.00" y1="24.94" x2="95.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="26.94" r="0.63" fill="#222"/>
+<line x1="95.00" y1="26.94" x2="93.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="26.94" r="0.69" fill="#222"/>
+<line x1="93.00" y1="26.94" x2="89.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="26.94" r="0.56" fill="#222"/>
+<line x1="89.00" y1="26.94" x2="87.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="26.94" r="0.69" fill="#222"/>
+<line x1="87.00" y1="26.94" x2="85.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="26.94" r="0.69" fill="#222"/>
+<line x1="85.00" y1="26.94" x2="81.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="26.94" r="0.56" fill="#222"/>
+<line x1="81.00" y1="26.94" x2="77.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="26.94" r="0.56" fill="#222"/>
+<line x1="77.00" y1="26.94" x2="75.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="26.94" r="0.62" fill="#222"/>
+<line x1="75.00" y1="26.94" x2="73.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="26.94" r="0.66" fill="#222"/>
+<line x1="73.00" y1="26.94" x2="47.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="26.94" r="0.69" fill="#222"/>
+<line x1="47.00" y1="26.94" x2="43.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="26.94" r="0.69" fill="#222"/>
+<line x1="43.00" y1="26.94" x2="39.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="26.94" r="0.65" fill="#222"/>
+<line x1="39.00" y1="26.94" x2="37.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="26.94" r="0.77" fill="#222"/>
+<line x1="37.00" y1="26.94" x2="33.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="26.94" r="0.58" fill="#222"/>
+<line x1="33.00" y1="26.94" x2="29.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="26.94" r="0.68" fill="#222"/>
+<line x1="29.00" y1="26.94" x2="25.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="26.94" r="0.74" fill="#222"/>
+<line x1="25.00" y1="26.94" x2="23.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="26.94" r="0.58" fill="#222"/>
+<line x1="23.00" y1="26.94" x2="21.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="26.94" r="0.62" fill="#222"/>
+<line x1="21.00" y1="26.94" x2="19.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="26.94" r="0.75" fill="#222"/>
+<line x1="19.00" y1="26.94" x2="17.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="26.94" r="0.57" fill="#222"/>
+<line x1="17.00" y1="26.94" x2="13.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="26.94" r="0.57" fill="#222"/>
+<line x1="13.00" y1="26.94" x2="9.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="26.94" r="0.76" fill="#222"/>
+<line x1="9.00" y1="26.94" x2="7.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="26.94" r="0.80" fill="#222"/>
+<line x1="7.00" y1="26.94" x2="5.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="26.94" r="0.80" fill="#222"/>
+<line x1="5.00" y1="26.94" x2="3.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="26.94" r="0.67" fill="#222"/>
+<line x1="3.00" y1="26.94" x2="1.00" y2="26.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="26.94" r="0.60" fill="#222"/>
+<line x1="1.00" y1="26.94" x2="3.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="28.94" r="0.58" fill="#222"/>
+<line x1="3.00" y1="28.94" x2="7.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="28.94" r="0.80" fill="#222"/>
+<line x1="7.00" y1="28.94" x2="9.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="28.94" r="0.78" fill="#222"/>
+<line x1="9.00" y1="28.94" x2="11.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="28.94" r="0.75" fill="#222"/>
+<line x1="11.00" y1="28.94" x2="13.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="28.94" r="0.63" fill="#222"/>
+<line x1="13.00" y1="28.94" x2="15.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="28.94" r="0.75" fill="#222"/>
+<line x1="15.00" y1="28.94" x2="17.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="28.94" r="0.67" fill="#222"/>
+<line x1="17.00" y1="28.94" x2="21.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="28.94" r="0.80" fill="#222"/>
+<line x1="21.00" y1="28.94" x2="25.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="28.94" r="0.68" fill="#222"/>
+<line x1="25.00" y1="28.94" x2="27.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="28.94" r="0.57" fill="#222"/>
+<line x1="27.00" y1="28.94" x2="29.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="28.94" r="0.62" fill="#222"/>
+<line x1="29.00" y1="28.94" x2="31.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="28.94" r="0.69" fill="#222"/>
+<line x1="31.00" y1="28.94" x2="35.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="28.94" r="0.61" fill="#222"/>
+<line x1="35.00" y1="28.94" x2="37.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="28.94" r="0.80" fill="#222"/>
+<line x1="37.00" y1="28.94" x2="43.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="28.94" r="0.78" fill="#222"/>
+<line x1="43.00" y1="28.94" x2="45.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="28.94" r="0.80" fill="#222"/>
+<line x1="45.00" y1="28.94" x2="47.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="28.94" r="0.78" fill="#222"/>
+<line x1="47.00" y1="28.94" x2="51.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="28.94" r="0.80" fill="#222"/>
+<line x1="51.00" y1="28.94" x2="59.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="28.94" r="0.39" fill="#222"/>
+<line x1="59.00" y1="28.94" x2="73.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="28.94" r="0.70" fill="#222"/>
+<line x1="73.00" y1="28.94" x2="75.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="28.94" r="0.80" fill="#222"/>
+<line x1="75.00" y1="28.94" x2="79.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="28.94" r="0.53" fill="#222"/>
+<line x1="79.00" y1="28.94" x2="83.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="28.94" r="0.62" fill="#222"/>
+<line x1="83.00" y1="28.94" x2="89.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="28.94" r="0.54" fill="#222"/>
+<line x1="89.00" y1="28.94" x2="93.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="28.94" r="0.56" fill="#222"/>
+<line x1="93.00" y1="28.94" x2="95.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="28.94" r="0.70" fill="#222"/>
+<line x1="95.00" y1="28.94" x2="97.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="28.94" r="0.68" fill="#222"/>
+<line x1="97.00" y1="28.94" x2="99.00" y2="28.94" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="28.94" r="0.67" fill="#222"/>
+<line x1="99.00" y1="28.94" x2="99.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="30.93" r="0.64" fill="#222"/>
+<line x1="99.00" y1="30.93" x2="95.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="30.93" r="0.62" fill="#222"/>
+<line x1="95.00" y1="30.93" x2="89.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="30.93" r="0.52" fill="#222"/>
+<line x1="89.00" y1="30.93" x2="85.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="30.93" r="0.54" fill="#222"/>
+<line x1="85.00" y1="30.93" x2="83.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="30.93" r="0.62" fill="#222"/>
+<line x1="83.00" y1="30.93" x2="79.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="30.93" r="0.60" fill="#222"/>
+<line x1="79.00" y1="30.93" x2="77.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="30.93" r="0.71" fill="#222"/>
+<line x1="77.00" y1="30.93" x2="75.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="30.93" r="0.74" fill="#222"/>
+<line x1="75.00" y1="30.93" x2="71.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="30.93" r="0.62" fill="#222"/>
+<line x1="71.00" y1="30.93" x2="65.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="30.93" r="0.44" fill="#222"/>
+<line x1="65.00" y1="30.93" x2="49.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="30.93" r="0.80" fill="#222"/>
+<line x1="49.00" y1="30.93" x2="45.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="30.93" r="0.80" fill="#222"/>
+<line x1="45.00" y1="30.93" x2="43.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="30.93" r="0.80" fill="#222"/>
+<line x1="43.00" y1="30.93" x2="41.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="30.93" r="0.54" fill="#222"/>
+<line x1="41.00" y1="30.93" x2="37.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="30.93" r="0.73" fill="#222"/>
+<line x1="37.00" y1="30.93" x2="35.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="30.93" r="0.69" fill="#222"/>
+<line x1="35.00" y1="30.93" x2="33.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="30.93" r="0.67" fill="#222"/>
+<line x1="33.00" y1="30.93" x2="29.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="30.93" r="0.69" fill="#222"/>
+<line x1="29.00" y1="30.93" x2="25.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="30.93" r="0.79" fill="#222"/>
+<line x1="25.00" y1="30.93" x2="21.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="30.93" r="0.80" fill="#222"/>
+<line x1="21.00" y1="30.93" x2="19.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="30.93" r="0.64" fill="#222"/>
+<line x1="19.00" y1="30.93" x2="17.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="30.93" r="0.66" fill="#222"/>
+<line x1="17.00" y1="30.93" x2="13.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="30.93" r="0.71" fill="#222"/>
+<line x1="13.00" y1="30.93" x2="11.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="30.93" r="0.80" fill="#222"/>
+<line x1="11.00" y1="30.93" x2="9.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="30.93" r="0.72" fill="#222"/>
+<line x1="9.00" y1="30.93" x2="7.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="30.93" r="0.77" fill="#222"/>
+<line x1="7.00" y1="30.93" x2="5.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="30.93" r="0.67" fill="#222"/>
+<line x1="5.00" y1="30.93" x2="3.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="30.93" r="0.80" fill="#222"/>
+<line x1="3.00" y1="30.93" x2="1.00" y2="30.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="30.93" r="0.68" fill="#222"/>
+<line x1="1.00" y1="30.93" x2="1.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="32.93" r="0.68" fill="#222"/>
+<line x1="1.00" y1="32.93" x2="3.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="32.93" r="0.80" fill="#222"/>
+<line x1="3.00" y1="32.93" x2="5.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="32.93" r="0.79" fill="#222"/>
+<line x1="5.00" y1="32.93" x2="7.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="32.93" r="0.71" fill="#222"/>
+<line x1="7.00" y1="32.93" x2="9.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="32.93" r="0.74" fill="#222"/>
+<line x1="9.00" y1="32.93" x2="11.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="32.93" r="0.76" fill="#222"/>
+<line x1="11.00" y1="32.93" x2="13.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="32.93" r="0.74" fill="#222"/>
+<line x1="13.00" y1="32.93" x2="15.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="32.93" r="0.65" fill="#222"/>
+<line x1="15.00" y1="32.93" x2="19.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="32.93" r="0.67" fill="#222"/>
+<line x1="19.00" y1="32.93" x2="21.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="32.93" r="0.67" fill="#222"/>
+<line x1="21.00" y1="32.93" x2="25.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="32.93" r="0.78" fill="#222"/>
+<line x1="25.00" y1="32.93" x2="29.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="32.93" r="0.75" fill="#222"/>
+<line x1="29.00" y1="32.93" x2="31.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="32.93" r="0.63" fill="#222"/>
+<line x1="31.00" y1="32.93" x2="33.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="32.93" r="0.72" fill="#222"/>
+<line x1="33.00" y1="32.93" x2="35.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="32.93" r="0.73" fill="#222"/>
+<line x1="35.00" y1="32.93" x2="37.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="32.93" r="0.80" fill="#222"/>
+<line x1="37.00" y1="32.93" x2="41.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="32.93" r="0.60" fill="#222"/>
+<line x1="41.00" y1="32.93" x2="47.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="32.93" r="0.50" fill="#222"/>
+<line x1="47.00" y1="32.93" x2="49.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="32.93" r="0.60" fill="#222"/>
+<line x1="49.00" y1="32.93" x2="71.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="32.93" r="0.80" fill="#222"/>
+<line x1="71.00" y1="32.93" x2="73.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="32.93" r="0.73" fill="#222"/>
+<line x1="73.00" y1="32.93" x2="75.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="32.93" r="0.71" fill="#222"/>
+<line x1="75.00" y1="32.93" x2="79.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="32.93" r="0.69" fill="#222"/>
+<line x1="79.00" y1="32.93" x2="83.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="32.93" r="0.57" fill="#222"/>
+<line x1="83.00" y1="32.93" x2="87.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="32.93" r="0.65" fill="#222"/>
+<line x1="87.00" y1="32.93" x2="91.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="32.93" r="0.56" fill="#222"/>
+<line x1="91.00" y1="32.93" x2="95.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="32.93" r="0.61" fill="#222"/>
+<line x1="95.00" y1="32.93" x2="99.00" y2="32.93" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="32.93" r="0.58" fill="#222"/>
+<line x1="99.00" y1="32.93" x2="97.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="34.92" r="0.60" fill="#222"/>
+<line x1="97.00" y1="34.92" x2="95.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="34.92" r="0.77" fill="#222"/>
+<line x1="95.00" y1="34.92" x2="91.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="34.92" r="0.61" fill="#222"/>
+<line x1="91.00" y1="34.92" x2="89.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="34.92" r="0.66" fill="#222"/>
+<line x1="89.00" y1="34.92" x2="87.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="34.92" r="0.72" fill="#222"/>
+<line x1="87.00" y1="34.92" x2="83.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="34.92" r="0.57" fill="#222"/>
+<line x1="83.00" y1="34.92" x2="79.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="34.92" r="0.57" fill="#222"/>
+<line x1="79.00" y1="34.92" x2="77.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="34.92" r="0.69" fill="#222"/>
+<line x1="77.00" y1="34.92" x2="75.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="34.92" r="0.72" fill="#222"/>
+<line x1="75.00" y1="34.92" x2="73.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="34.92" r="0.64" fill="#222"/>
+<line x1="73.00" y1="34.92" x2="71.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="34.92" r="0.80" fill="#222"/>
+<line x1="71.00" y1="34.92" x2="53.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="34.92" r="0.42" fill="#222"/>
+<line x1="53.00" y1="34.92" x2="47.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="34.92" r="0.77" fill="#222"/>
+<line x1="47.00" y1="34.92" x2="41.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="34.92" r="0.64" fill="#222"/>
+<line x1="41.00" y1="34.92" x2="37.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="34.92" r="0.78" fill="#222"/>
+<line x1="37.00" y1="34.92" x2="35.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="34.92" r="0.72" fill="#222"/>
+<line x1="35.00" y1="34.92" x2="29.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="34.92" r="0.63" fill="#222"/>
+<line x1="29.00" y1="34.92" x2="25.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="34.92" r="0.80" fill="#222"/>
+<line x1="25.00" y1="34.92" x2="23.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="34.92" r="0.53" fill="#222"/>
+<line x1="23.00" y1="34.92" x2="19.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="34.92" r="0.70" fill="#222"/>
+<line x1="19.00" y1="34.92" x2="17.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="34.92" r="0.63" fill="#222"/>
+<line x1="17.00" y1="34.92" x2="15.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="34.92" r="0.71" fill="#222"/>
+<line x1="15.00" y1="34.92" x2="13.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="34.92" r="0.79" fill="#222"/>
+<line x1="13.00" y1="34.92" x2="11.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="34.92" r="0.75" fill="#222"/>
+<line x1="11.00" y1="34.92" x2="7.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="34.92" r="0.70" fill="#222"/>
+<line x1="7.00" y1="34.92" x2="5.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="34.92" r="0.80" fill="#222"/>
+<line x1="5.00" y1="34.92" x2="3.00" y2="34.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="34.92" r="0.79" fill="#222"/>
+<line x1="3.00" y1="34.92" x2="1.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="36.92" r="0.76" fill="#222"/>
+<line x1="1.00" y1="36.92" x2="3.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="36.92" r="0.80" fill="#222"/>
+<line x1="3.00" y1="36.92" x2="5.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="36.92" r="0.78" fill="#222"/>
+<line x1="5.00" y1="36.92" x2="7.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="36.92" r="0.71" fill="#222"/>
+<line x1="7.00" y1="36.92" x2="9.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="36.92" r="0.70" fill="#222"/>
+<line x1="9.00" y1="36.92" x2="11.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="36.92" r="0.70" fill="#222"/>
+<line x1="11.00" y1="36.92" x2="15.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="36.92" r="0.80" fill="#222"/>
+<line x1="15.00" y1="36.92" x2="19.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="36.92" r="0.59" fill="#222"/>
+<line x1="19.00" y1="36.92" x2="25.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="36.92" r="0.74" fill="#222"/>
+<line x1="25.00" y1="36.92" x2="27.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="36.92" r="0.61" fill="#222"/>
+<line x1="27.00" y1="36.92" x2="29.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="36.92" r="0.62" fill="#222"/>
+<line x1="29.00" y1="36.92" x2="33.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="36.92" r="0.53" fill="#222"/>
+<line x1="33.00" y1="36.92" x2="35.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="36.92" r="0.74" fill="#222"/>
+<line x1="35.00" y1="36.92" x2="37.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="36.92" r="0.78" fill="#222"/>
+<line x1="37.00" y1="36.92" x2="43.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="36.92" r="0.78" fill="#222"/>
+<line x1="43.00" y1="36.92" x2="45.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="36.92" r="0.59" fill="#222"/>
+<line x1="45.00" y1="36.92" x2="65.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="36.92" r="0.44" fill="#222"/>
+<line x1="65.00" y1="36.92" x2="71.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="36.92" r="0.78" fill="#222"/>
+<line x1="71.00" y1="36.92" x2="75.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="36.92" r="0.79" fill="#222"/>
+<line x1="75.00" y1="36.92" x2="77.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="36.92" r="0.69" fill="#222"/>
+<line x1="77.00" y1="36.92" x2="81.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="36.92" r="0.56" fill="#222"/>
+<line x1="81.00" y1="36.92" x2="83.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="36.92" r="0.69" fill="#222"/>
+<line x1="83.00" y1="36.92" x2="85.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="36.92" r="0.65" fill="#222"/>
+<line x1="85.00" y1="36.92" x2="87.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="36.92" r="0.74" fill="#222"/>
+<line x1="87.00" y1="36.92" x2="89.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="36.92" r="0.74" fill="#222"/>
+<line x1="89.00" y1="36.92" x2="93.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="36.92" r="0.67" fill="#222"/>
+<line x1="93.00" y1="36.92" x2="97.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="36.92" r="0.55" fill="#222"/>
+<line x1="97.00" y1="36.92" x2="99.00" y2="36.92" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="36.92" r="0.78" fill="#222"/>
+<line x1="99.00" y1="36.92" x2="99.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="38.91" r="0.75" fill="#222"/>
+<line x1="99.00" y1="38.91" x2="97.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="38.91" r="0.68" fill="#222"/>
+<line x1="97.00" y1="38.91" x2="95.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="38.91" r="0.69" fill="#222"/>
+<line x1="95.00" y1="38.91" x2="91.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="38.91" r="0.64" fill="#222"/>
+<line x1="91.00" y1="38.91" x2="89.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="89.00" y1="38.91" x2="85.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="38.91" r="0.71" fill="#222"/>
+<line x1="85.00" y1="38.91" x2="79.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="38.91" r="0.60" fill="#222"/>
+<line x1="79.00" y1="38.91" x2="75.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="75.00" y1="38.91" x2="73.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="73.00" y1="38.91" x2="71.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="71.00" y1="38.91" x2="69.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="38.91" r="0.72" fill="#222"/>
+<line x1="69.00" y1="38.91" x2="57.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="38.91" r="0.37" fill="#222"/>
+<line x1="57.00" y1="38.91" x2="43.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="43.00" y1="38.91" x2="37.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="38.91" r="0.68" fill="#222"/>
+<line x1="37.00" y1="38.91" x2="31.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="38.91" r="0.59" fill="#222"/>
+<line x1="31.00" y1="38.91" x2="27.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="38.91" r="0.71" fill="#222"/>
+<line x1="27.00" y1="38.91" x2="25.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="38.91" r="0.71" fill="#222"/>
+<line x1="25.00" y1="38.91" x2="23.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="38.91" r="0.57" fill="#222"/>
+<line x1="23.00" y1="38.91" x2="19.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="38.91" r="0.63" fill="#222"/>
+<line x1="19.00" y1="38.91" x2="17.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="38.91" r="0.70" fill="#222"/>
+<line x1="17.00" y1="38.91" x2="15.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="38.91" r="0.68" fill="#222"/>
+<line x1="15.00" y1="38.91" x2="13.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="38.91" r="0.72" fill="#222"/>
+<line x1="13.00" y1="38.91" x2="11.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="38.91" r="0.77" fill="#222"/>
+<line x1="11.00" y1="38.91" x2="7.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="7.00" y1="38.91" x2="5.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="38.91" r="0.78" fill="#222"/>
+<line x1="5.00" y1="38.91" x2="3.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="3.00" y1="38.91" x2="1.00" y2="38.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="38.91" r="0.80" fill="#222"/>
+<line x1="1.00" y1="38.91" x2="1.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="40.91" r="0.67" fill="#222"/>
+<line x1="1.00" y1="40.91" x2="3.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="40.91" r="0.75" fill="#222"/>
+<line x1="3.00" y1="40.91" x2="5.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="40.91" r="0.79" fill="#222"/>
+<line x1="5.00" y1="40.91" x2="7.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="40.91" r="0.75" fill="#222"/>
+<line x1="7.00" y1="40.91" x2="9.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="40.91" r="0.65" fill="#222"/>
+<line x1="9.00" y1="40.91" x2="11.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="40.91" r="0.67" fill="#222"/>
+<line x1="11.00" y1="40.91" x2="15.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="40.91" r="0.55" fill="#222"/>
+<line x1="15.00" y1="40.91" x2="19.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="40.91" r="0.73" fill="#222"/>
+<line x1="19.00" y1="40.91" x2="23.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="40.91" r="0.59" fill="#222"/>
+<line x1="23.00" y1="40.91" x2="27.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="40.91" r="0.70" fill="#222"/>
+<line x1="27.00" y1="40.91" x2="31.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="40.91" r="0.53" fill="#222"/>
+<line x1="31.00" y1="40.91" x2="35.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="40.91" r="0.60" fill="#222"/>
+<line x1="35.00" y1="40.91" x2="39.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="40.91" r="0.62" fill="#222"/>
+<line x1="39.00" y1="40.91" x2="41.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="40.91" r="0.55" fill="#222"/>
+<line x1="41.00" y1="40.91" x2="47.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="40.91" r="0.45" fill="#222"/>
+<line x1="47.00" y1="40.91" x2="55.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="40.91" r="0.44" fill="#222"/>
+<line x1="55.00" y1="40.91" x2="61.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="40.91" r="0.48" fill="#222"/>
+<line x1="61.00" y1="40.91" x2="69.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="40.91" r="0.80" fill="#222"/>
+<line x1="69.00" y1="40.91" x2="71.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="40.91" r="0.77" fill="#222"/>
+<line x1="71.00" y1="40.91" x2="73.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="40.91" r="0.79" fill="#222"/>
+<line x1="73.00" y1="40.91" x2="75.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="40.91" r="0.76" fill="#222"/>
+<line x1="75.00" y1="40.91" x2="77.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="40.91" r="0.61" fill="#222"/>
+<line x1="77.00" y1="40.91" x2="79.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="40.91" r="0.69" fill="#222"/>
+<line x1="79.00" y1="40.91" x2="81.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="40.91" r="0.68" fill="#222"/>
+<line x1="81.00" y1="40.91" x2="83.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="40.91" r="0.63" fill="#222"/>
+<line x1="83.00" y1="40.91" x2="85.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="40.91" r="0.74" fill="#222"/>
+<line x1="85.00" y1="40.91" x2="87.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="40.91" r="0.72" fill="#222"/>
+<line x1="87.00" y1="40.91" x2="89.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="40.91" r="0.80" fill="#222"/>
+<line x1="89.00" y1="40.91" x2="91.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="40.91" r="0.67" fill="#222"/>
+<line x1="91.00" y1="40.91" x2="93.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="40.91" r="0.78" fill="#222"/>
+<line x1="93.00" y1="40.91" x2="95.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="40.91" r="0.80" fill="#222"/>
+<line x1="95.00" y1="40.91" x2="97.00" y2="40.91" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="40.91" r="0.79" fill="#222"/>
+<line x1="97.00" y1="40.91" x2="99.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="42.90" r="0.57" fill="#222"/>
+<line x1="99.00" y1="42.90" x2="97.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="97.00" y1="42.90" x2="95.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="95.00" y1="42.90" x2="93.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="93.00" y1="42.90" x2="89.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="89.00" y1="42.90" x2="87.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="42.90" r="0.77" fill="#222"/>
+<line x1="87.00" y1="42.90" x2="85.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="42.90" r="0.72" fill="#222"/>
+<line x1="85.00" y1="42.90" x2="81.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="42.90" r="0.67" fill="#222"/>
+<line x1="81.00" y1="42.90" x2="79.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="42.90" r="0.75" fill="#222"/>
+<line x1="79.00" y1="42.90" x2="75.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="42.90" r="0.72" fill="#222"/>
+<line x1="75.00" y1="42.90" x2="73.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="42.90" r="0.69" fill="#222"/>
+<line x1="73.00" y1="42.90" x2="71.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="42.90" r="0.78" fill="#222"/>
+<line x1="71.00" y1="42.90" x2="69.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="69.00" y1="42.90" x2="53.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="42.90" r="0.52" fill="#222"/>
+<line x1="53.00" y1="42.90" x2="45.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="42.90" r="0.48" fill="#222"/>
+<line x1="45.00" y1="42.90" x2="39.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="42.90" r="0.70" fill="#222"/>
+<line x1="39.00" y1="42.90" x2="33.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="42.90" r="0.60" fill="#222"/>
+<line x1="33.00" y1="42.90" x2="27.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="42.90" r="0.79" fill="#222"/>
+<line x1="27.00" y1="42.90" x2="21.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="42.90" r="0.63" fill="#222"/>
+<line x1="21.00" y1="42.90" x2="19.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="19.00" y1="42.90" x2="17.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="42.90" r="0.65" fill="#222"/>
+<line x1="17.00" y1="42.90" x2="15.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="42.90" r="0.66" fill="#222"/>
+<line x1="15.00" y1="42.90" x2="13.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="13.00" y1="42.90" x2="11.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="42.90" r="0.72" fill="#222"/>
+<line x1="11.00" y1="42.90" x2="9.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="42.90" r="0.74" fill="#222"/>
+<line x1="9.00" y1="42.90" x2="7.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="7.00" y1="42.90" x2="5.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="5.00" y1="42.90" x2="3.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="42.90" r="0.80" fill="#222"/>
+<line x1="3.00" y1="42.90" x2="1.00" y2="42.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="42.90" r="0.73" fill="#222"/>
+<line x1="1.00" y1="42.90" x2="3.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="44.90" r="0.74" fill="#222"/>
+<line x1="3.00" y1="44.90" x2="5.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="5.00" y1="44.90" x2="7.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="7.00" y1="44.90" x2="9.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="44.90" r="0.78" fill="#222"/>
+<line x1="9.00" y1="44.90" x2="15.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="44.90" r="0.69" fill="#222"/>
+<line x1="15.00" y1="44.90" x2="19.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="19.00" y1="44.90" x2="21.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="21.00" y1="44.90" x2="23.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="44.90" r="0.59" fill="#222"/>
+<line x1="23.00" y1="44.90" x2="25.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="44.90" r="0.54" fill="#222"/>
+<line x1="25.00" y1="44.90" x2="27.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="44.90" r="0.73" fill="#222"/>
+<line x1="27.00" y1="44.90" x2="29.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="44.90" r="0.59" fill="#222"/>
+<line x1="29.00" y1="44.90" x2="33.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="44.90" r="0.58" fill="#222"/>
+<line x1="33.00" y1="44.90" x2="39.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="44.90" r="0.57" fill="#222"/>
+<line x1="39.00" y1="44.90" x2="49.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="44.90" r="0.39" fill="#222"/>
+<line x1="49.00" y1="44.90" x2="57.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="44.90" r="0.43" fill="#222"/>
+<line x1="57.00" y1="44.90" x2="61.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="44.90" r="0.46" fill="#222"/>
+<line x1="61.00" y1="44.90" x2="69.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="69.00" y1="44.90" x2="71.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="71.00" y1="44.90" x2="73.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="73.00" y1="44.90" x2="75.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="75.00" y1="44.90" x2="77.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="77.00" y1="44.90" x2="79.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="79.00" y1="44.90" x2="81.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="81.00" y1="44.90" x2="83.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="83.00" y1="44.90" x2="85.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="85.00" y1="44.90" x2="87.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="87.00" y1="44.90" x2="89.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="89.00" y1="44.90" x2="91.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="44.90" r="0.64" fill="#222"/>
+<line x1="91.00" y1="44.90" x2="93.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="44.90" r="0.73" fill="#222"/>
+<line x1="93.00" y1="44.90" x2="95.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="95.00" y1="44.90" x2="97.00" y2="44.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="44.90" r="0.80" fill="#222"/>
+<line x1="97.00" y1="44.90" x2="99.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="99.00" y1="46.90" x2="97.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="97.00" y1="46.90" x2="95.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="95.00" y1="46.90" x2="93.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="93.00" y1="46.90" x2="91.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="46.90" r="0.72" fill="#222"/>
+<line x1="91.00" y1="46.90" x2="89.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="46.90" r="0.79" fill="#222"/>
+<line x1="89.00" y1="46.90" x2="87.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="46.90" r="0.70" fill="#222"/>
+<line x1="87.00" y1="46.90" x2="83.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="46.90" r="0.64" fill="#222"/>
+<line x1="83.00" y1="46.90" x2="81.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="46.90" r="0.68" fill="#222"/>
+<line x1="81.00" y1="46.90" x2="77.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="46.90" r="0.62" fill="#222"/>
+<line x1="77.00" y1="46.90" x2="75.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="46.90" r="0.61" fill="#222"/>
+<line x1="75.00" y1="46.90" x2="71.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="46.90" r="0.71" fill="#222"/>
+<line x1="71.00" y1="46.90" x2="69.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="69.00" y1="46.90" x2="67.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="67.00" y1="46.90" x2="59.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="46.90" r="0.51" fill="#222"/>
+<line x1="59.00" y1="46.90" x2="53.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="46.90" r="0.39" fill="#222"/>
+<line x1="53.00" y1="46.90" x2="45.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="46.90" r="0.49" fill="#222"/>
+<line x1="45.00" y1="46.90" x2="43.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="46.90" r="0.54" fill="#222"/>
+<line x1="43.00" y1="46.90" x2="33.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="46.90" r="0.53" fill="#222"/>
+<line x1="33.00" y1="46.90" x2="27.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="46.90" r="0.63" fill="#222"/>
+<line x1="27.00" y1="46.90" x2="23.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="46.90" r="0.73" fill="#222"/>
+<line x1="23.00" y1="46.90" x2="19.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="46.90" r="0.55" fill="#222"/>
+<line x1="19.00" y1="46.90" x2="17.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="46.90" r="0.55" fill="#222"/>
+<line x1="17.00" y1="46.90" x2="11.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="46.90" r="0.71" fill="#222"/>
+<line x1="11.00" y1="46.90" x2="7.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="46.90" r="0.77" fill="#222"/>
+<line x1="7.00" y1="46.90" x2="5.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="5.00" y1="46.90" x2="3.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="46.90" r="0.70" fill="#222"/>
+<line x1="3.00" y1="46.90" x2="1.00" y2="46.90" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="46.90" r="0.80" fill="#222"/>
+<line x1="1.00" y1="46.90" x2="1.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="48.89" r="0.80" fill="#222"/>
+<line x1="1.00" y1="48.89" x2="3.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="48.89" r="0.80" fill="#222"/>
+<line x1="3.00" y1="48.89" x2="5.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="48.89" r="0.80" fill="#222"/>
+<line x1="5.00" y1="48.89" x2="7.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="48.89" r="0.80" fill="#222"/>
+<line x1="7.00" y1="48.89" x2="9.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="48.89" r="0.73" fill="#222"/>
+<line x1="9.00" y1="48.89" x2="11.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="48.89" r="0.78" fill="#222"/>
+<line x1="11.00" y1="48.89" x2="13.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="48.89" r="0.58" fill="#222"/>
+<line x1="13.00" y1="48.89" x2="17.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="48.89" r="0.65" fill="#222"/>
+<line x1="17.00" y1="48.89" x2="23.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="48.89" r="0.51" fill="#222"/>
+<line x1="23.00" y1="48.89" x2="25.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="48.89" r="0.79" fill="#222"/>
+<line x1="25.00" y1="48.89" x2="29.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="48.89" r="0.61" fill="#222"/>
+<line x1="29.00" y1="48.89" x2="31.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="48.89" r="0.55" fill="#222"/>
+<line x1="31.00" y1="48.89" x2="37.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="48.89" r="0.50" fill="#222"/>
+<line x1="37.00" y1="48.89" x2="41.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="48.89" r="0.62" fill="#222"/>
+<line x1="41.00" y1="48.89" x2="47.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="48.89" r="0.49" fill="#222"/>
+<line x1="47.00" y1="48.89" x2="49.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="48.89" r="0.52" fill="#222"/>
+<line x1="49.00" y1="48.89" x2="55.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="48.89" r="0.53" fill="#222"/>
+<line x1="55.00" y1="48.89" x2="61.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="48.89" r="0.52" fill="#222"/>
+<line x1="61.00" y1="48.89" x2="71.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="48.89" r="0.69" fill="#222"/>
+<line x1="71.00" y1="48.89" x2="73.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="48.89" r="0.61" fill="#222"/>
+<line x1="73.00" y1="48.89" x2="77.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="48.89" r="0.61" fill="#222"/>
+<line x1="77.00" y1="48.89" x2="79.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="48.89" r="0.61" fill="#222"/>
+<line x1="79.00" y1="48.89" x2="85.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="48.89" r="0.49" fill="#222"/>
+<line x1="85.00" y1="48.89" x2="91.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="48.89" r="0.63" fill="#222"/>
+<line x1="91.00" y1="48.89" x2="95.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="48.89" r="0.63" fill="#222"/>
+<line x1="95.00" y1="48.89" x2="97.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="48.89" r="0.69" fill="#222"/>
+<line x1="97.00" y1="48.89" x2="99.00" y2="48.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="48.89" r="0.73" fill="#222"/>
+<line x1="99.00" y1="48.89" x2="99.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="50.89" r="0.67" fill="#222"/>
+<line x1="99.00" y1="50.89" x2="95.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="50.89" r="0.55" fill="#222"/>
+<line x1="95.00" y1="50.89" x2="91.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="50.89" r="0.62" fill="#222"/>
+<line x1="91.00" y1="50.89" x2="87.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="50.89" r="0.51" fill="#222"/>
+<line x1="87.00" y1="50.89" x2="83.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="50.89" r="0.58" fill="#222"/>
+<line x1="83.00" y1="50.89" x2="81.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="50.89" r="0.55" fill="#222"/>
+<line x1="81.00" y1="50.89" x2="77.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="50.89" r="0.61" fill="#222"/>
+<line x1="77.00" y1="50.89" x2="73.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="50.89" r="0.62" fill="#222"/>
+<line x1="73.00" y1="50.89" x2="71.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="50.89" r="0.76" fill="#222"/>
+<line x1="71.00" y1="50.89" x2="59.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="50.89" r="0.47" fill="#222"/>
+<line x1="59.00" y1="50.89" x2="53.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="50.89" r="0.48" fill="#222"/>
+<line x1="53.00" y1="50.89" x2="49.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="50.89" r="0.54" fill="#222"/>
+<line x1="49.00" y1="50.89" x2="45.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="50.89" r="0.52" fill="#222"/>
+<line x1="45.00" y1="50.89" x2="41.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="50.89" r="0.77" fill="#222"/>
+<line x1="41.00" y1="50.89" x2="39.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="50.89" r="0.61" fill="#222"/>
+<line x1="39.00" y1="50.89" x2="35.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="50.89" r="0.49" fill="#222"/>
+<line x1="35.00" y1="50.89" x2="29.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="50.89" r="0.61" fill="#222"/>
+<line x1="29.00" y1="50.89" x2="27.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="50.89" r="0.61" fill="#222"/>
+<line x1="27.00" y1="50.89" x2="25.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="50.89" r="0.80" fill="#222"/>
+<line x1="25.00" y1="50.89" x2="21.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="50.89" r="0.51" fill="#222"/>
+<line x1="21.00" y1="50.89" x2="17.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="50.89" r="0.56" fill="#222"/>
+<line x1="17.00" y1="50.89" x2="13.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="50.89" r="0.70" fill="#222"/>
+<line x1="13.00" y1="50.89" x2="11.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="50.89" r="0.80" fill="#222"/>
+<line x1="11.00" y1="50.89" x2="9.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="50.89" r="0.80" fill="#222"/>
+<line x1="9.00" y1="50.89" x2="7.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="50.89" r="0.80" fill="#222"/>
+<line x1="7.00" y1="50.89" x2="5.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="50.89" r="0.74" fill="#222"/>
+<line x1="5.00" y1="50.89" x2="3.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="50.89" r="0.76" fill="#222"/>
+<line x1="3.00" y1="50.89" x2="1.00" y2="50.89" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="50.89" r="0.80" fill="#222"/>
+<line x1="1.00" y1="50.89" x2="1.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="52.88" r="0.80" fill="#222"/>
+<line x1="1.00" y1="52.88" x2="3.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="52.88" r="0.79" fill="#222"/>
+<line x1="3.00" y1="52.88" x2="5.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="52.88" r="0.75" fill="#222"/>
+<line x1="5.00" y1="52.88" x2="7.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="52.88" r="0.79" fill="#222"/>
+<line x1="7.00" y1="52.88" x2="9.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="52.88" r="0.80" fill="#222"/>
+<line x1="9.00" y1="52.88" x2="11.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="52.88" r="0.80" fill="#222"/>
+<line x1="11.00" y1="52.88" x2="13.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="52.88" r="0.80" fill="#222"/>
+<line x1="13.00" y1="52.88" x2="15.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="52.88" r="0.80" fill="#222"/>
+<line x1="15.00" y1="52.88" x2="19.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="52.88" r="0.59" fill="#222"/>
+<line x1="19.00" y1="52.88" x2="21.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="52.88" r="0.62" fill="#222"/>
+<line x1="21.00" y1="52.88" x2="23.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="52.88" r="0.67" fill="#222"/>
+<line x1="23.00" y1="52.88" x2="27.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="52.88" r="0.68" fill="#222"/>
+<line x1="27.00" y1="52.88" x2="33.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="52.88" r="0.49" fill="#222"/>
+<line x1="33.00" y1="52.88" x2="41.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="52.88" r="0.48" fill="#222"/>
+<line x1="41.00" y1="52.88" x2="47.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="52.88" r="0.54" fill="#222"/>
+<line x1="47.00" y1="52.88" x2="51.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="52.88" r="0.59" fill="#222"/>
+<line x1="51.00" y1="52.88" x2="55.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="52.88" r="0.53" fill="#222"/>
+<line x1="55.00" y1="52.88" x2="61.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="52.88" r="0.54" fill="#222"/>
+<line x1="61.00" y1="52.88" x2="67.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="52.88" r="0.50" fill="#222"/>
+<line x1="67.00" y1="52.88" x2="69.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="52.88" r="0.74" fill="#222"/>
+<line x1="69.00" y1="52.88" x2="71.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="52.88" r="0.71" fill="#222"/>
+<line x1="71.00" y1="52.88" x2="75.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="52.88" r="0.61" fill="#222"/>
+<line x1="75.00" y1="52.88" x2="79.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="52.88" r="0.56" fill="#222"/>
+<line x1="79.00" y1="52.88" x2="87.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="52.88" r="0.51" fill="#222"/>
+<line x1="87.00" y1="52.88" x2="91.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="52.88" r="0.56" fill="#222"/>
+<line x1="91.00" y1="52.88" x2="95.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="52.88" r="0.53" fill="#222"/>
+<line x1="95.00" y1="52.88" x2="99.00" y2="52.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="52.88" r="0.65" fill="#222"/>
+<line x1="99.00" y1="52.88" x2="99.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="54.88" r="0.66" fill="#222"/>
+<line x1="99.00" y1="54.88" x2="95.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="54.88" r="0.52" fill="#222"/>
+<line x1="95.00" y1="54.88" x2="91.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="54.88" r="0.53" fill="#222"/>
+<line x1="91.00" y1="54.88" x2="85.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="54.88" r="0.45" fill="#222"/>
+<line x1="85.00" y1="54.88" x2="81.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="54.88" r="0.50" fill="#222"/>
+<line x1="81.00" y1="54.88" x2="73.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="54.88" r="0.58" fill="#222"/>
+<line x1="73.00" y1="54.88" x2="71.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="54.88" r="0.71" fill="#222"/>
+<line x1="71.00" y1="54.88" x2="67.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="54.88" r="0.58" fill="#222"/>
+<line x1="67.00" y1="54.88" x2="59.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="54.88" r="0.55" fill="#222"/>
+<line x1="59.00" y1="54.88" x2="43.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="54.88" r="0.45" fill="#222"/>
+<line x1="43.00" y1="54.88" x2="35.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="54.88" r="0.47" fill="#222"/>
+<line x1="35.00" y1="54.88" x2="31.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="54.88" r="0.52" fill="#222"/>
+<line x1="31.00" y1="54.88" x2="25.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="54.88" r="0.46" fill="#222"/>
+<line x1="25.00" y1="54.88" x2="23.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="54.88" r="0.73" fill="#222"/>
+<line x1="23.00" y1="54.88" x2="19.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="54.88" r="0.61" fill="#222"/>
+<line x1="19.00" y1="54.88" x2="15.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="54.88" r="0.80" fill="#222"/>
+<line x1="15.00" y1="54.88" x2="13.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="54.88" r="0.73" fill="#222"/>
+<line x1="13.00" y1="54.88" x2="11.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="54.88" r="0.65" fill="#222"/>
+<line x1="11.00" y1="54.88" x2="7.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="54.88" r="0.70" fill="#222"/>
+<line x1="7.00" y1="54.88" x2="5.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="54.88" r="0.80" fill="#222"/>
+<line x1="5.00" y1="54.88" x2="3.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="54.88" r="0.80" fill="#222"/>
+<line x1="3.00" y1="54.88" x2="1.00" y2="54.88" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="54.88" r="0.80" fill="#222"/>
+<line x1="1.00" y1="54.88" x2="1.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="56.87" r="0.80" fill="#222"/>
+<line x1="1.00" y1="56.87" x2="3.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="56.87" r="0.79" fill="#222"/>
+<line x1="3.00" y1="56.87" x2="5.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="56.87" r="0.77" fill="#222"/>
+<line x1="5.00" y1="56.87" x2="7.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="56.87" r="0.75" fill="#222"/>
+<line x1="7.00" y1="56.87" x2="9.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="56.87" r="0.80" fill="#222"/>
+<line x1="9.00" y1="56.87" x2="11.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="56.87" r="0.66" fill="#222"/>
+<line x1="11.00" y1="56.87" x2="13.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="56.87" r="0.69" fill="#222"/>
+<line x1="13.00" y1="56.87" x2="17.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="56.87" r="0.64" fill="#222"/>
+<line x1="17.00" y1="56.87" x2="19.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="56.87" r="0.73" fill="#222"/>
+<line x1="19.00" y1="56.87" x2="27.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="56.87" r="0.53" fill="#222"/>
+<line x1="27.00" y1="56.87" x2="29.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="56.87" r="0.55" fill="#222"/>
+<line x1="29.00" y1="56.87" x2="33.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="56.87" r="0.55" fill="#222"/>
+<line x1="33.00" y1="56.87" x2="39.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="56.87" r="0.45" fill="#222"/>
+<line x1="39.00" y1="56.87" x2="49.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="56.87" r="0.40" fill="#222"/>
+<line x1="49.00" y1="56.87" x2="59.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="56.87" r="0.60" fill="#222"/>
+<line x1="59.00" y1="56.87" x2="69.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="56.87" r="0.53" fill="#222"/>
+<line x1="69.00" y1="56.87" x2="71.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="56.87" r="0.75" fill="#222"/>
+<line x1="71.00" y1="56.87" x2="77.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="56.87" r="0.43" fill="#222"/>
+<line x1="77.00" y1="56.87" x2="87.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="56.87" r="0.51" fill="#222"/>
+<line x1="87.00" y1="56.87" x2="91.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="56.87" r="0.56" fill="#222"/>
+<line x1="91.00" y1="56.87" x2="95.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="56.87" r="0.54" fill="#222"/>
+<line x1="95.00" y1="56.87" x2="99.00" y2="56.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="56.87" r="0.66" fill="#222"/>
+<line x1="99.00" y1="56.87" x2="99.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="58.87" r="0.64" fill="#222"/>
+<line x1="99.00" y1="58.87" x2="97.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="58.87" r="0.60" fill="#222"/>
+<line x1="97.00" y1="58.87" x2="91.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="58.87" r="0.58" fill="#222"/>
+<line x1="91.00" y1="58.87" x2="87.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="58.87" r="0.52" fill="#222"/>
+<line x1="87.00" y1="58.87" x2="83.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="58.87" r="0.47" fill="#222"/>
+<line x1="83.00" y1="58.87" x2="79.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="58.87" r="0.46" fill="#222"/>
+<line x1="79.00" y1="58.87" x2="71.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="58.87" r="0.77" fill="#222"/>
+<line x1="71.00" y1="58.87" x2="55.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="58.87" r="0.37" fill="#222"/>
+<line x1="55.00" y1="58.87" x2="37.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="58.87" r="0.48" fill="#222"/>
+<line x1="37.00" y1="58.87" x2="29.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="58.87" r="0.54" fill="#222"/>
+<line x1="29.00" y1="58.87" x2="25.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="58.87" r="0.56" fill="#222"/>
+<line x1="25.00" y1="58.87" x2="23.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="58.87" r="0.62" fill="#222"/>
+<line x1="23.00" y1="58.87" x2="21.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="58.87" r="0.56" fill="#222"/>
+<line x1="21.00" y1="58.87" x2="17.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="58.87" r="0.67" fill="#222"/>
+<line x1="17.00" y1="58.87" x2="15.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="58.87" r="0.69" fill="#222"/>
+<line x1="15.00" y1="58.87" x2="13.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="58.87" r="0.80" fill="#222"/>
+<line x1="13.00" y1="58.87" x2="7.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="58.87" r="0.80" fill="#222"/>
+<line x1="7.00" y1="58.87" x2="5.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="58.87" r="0.80" fill="#222"/>
+<line x1="5.00" y1="58.87" x2="3.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="58.87" r="0.63" fill="#222"/>
+<line x1="3.00" y1="58.87" x2="1.00" y2="58.87" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="58.87" r="0.80" fill="#222"/>
+<line x1="1.00" y1="58.87" x2="1.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="60.86" r="0.80" fill="#222"/>
+<line x1="1.00" y1="60.86" x2="5.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="60.86" r="0.74" fill="#222"/>
+<line x1="5.00" y1="60.86" x2="7.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="60.86" r="0.72" fill="#222"/>
+<line x1="7.00" y1="60.86" x2="9.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="60.86" r="0.63" fill="#222"/>
+<line x1="9.00" y1="60.86" x2="13.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="60.86" r="0.66" fill="#222"/>
+<line x1="13.00" y1="60.86" x2="19.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="60.86" r="0.47" fill="#222"/>
+<line x1="19.00" y1="60.86" x2="25.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="60.86" r="0.54" fill="#222"/>
+<line x1="25.00" y1="60.86" x2="31.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="60.86" r="0.47" fill="#222"/>
+<line x1="31.00" y1="60.86" x2="35.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="60.86" r="0.52" fill="#222"/>
+<line x1="35.00" y1="60.86" x2="39.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="60.86" r="0.53" fill="#222"/>
+<line x1="39.00" y1="60.86" x2="41.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="60.86" r="0.54" fill="#222"/>
+<line x1="41.00" y1="60.86" x2="45.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="60.86" r="0.53" fill="#222"/>
+<line x1="45.00" y1="60.86" x2="47.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="60.86" r="0.56" fill="#222"/>
+<line x1="47.00" y1="60.86" x2="53.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="60.86" r="0.43" fill="#222"/>
+<line x1="53.00" y1="60.86" x2="57.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="60.86" r="0.79" fill="#222"/>
+<line x1="57.00" y1="60.86" x2="59.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="60.86" r="0.51" fill="#222"/>
+<line x1="59.00" y1="60.86" x2="63.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="63.00" cy="60.86" r="0.58" fill="#222"/>
+<line x1="63.00" y1="60.86" x2="69.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="60.86" r="0.59" fill="#222"/>
+<line x1="69.00" y1="60.86" x2="71.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="60.86" r="0.76" fill="#222"/>
+<line x1="71.00" y1="60.86" x2="83.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="60.86" r="0.48" fill="#222"/>
+<line x1="83.00" y1="60.86" x2="89.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="60.86" r="0.52" fill="#222"/>
+<line x1="89.00" y1="60.86" x2="93.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="60.86" r="0.50" fill="#222"/>
+<line x1="93.00" y1="60.86" x2="97.00" y2="60.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="60.86" r="0.61" fill="#222"/>
+<line x1="97.00" y1="60.86" x2="99.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="62.86" r="0.60" fill="#222"/>
+<line x1="99.00" y1="62.86" x2="95.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="62.86" r="0.57" fill="#222"/>
+<line x1="95.00" y1="62.86" x2="91.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="62.86" r="0.52" fill="#222"/>
+<line x1="91.00" y1="62.86" x2="85.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="62.86" r="0.49" fill="#222"/>
+<line x1="85.00" y1="62.86" x2="79.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="62.86" r="0.47" fill="#222"/>
+<line x1="79.00" y1="62.86" x2="75.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="62.86" r="0.46" fill="#222"/>
+<line x1="75.00" y1="62.86" x2="71.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="62.86" r="0.71" fill="#222"/>
+<line x1="71.00" y1="62.86" x2="57.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="62.86" r="0.56" fill="#222"/>
+<line x1="57.00" y1="62.86" x2="55.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="62.86" r="0.67" fill="#222"/>
+<line x1="55.00" y1="62.86" x2="51.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="62.86" r="0.49" fill="#222"/>
+<line x1="51.00" y1="62.86" x2="45.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="62.86" r="0.51" fill="#222"/>
+<line x1="45.00" y1="62.86" x2="37.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="62.86" r="0.51" fill="#222"/>
+<line x1="37.00" y1="62.86" x2="31.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="62.86" r="0.51" fill="#222"/>
+<line x1="31.00" y1="62.86" x2="27.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="62.86" r="0.48" fill="#222"/>
+<line x1="27.00" y1="62.86" x2="23.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="62.86" r="0.54" fill="#222"/>
+<line x1="23.00" y1="62.86" x2="19.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="62.86" r="0.67" fill="#222"/>
+<line x1="19.00" y1="62.86" x2="17.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="62.86" r="0.67" fill="#222"/>
+<line x1="17.00" y1="62.86" x2="9.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="62.86" r="0.71" fill="#222"/>
+<line x1="9.00" y1="62.86" x2="7.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="62.86" r="0.80" fill="#222"/>
+<line x1="7.00" y1="62.86" x2="5.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="62.86" r="0.80" fill="#222"/>
+<line x1="5.00" y1="62.86" x2="3.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="62.86" r="0.69" fill="#222"/>
+<line x1="3.00" y1="62.86" x2="1.00" y2="62.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="62.86" r="0.62" fill="#222"/>
+<line x1="1.00" y1="62.86" x2="1.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="64.86" r="0.77" fill="#222"/>
+<line x1="1.00" y1="64.86" x2="3.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="64.86" r="0.80" fill="#222"/>
+<line x1="3.00" y1="64.86" x2="5.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="64.86" r="0.80" fill="#222"/>
+<line x1="5.00" y1="64.86" x2="7.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="64.86" r="0.75" fill="#222"/>
+<line x1="7.00" y1="64.86" x2="9.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="64.86" r="0.65" fill="#222"/>
+<line x1="9.00" y1="64.86" x2="13.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="64.86" r="0.63" fill="#222"/>
+<line x1="13.00" y1="64.86" x2="15.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="64.86" r="0.60" fill="#222"/>
+<line x1="15.00" y1="64.86" x2="17.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="64.86" r="0.63" fill="#222"/>
+<line x1="17.00" y1="64.86" x2="21.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="64.86" r="0.58" fill="#222"/>
+<line x1="21.00" y1="64.86" x2="25.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="64.86" r="0.59" fill="#222"/>
+<line x1="25.00" y1="64.86" x2="31.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="64.86" r="0.51" fill="#222"/>
+<line x1="31.00" y1="64.86" x2="35.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="64.86" r="0.51" fill="#222"/>
+<line x1="35.00" y1="64.86" x2="39.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="64.86" r="0.50" fill="#222"/>
+<line x1="39.00" y1="64.86" x2="43.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="64.86" r="0.52" fill="#222"/>
+<line x1="43.00" y1="64.86" x2="47.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="64.86" r="0.52" fill="#222"/>
+<line x1="47.00" y1="64.86" x2="53.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="64.86" r="0.55" fill="#222"/>
+<line x1="53.00" y1="64.86" x2="59.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="64.86" r="0.68" fill="#222"/>
+<line x1="59.00" y1="64.86" x2="61.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="64.86" r="0.52" fill="#222"/>
+<line x1="61.00" y1="64.86" x2="65.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="64.86" r="0.54" fill="#222"/>
+<line x1="65.00" y1="64.86" x2="73.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="64.86" r="0.51" fill="#222"/>
+<line x1="73.00" y1="64.86" x2="79.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="64.86" r="0.49" fill="#222"/>
+<line x1="79.00" y1="64.86" x2="83.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="64.86" r="0.49" fill="#222"/>
+<line x1="83.00" y1="64.86" x2="87.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="64.86" r="0.52" fill="#222"/>
+<line x1="87.00" y1="64.86" x2="93.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="64.86" r="0.54" fill="#222"/>
+<line x1="93.00" y1="64.86" x2="97.00" y2="64.86" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="64.86" r="0.55" fill="#222"/>
+<line x1="97.00" y1="64.86" x2="99.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="66.85" r="0.68" fill="#222"/>
+<line x1="99.00" y1="66.85" x2="97.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="66.85" r="0.60" fill="#222"/>
+<line x1="97.00" y1="66.85" x2="93.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="66.85" r="0.55" fill="#222"/>
+<line x1="93.00" y1="66.85" x2="89.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="66.85" r="0.53" fill="#222"/>
+<line x1="89.00" y1="66.85" x2="81.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="66.85" r="0.49" fill="#222"/>
+<line x1="81.00" y1="66.85" x2="77.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="66.85" r="0.50" fill="#222"/>
+<line x1="77.00" y1="66.85" x2="73.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="66.85" r="0.63" fill="#222"/>
+<line x1="73.00" y1="66.85" x2="67.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="66.85" r="0.49" fill="#222"/>
+<line x1="67.00" y1="66.85" x2="63.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="63.00" cy="66.85" r="0.55" fill="#222"/>
+<line x1="63.00" y1="66.85" x2="57.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="66.85" r="0.52" fill="#222"/>
+<line x1="57.00" y1="66.85" x2="53.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="66.85" r="0.57" fill="#222"/>
+<line x1="53.00" y1="66.85" x2="49.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="66.85" r="0.50" fill="#222"/>
+<line x1="49.00" y1="66.85" x2="41.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="66.85" r="0.54" fill="#222"/>
+<line x1="41.00" y1="66.85" x2="35.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="66.85" r="0.56" fill="#222"/>
+<line x1="35.00" y1="66.85" x2="29.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="66.85" r="0.52" fill="#222"/>
+<line x1="29.00" y1="66.85" x2="25.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="66.85" r="0.50" fill="#222"/>
+<line x1="25.00" y1="66.85" x2="21.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="66.85" r="0.65" fill="#222"/>
+<line x1="21.00" y1="66.85" x2="19.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="66.85" r="0.61" fill="#222"/>
+<line x1="19.00" y1="66.85" x2="15.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="66.85" r="0.66" fill="#222"/>
+<line x1="15.00" y1="66.85" x2="13.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="66.85" r="0.65" fill="#222"/>
+<line x1="13.00" y1="66.85" x2="11.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="66.85" r="0.64" fill="#222"/>
+<line x1="11.00" y1="66.85" x2="7.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="66.85" r="0.61" fill="#222"/>
+<line x1="7.00" y1="66.85" x2="5.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="66.85" r="0.71" fill="#222"/>
+<line x1="5.00" y1="66.85" x2="3.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="66.85" r="0.80" fill="#222"/>
+<line x1="3.00" y1="66.85" x2="1.00" y2="66.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="66.85" r="0.74" fill="#222"/>
+<line x1="1.00" y1="66.85" x2="1.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="68.85" r="0.80" fill="#222"/>
+<line x1="1.00" y1="68.85" x2="5.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="68.85" r="0.72" fill="#222"/>
+<line x1="5.00" y1="68.85" x2="9.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="68.85" r="0.63" fill="#222"/>
+<line x1="9.00" y1="68.85" x2="13.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="68.85" r="0.74" fill="#222"/>
+<line x1="13.00" y1="68.85" x2="15.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="68.85" r="0.66" fill="#222"/>
+<line x1="15.00" y1="68.85" x2="19.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="68.85" r="0.62" fill="#222"/>
+<line x1="19.00" y1="68.85" x2="23.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="68.85" r="0.51" fill="#222"/>
+<line x1="23.00" y1="68.85" x2="27.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="68.85" r="0.56" fill="#222"/>
+<line x1="27.00" y1="68.85" x2="31.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="68.85" r="0.53" fill="#222"/>
+<line x1="31.00" y1="68.85" x2="35.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="68.85" r="0.54" fill="#222"/>
+<line x1="35.00" y1="68.85" x2="39.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="68.85" r="0.52" fill="#222"/>
+<line x1="39.00" y1="68.85" x2="43.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="68.85" r="0.50" fill="#222"/>
+<line x1="43.00" y1="68.85" x2="47.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="68.85" r="0.50" fill="#222"/>
+<line x1="47.00" y1="68.85" x2="55.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="68.85" r="0.63" fill="#222"/>
+<line x1="55.00" y1="68.85" x2="59.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="68.85" r="0.62" fill="#222"/>
+<line x1="59.00" y1="68.85" x2="61.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="68.85" r="0.57" fill="#222"/>
+<line x1="61.00" y1="68.85" x2="75.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="68.85" r="0.65" fill="#222"/>
+<line x1="75.00" y1="68.85" x2="79.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="68.85" r="0.54" fill="#222"/>
+<line x1="79.00" y1="68.85" x2="83.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="68.85" r="0.50" fill="#222"/>
+<line x1="83.00" y1="68.85" x2="87.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="68.85" r="0.52" fill="#222"/>
+<line x1="87.00" y1="68.85" x2="91.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="68.85" r="0.55" fill="#222"/>
+<line x1="91.00" y1="68.85" x2="95.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="68.85" r="0.59" fill="#222"/>
+<line x1="95.00" y1="68.85" x2="99.00" y2="68.85" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="68.85" r="0.59" fill="#222"/>
+<line x1="99.00" y1="68.85" x2="99.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="70.84" r="0.62" fill="#222"/>
+<line x1="99.00" y1="70.84" x2="95.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="70.84" r="0.60" fill="#222"/>
+<line x1="95.00" y1="70.84" x2="91.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="70.84" r="0.55" fill="#222"/>
+<line x1="91.00" y1="70.84" x2="87.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="70.84" r="0.54" fill="#222"/>
+<line x1="87.00" y1="70.84" x2="83.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="70.84" r="0.55" fill="#222"/>
+<line x1="83.00" y1="70.84" x2="79.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="70.84" r="0.55" fill="#222"/>
+<line x1="79.00" y1="70.84" x2="73.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="70.84" r="0.43" fill="#222"/>
+<line x1="73.00" y1="70.84" x2="67.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="70.84" r="0.56" fill="#222"/>
+<line x1="67.00" y1="70.84" x2="65.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="70.84" r="0.54" fill="#222"/>
+<line x1="65.00" y1="70.84" x2="57.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="70.84" r="0.48" fill="#222"/>
+<line x1="57.00" y1="70.84" x2="53.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="70.84" r="0.58" fill="#222"/>
+<line x1="53.00" y1="70.84" x2="49.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="70.84" r="0.50" fill="#222"/>
+<line x1="49.00" y1="70.84" x2="43.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="70.84" r="0.51" fill="#222"/>
+<line x1="43.00" y1="70.84" x2="39.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="70.84" r="0.52" fill="#222"/>
+<line x1="39.00" y1="70.84" x2="33.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="70.84" r="0.58" fill="#222"/>
+<line x1="33.00" y1="70.84" x2="29.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="70.84" r="0.52" fill="#222"/>
+<line x1="29.00" y1="70.84" x2="25.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="70.84" r="0.57" fill="#222"/>
+<line x1="25.00" y1="70.84" x2="21.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="70.84" r="0.53" fill="#222"/>
+<line x1="21.00" y1="70.84" x2="17.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="70.84" r="0.78" fill="#222"/>
+<line x1="17.00" y1="70.84" x2="15.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="70.84" r="0.62" fill="#222"/>
+<line x1="15.00" y1="70.84" x2="11.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="70.84" r="0.56" fill="#222"/>
+<line x1="11.00" y1="70.84" x2="7.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="70.84" r="0.61" fill="#222"/>
+<line x1="7.00" y1="70.84" x2="3.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="70.84" r="0.76" fill="#222"/>
+<line x1="3.00" y1="70.84" x2="1.00" y2="70.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="70.84" r="0.80" fill="#222"/>
+<line x1="1.00" y1="70.84" x2="3.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="72.84" r="0.76" fill="#222"/>
+<line x1="3.00" y1="72.84" x2="5.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="72.84" r="0.74" fill="#222"/>
+<line x1="5.00" y1="72.84" x2="7.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="72.84" r="0.75" fill="#222"/>
+<line x1="7.00" y1="72.84" x2="9.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="72.84" r="0.58" fill="#222"/>
+<line x1="9.00" y1="72.84" x2="11.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="72.84" r="0.80" fill="#222"/>
+<line x1="11.00" y1="72.84" x2="13.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="72.84" r="0.66" fill="#222"/>
+<line x1="13.00" y1="72.84" x2="15.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="72.84" r="0.70" fill="#222"/>
+<line x1="15.00" y1="72.84" x2="19.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="72.84" r="0.49" fill="#222"/>
+<line x1="19.00" y1="72.84" x2="23.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="72.84" r="0.53" fill="#222"/>
+<line x1="23.00" y1="72.84" x2="29.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="72.84" r="0.53" fill="#222"/>
+<line x1="29.00" y1="72.84" x2="33.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="72.84" r="0.54" fill="#222"/>
+<line x1="33.00" y1="72.84" x2="37.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="72.84" r="0.50" fill="#222"/>
+<line x1="37.00" y1="72.84" x2="43.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="72.84" r="0.53" fill="#222"/>
+<line x1="43.00" y1="72.84" x2="47.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="72.84" r="0.49" fill="#222"/>
+<line x1="47.00" y1="72.84" x2="51.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="72.84" r="0.57" fill="#222"/>
+<line x1="51.00" y1="72.84" x2="55.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="72.84" r="0.56" fill="#222"/>
+<line x1="55.00" y1="72.84" x2="61.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="72.84" r="0.54" fill="#222"/>
+<line x1="61.00" y1="72.84" x2="63.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="63.00" cy="72.84" r="0.58" fill="#222"/>
+<line x1="63.00" y1="72.84" x2="73.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="73.00" cy="72.84" r="0.57" fill="#222"/>
+<line x1="73.00" y1="72.84" x2="81.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="72.84" r="0.55" fill="#222"/>
+<line x1="81.00" y1="72.84" x2="85.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="72.84" r="0.54" fill="#222"/>
+<line x1="85.00" y1="72.84" x2="89.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="72.84" r="0.55" fill="#222"/>
+<line x1="89.00" y1="72.84" x2="93.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="72.84" r="0.57" fill="#222"/>
+<line x1="93.00" y1="72.84" x2="97.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="72.84" r="0.63" fill="#222"/>
+<line x1="97.00" y1="72.84" x2="99.00" y2="72.84" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="72.84" r="0.65" fill="#222"/>
+<line x1="99.00" y1="72.84" x2="99.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="74.83" r="0.65" fill="#222"/>
+<line x1="99.00" y1="74.83" x2="97.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="74.83" r="0.75" fill="#222"/>
+<line x1="97.00" y1="74.83" x2="95.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="74.83" r="0.74" fill="#222"/>
+<line x1="95.00" y1="74.83" x2="93.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="74.83" r="0.65" fill="#222"/>
+<line x1="93.00" y1="74.83" x2="91.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="74.83" r="0.70" fill="#222"/>
+<line x1="91.00" y1="74.83" x2="87.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="74.83" r="0.53" fill="#222"/>
+<line x1="87.00" y1="74.83" x2="83.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="74.83" r="0.77" fill="#222"/>
+<line x1="83.00" y1="74.83" x2="79.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="79.00" cy="74.83" r="0.54" fill="#222"/>
+<line x1="79.00" y1="74.83" x2="75.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="74.83" r="0.53" fill="#222"/>
+<line x1="75.00" y1="74.83" x2="71.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="71.00" cy="74.83" r="0.69" fill="#222"/>
+<line x1="71.00" y1="74.83" x2="69.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="74.83" r="0.66" fill="#222"/>
+<line x1="69.00" y1="74.83" x2="67.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="74.83" r="0.72" fill="#222"/>
+<line x1="67.00" y1="74.83" x2="65.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="74.83" r="0.65" fill="#222"/>
+<line x1="65.00" y1="74.83" x2="61.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="74.83" r="0.75" fill="#222"/>
+<line x1="61.00" y1="74.83" x2="59.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="74.83" r="0.80" fill="#222"/>
+<line x1="59.00" y1="74.83" x2="57.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="74.83" r="0.78" fill="#222"/>
+<line x1="57.00" y1="74.83" x2="53.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="74.83" r="0.74" fill="#222"/>
+<line x1="53.00" y1="74.83" x2="49.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="74.83" r="0.68" fill="#222"/>
+<line x1="49.00" y1="74.83" x2="45.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="74.83" r="0.62" fill="#222"/>
+<line x1="45.00" y1="74.83" x2="43.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="74.83" r="0.74" fill="#222"/>
+<line x1="43.00" y1="74.83" x2="39.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="74.83" r="0.60" fill="#222"/>
+<line x1="39.00" y1="74.83" x2="37.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="74.83" r="0.70" fill="#222"/>
+<line x1="37.00" y1="74.83" x2="35.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="74.83" r="0.66" fill="#222"/>
+<line x1="35.00" y1="74.83" x2="31.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="74.83" r="0.67" fill="#222"/>
+<line x1="31.00" y1="74.83" x2="29.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="74.83" r="0.72" fill="#222"/>
+<line x1="29.00" y1="74.83" x2="27.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="74.83" r="0.69" fill="#222"/>
+<line x1="27.00" y1="74.83" x2="25.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="74.83" r="0.61" fill="#222"/>
+<line x1="25.00" y1="74.83" x2="23.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="74.83" r="0.77" fill="#222"/>
+<line x1="23.00" y1="74.83" x2="21.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="74.83" r="0.62" fill="#222"/>
+<line x1="21.00" y1="74.83" x2="19.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="74.83" r="0.74" fill="#222"/>
+<line x1="19.00" y1="74.83" x2="15.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="74.83" r="0.72" fill="#222"/>
+<line x1="15.00" y1="74.83" x2="11.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="74.83" r="0.73" fill="#222"/>
+<line x1="11.00" y1="74.83" x2="9.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="74.83" r="0.80" fill="#222"/>
+<line x1="9.00" y1="74.83" x2="5.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="74.83" r="0.67" fill="#222"/>
+<line x1="5.00" y1="74.83" x2="3.00" y2="74.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="74.83" r="0.80" fill="#222"/>
+<line x1="3.00" y1="74.83" x2="1.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="76.83" r="0.53" fill="#222"/>
+<line x1="1.00" y1="76.83" x2="3.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="3.00" y1="76.83" x2="5.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="5.00" y1="76.83" x2="7.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="76.83" r="0.63" fill="#222"/>
+<line x1="7.00" y1="76.83" x2="9.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="9.00" y1="76.83" x2="11.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="11.00" y1="76.83" x2="13.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="13.00" cy="76.83" r="0.71" fill="#222"/>
+<line x1="13.00" y1="76.83" x2="15.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="76.83" r="0.66" fill="#222"/>
+<line x1="15.00" y1="76.83" x2="17.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="17.00" cy="76.83" r="0.65" fill="#222"/>
+<line x1="17.00" y1="76.83" x2="19.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="19.00" y1="76.83" x2="23.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="76.83" r="0.78" fill="#222"/>
+<line x1="23.00" y1="76.83" x2="27.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="76.83" r="0.79" fill="#222"/>
+<line x1="27.00" y1="76.83" x2="29.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="76.83" r="0.79" fill="#222"/>
+<line x1="29.00" y1="76.83" x2="33.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="76.83" r="0.76" fill="#222"/>
+<line x1="33.00" y1="76.83" x2="35.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="35.00" cy="76.83" r="0.56" fill="#222"/>
+<line x1="35.00" y1="76.83" x2="37.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="37.00" y1="76.83" x2="41.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="76.83" r="0.52" fill="#222"/>
+<line x1="41.00" y1="76.83" x2="43.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="76.83" r="0.75" fill="#222"/>
+<line x1="43.00" y1="76.83" x2="47.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="76.83" r="0.60" fill="#222"/>
+<line x1="47.00" y1="76.83" x2="49.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="76.83" r="0.70" fill="#222"/>
+<line x1="49.00" y1="76.83" x2="51.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="76.83" r="0.68" fill="#222"/>
+<line x1="51.00" y1="76.83" x2="53.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="53.00" y1="76.83" x2="55.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="76.83" r="0.69" fill="#222"/>
+<line x1="55.00" y1="76.83" x2="57.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="76.83" r="0.69" fill="#222"/>
+<line x1="57.00" y1="76.83" x2="59.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="76.83" r="0.69" fill="#222"/>
+<line x1="59.00" y1="76.83" x2="61.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="76.83" r="0.71" fill="#222"/>
+<line x1="61.00" y1="76.83" x2="63.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="63.00" cy="76.83" r="0.68" fill="#222"/>
+<line x1="63.00" y1="76.83" x2="65.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="65.00" y1="76.83" x2="67.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="67.00" y1="76.83" x2="69.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="69.00" y1="76.83" x2="75.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="75.00" y1="76.83" x2="77.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="77.00" cy="76.83" r="0.71" fill="#222"/>
+<line x1="77.00" y1="76.83" x2="81.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="76.83" r="0.77" fill="#222"/>
+<line x1="81.00" y1="76.83" x2="83.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="76.83" r="0.73" fill="#222"/>
+<line x1="83.00" y1="76.83" x2="87.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="87.00" y1="76.83" x2="89.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="89.00" cy="76.83" r="0.73" fill="#222"/>
+<line x1="89.00" y1="76.83" x2="91.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="76.83" r="0.69" fill="#222"/>
+<line x1="91.00" y1="76.83" x2="95.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="76.83" r="0.80" fill="#222"/>
+<line x1="95.00" y1="76.83" x2="97.00" y2="76.83" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="76.83" r="0.72" fill="#222"/>
+<line x1="97.00" y1="76.83" x2="99.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="78.82" r="0.69" fill="#222"/>
+<line x1="99.00" y1="78.82" x2="97.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="78.82" r="0.77" fill="#222"/>
+<line x1="97.00" y1="78.82" x2="95.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="78.82" r="0.69" fill="#222"/>
+<line x1="95.00" y1="78.82" x2="93.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="93.00" cy="78.82" r="0.80" fill="#222"/>
+<line x1="93.00" y1="78.82" x2="91.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="78.82" r="0.73" fill="#222"/>
+<line x1="91.00" y1="78.82" x2="87.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="87.00" cy="78.82" r="0.57" fill="#222"/>
+<line x1="87.00" y1="78.82" x2="85.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="78.82" r="0.70" fill="#222"/>
+<line x1="85.00" y1="78.82" x2="83.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="83.00" cy="78.82" r="0.80" fill="#222"/>
+<line x1="83.00" y1="78.82" x2="81.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="78.82" r="0.80" fill="#222"/>
+<line x1="81.00" y1="78.82" x2="75.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="78.82" r="0.51" fill="#222"/>
+<line x1="75.00" y1="78.82" x2="69.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="78.82" r="0.66" fill="#222"/>
+<line x1="69.00" y1="78.82" x2="59.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="59.00" cy="78.82" r="0.58" fill="#222"/>
+<line x1="59.00" y1="78.82" x2="55.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="55.00" cy="78.82" r="0.71" fill="#222"/>
+<line x1="55.00" y1="78.82" x2="53.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="53.00" cy="78.82" r="0.68" fill="#222"/>
+<line x1="53.00" y1="78.82" x2="49.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="49.00" cy="78.82" r="0.54" fill="#222"/>
+<line x1="49.00" y1="78.82" x2="45.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="45.00" cy="78.82" r="0.60" fill="#222"/>
+<line x1="45.00" y1="78.82" x2="39.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="39.00" cy="78.82" r="0.54" fill="#222"/>
+<line x1="39.00" y1="78.82" x2="33.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="78.82" r="0.64" fill="#222"/>
+<line x1="33.00" y1="78.82" x2="31.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="31.00" cy="78.82" r="0.61" fill="#222"/>
+<line x1="31.00" y1="78.82" x2="29.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="78.82" r="0.66" fill="#222"/>
+<line x1="29.00" y1="78.82" x2="27.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="27.00" cy="78.82" r="0.67" fill="#222"/>
+<line x1="27.00" y1="78.82" x2="23.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="78.82" r="0.65" fill="#222"/>
+<line x1="23.00" y1="78.82" x2="21.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="21.00" cy="78.82" r="0.58" fill="#222"/>
+<line x1="21.00" y1="78.82" x2="19.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="78.82" r="0.70" fill="#222"/>
+<line x1="19.00" y1="78.82" x2="15.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="78.82" r="0.60" fill="#222"/>
+<line x1="15.00" y1="78.82" x2="11.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="78.82" r="0.77" fill="#222"/>
+<line x1="11.00" y1="78.82" x2="9.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="9.00" cy="78.82" r="0.77" fill="#222"/>
+<line x1="9.00" y1="78.82" x2="7.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="78.82" r="0.69" fill="#222"/>
+<line x1="7.00" y1="78.82" x2="3.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="78.82" r="0.80" fill="#222"/>
+<line x1="3.00" y1="78.82" x2="1.00" y2="78.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="78.82" r="0.70" fill="#222"/>
+<line x1="1.00" y1="78.82" x2="1.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="1.00" cy="80.82" r="0.75" fill="#222"/>
+<line x1="1.00" y1="80.82" x2="3.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="3.00" cy="80.82" r="0.67" fill="#222"/>
+<line x1="3.00" y1="80.82" x2="5.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="5.00" cy="80.82" r="0.73" fill="#222"/>
+<line x1="5.00" y1="80.82" x2="7.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="7.00" cy="80.82" r="0.70" fill="#222"/>
+<line x1="7.00" y1="80.82" x2="11.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="11.00" cy="80.82" r="0.55" fill="#222"/>
+<line x1="11.00" y1="80.82" x2="15.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="15.00" cy="80.82" r="0.63" fill="#222"/>
+<line x1="15.00" y1="80.82" x2="19.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="19.00" cy="80.82" r="0.64" fill="#222"/>
+<line x1="19.00" y1="80.82" x2="23.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="23.00" cy="80.82" r="0.63" fill="#222"/>
+<line x1="23.00" y1="80.82" x2="25.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="25.00" cy="80.82" r="0.62" fill="#222"/>
+<line x1="25.00" y1="80.82" x2="29.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="29.00" cy="80.82" r="0.60" fill="#222"/>
+<line x1="29.00" y1="80.82" x2="33.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="33.00" cy="80.82" r="0.59" fill="#222"/>
+<line x1="33.00" y1="80.82" x2="37.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="37.00" cy="80.82" r="0.59" fill="#222"/>
+<line x1="37.00" y1="80.82" x2="41.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="41.00" cy="80.82" r="0.51" fill="#222"/>
+<line x1="41.00" y1="80.82" x2="43.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="43.00" cy="80.82" r="0.57" fill="#222"/>
+<line x1="43.00" y1="80.82" x2="47.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="47.00" cy="80.82" r="0.57" fill="#222"/>
+<line x1="47.00" y1="80.82" x2="51.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="51.00" cy="80.82" r="0.53" fill="#222"/>
+<line x1="51.00" y1="80.82" x2="57.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="57.00" cy="80.82" r="0.53" fill="#222"/>
+<line x1="57.00" y1="80.82" x2="61.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="61.00" cy="80.82" r="0.65" fill="#222"/>
+<line x1="61.00" y1="80.82" x2="63.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="63.00" cy="80.82" r="0.73" fill="#222"/>
+<line x1="63.00" y1="80.82" x2="65.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="65.00" cy="80.82" r="0.67" fill="#222"/>
+<line x1="65.00" y1="80.82" x2="67.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="67.00" cy="80.82" r="0.57" fill="#222"/>
+<line x1="67.00" y1="80.82" x2="69.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="69.00" cy="80.82" r="0.62" fill="#222"/>
+<line x1="69.00" y1="80.82" x2="75.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="75.00" cy="80.82" r="0.58" fill="#222"/>
+<line x1="75.00" y1="80.82" x2="81.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="81.00" cy="80.82" r="0.80" fill="#222"/>
+<line x1="81.00" y1="80.82" x2="85.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="85.00" cy="80.82" r="0.60" fill="#222"/>
+<line x1="85.00" y1="80.82" x2="91.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="91.00" cy="80.82" r="0.62" fill="#222"/>
+<line x1="91.00" y1="80.82" x2="95.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="95.00" cy="80.82" r="0.64" fill="#222"/>
+<line x1="95.00" y1="80.82" x2="97.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="97.00" cy="80.82" r="0.74" fill="#222"/>
+<line x1="97.00" y1="80.82" x2="99.00" y2="80.82" stroke="#e88" stroke-width="0.15"/>
+<circle cx="99.00" cy="80.82" r="0.71" fill="#222"/>
+</svg>
