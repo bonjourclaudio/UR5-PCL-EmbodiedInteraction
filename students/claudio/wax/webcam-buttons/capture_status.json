@@ -1,1 +1,1 @@
-{"arduino": {"connected": false, "port": null, "error": "Arduino not found (USB?)"}, "last_press": null, "cams": {}, "heartbeat": "2026-11-25T13:06:00"}
+{"arduino": {"connected": true, "port": "/dev/ttyACM0", "error": null, "since": "2026-11-25T17:01:08"}, "last_press": {"button": "2", "cam": "3", "at": "2026-11-25T17:54:17"}, "cams": {"cam2": {"ok_at": "2026-11-25T17:41:25", "error": null, "error_at": null}, "cam3": {"ok_at": "2026-11-25T17:54:20", "error": null, "error_at": null}}, "heartbeat": "2026-11-25T17:58:03"}

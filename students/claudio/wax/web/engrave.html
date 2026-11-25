@@ -72,7 +72,9 @@
 
   /* ---------------- cams */
   main { padding-top: 32px; padding-bottom: 64px; row-gap: 48px; }
-  .cam { grid-column: span 3; display: flex; flex-direction: column; min-width: 0; }
+  .cam { grid-column: span 3; display: flex; flex-direction: column; min-width: 0;
+         outline: 4px solid transparent; outline-offset: 10px; transition: outline-color .3s; }
+  .cam.flash { outline-color: var(--red); transition: none; }
   .num { display: flex; justify-content: space-between; align-items: baseline; }
   .num span:first-child { font-size: clamp(36px, 3.6vw, 52px); font-weight: 700; line-height: .85;
                           letter-spacing: -.05em; margin-left: -.03em; }
@@ -224,7 +226,7 @@ function card(c) {
   const dots = !!showDots[c.cam] && pv && pv.svg;
 
   const el = document.createElement("article");
-  el.className = "cam";
+  el.className = "cam" + (Date.now() < (flashUntil[c.cam] || 0) ? " flash" : "");
   el.innerHTML = `
     <div class="num"><span>${camNo(c.cam)}</span>${c.on_canvas ? '<span class="oncanvas" title="the last finished engraving">On canvas</span>' : ""}</div>
     <div class="state ${cls}">${label}</div>
@@ -327,7 +329,7 @@ function renderConn() {
 
   const c = status.capture || {};
   const a = c.arduino || {};
-  const press = c.last_press ? ` · last press ${clock(c.last_press.at)} → cam ${pad2(+c.last_press.cam)}` : "";
+  const press = c.last_press ? ` · last press B${c.last_press.button} at ${clock(c.last_press.at)} → cam ${pad2(+c.last_press.cam)}` : "";
   if (!c.running) conn("#cButtons", "bad", "Capture script not running",
                        c.heartbeat ? `last sign of life ${when(c.heartbeat)} (${ago(c.heartbeat)})` : "start webcams.py");
   else if (!a.connected) conn("#cButtons", "bad", "Arduino not connected", (a.error || "") + press);
@@ -357,11 +359,31 @@ function render() {
   if (!status.cams.length) grid.innerHTML = `<p class="cam">No cam folders yet (frames/cam1 …).</p>`;
 }
 
+// red border for a few seconds on the cam that was just pressed / captured
+const flashUntil = {};
+let seen = null;
+function noteFlashes() {
+  const now = {press: status.capture && status.capture.last_press, frames: {}};
+  status.cams.forEach(c => now.frames[c.cam] = c.latest);
+  if (seen) {
+    const p = now.press;
+    if (p && (!seen.press || p.at !== seen.press.at || p.button !== seen.press.button)) flash4(`cam${p.cam}`);
+    for (const [cam, f] of Object.entries(now.frames)) if (f && seen.frames[cam] !== f) flash4(cam);
+  }
+  seen = now;
+}
+function flash4(cam) {
+  flashUntil[cam] = Date.now() + 4000;
+  lastSig = "";
+  setTimeout(() => { lastSig = ""; poll(); }, 4100);
+}
+
 let lastSig = "";
 async function poll() {
   try {
     const r = await fetch("/api/status");
     status = await r.json();
+    noteFlashes();
     const sig = JSON.stringify([status.cams, !!status.job, status.last_job, status.robot && status.robot.ready, status.robot && status.robot.reachable]);
     if (sig !== lastSig) { lastSig = sig; render(); } else { renderJob(); renderConn(); }
   } catch (e) {

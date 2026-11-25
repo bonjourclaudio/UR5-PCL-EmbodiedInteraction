@@ -81,6 +81,8 @@ def build_parser():
     g.add_argument("--invert", action="store_true", help="engrave the light parts instead")
     g.add_argument("--rotate", type=int, choices=(0, 90, 180, 270), default=0, help="counter-clockwise")
     g.add_argument("--mirror", action="store_true", help="flip left/right")
+    g.add_argument("--no-trim", action="store_true",
+                   help="keep flat black/white bars at the image edges (webcam timestamp bars)")
     g.add_argument("--size-mm", type=float, default=None, help="max drawing size (default: fit box)")
     g.add_argument("--margin-mm", type=float, default=None,
                    help="free border inside the box (default 15, or 0 with a setup_canvas.py workspace)")
@@ -172,11 +174,29 @@ def load_picture(args) -> tuple[np.ndarray, str]:
         if not path.is_absolute() and not path.exists():
             path = HERE / path                     # saved relative to this folder (canvas_tool.py)
         gray, name = load_gray(path), str(path)
+        if not getattr(args, "no_trim", False):
+            gray = trim_bars(gray)
     if args.mirror:
         gray = np.fliplr(gray)
     if args.rotate:
         gray = np.rot90(gray, k=args.rotate // 90)
     return gray, name
+
+
+def trim_bars(gray: np.ndarray, flat: float = 0.02, max_frac: float = 0.15) -> np.ndarray:
+    """Cut flat, very dark or very light rows/columns off the edges (webcam bars), at most 15 % per side."""
+    def edge(lines) -> int:
+        n = 0
+        for line in lines[: int(len(lines) * max_frac)]:
+            m = float(line.mean())
+            if line.std() < flat and (m < 0.12 or m > 0.94):
+                n += 1
+            else:
+                break
+        return n
+    t, b = edge(gray), edge(gray[::-1])
+    l, r = edge(gray.T), edge(gray.T[::-1])
+    return gray[t: gray.shape[0] - b, l: gray.shape[1] - r]
 
 
 class Canvas:

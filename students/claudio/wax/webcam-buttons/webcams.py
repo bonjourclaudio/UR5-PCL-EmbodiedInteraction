@@ -34,22 +34,22 @@ except ImportError:
 CAMERAS = {
     "1": {
         "name": "cam1",
-        "url": "http://www.insecam.org/en/view/167618/",   # webcam 1
+        "url": "http://www.insecam.org/en/view/886289/",   # webcam 1
         "user": None, "password": None,
     },
     "2": {
         "name": "cam2",
-        "url": "http://www.insecam.org/en/view/212604/",   # webcam 2
+        "url": "http://www.insecam.org/en/view/258715/",   # webcam 2
         "user": None, "password": None,
     },
     "3": {
         "name": "cam3",
-        "url": "http://www.insecam.org/en/view/759172/",   # webcam 3
+        "url": "http://www.insecam.org/en/view/177527/",   # webcam 3
         "user": None, "password": None,
     },
     "4": {
         "name": "cam4",
-        "url": "http://www.insecam.org/en/view/1012200/",   # webcam 4
+        "url": "http://www.insecam.org/en/view/854257/",   # webcam 4
         "user": None, "password": None,
     },
 }

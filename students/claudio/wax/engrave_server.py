@@ -235,7 +235,8 @@ class Station:
 
     # -- preview (in-process, cached per frame)
     def preview(self, cam: str, frame: str) -> dict:
-        key = f"{cam}/{frame}"
+        f_setup = HERE / f"wax_setup.{self.target}.json"
+        key = f"{cam}/{frame}/{f_setup.stat().st_mtime if f_setup.exists() else 0}"   # new settings -> new preview
         if key in self.previews:
             return self.previews[key]
         path = self.frame_path(cam, frame)
@@ -254,7 +255,7 @@ class Station:
         if args.lift_mm is None:
             args.lift_mm = 3.0 if args.style == "dots" else 8.0
         marks, w_mm, h_mm, detail, too_many = dw.make_marks(gray, canvas.width_mm, args)
-        svg = PREVIEWS / f"{cam}_{Path(frame).stem}.svg"
+        svg = PREVIEWS / f"{cam}_{Path(frame).stem}_{abs(hash(key)) % 10**8}.svg"
         mono_svg(marks, w_mm, h_mm, svg, dot_r_mm=args.dot_mm * 0.4)
         p = {"svg": f"/preview/{svg.name}", "marks": len(marks), "detail": detail,
              "size_mm": [round(w_mm), round(h_mm)], "estimate_s": round(dw.estimate_s(marks, args)),

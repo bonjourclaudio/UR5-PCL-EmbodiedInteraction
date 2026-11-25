@@ -20,12 +20,12 @@
     "bl": [
       -0.3982880535491303,
       0.07741486418996345,
-      0.19004939114670016
+      0.19204939114670017
     ],
     "tl": [
       -0.21828805354913036,
       0.07741486418996345,
-      0.19004939114670016
+      0.19204939114670017
     ],
     "gap_mm": 0.0
   },
@@ -58,8 +58,8 @@
   "draw": {
     "image": "inbox/2026-09-29-140234_hyprshot.png",
     "style": "dots",
-    "dot_mm": 2,
-    "gamma": 1.6,
+    "dot_mm": 1.5,
+    "gamma": 1.5,
     "sharpen": 1,
     "no_levels": false,
     "min_dark": 0.08,
@@ -68,14 +68,15 @@
     "invert": false,
     "rotate": 0,
     "mirror": false,
-    "size_mm": 100,
+    "size_mm": 150,
     "margin_mm": 0,
     "hatch_mm": 2,
     "threshold": 0.5,
     "lift_mm": 7.0,
     "travel_speed": 0.06,
     "plunge_speed": 0.02,
-    "accel": 0.5
+    "accel": 0.5,
+    "max_marks": 4000
   },
   "frame_width_mm": 180.0,
   "cut_offset_mm": -2.0
