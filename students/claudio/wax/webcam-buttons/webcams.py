@@ -25,44 +25,44 @@ except ImportError:
     Image = None
 
 # =====================================================================
-# QUI SOTTO METTI I LINK DELLE 4 WEBCAM
-# Metti il link della PAGINA con l'overview, quello che apri nel browser,
-# per esempio: "http://200.46.196.243/view/viewer_index.shtml?id=1572"
-# Lo script apre la pagina, cerca <img id="image0"> e salva quell'immagine.
-# Se serve login scrivi user e password tra virgolette, altrimenti None.
+# THE LINKS OF THE 4 WEBCAMS
+# Use the link of the overview PAGE, the one you open in the browser,
+# for example: "http://200.46.196.243/view/viewer_index.shtml?id=1572"
+# The script opens the page, looks for <img id="image0"> and saves that image.
+# If a login is needed, put user and password in quotes, otherwise None.
 # =====================================================================
 CAMERAS = {
     "1": {
         "name": "cam1",
-        "url": "http://www.insecam.org/en/view/167618/",   # QUI IP 1
+        "url": "http://www.insecam.org/en/view/167618/",   # webcam 1
         "user": None, "password": None,
     },
     "2": {
         "name": "cam2",
-        "url": "http://www.insecam.org/en/view/212604/",   # QUI IP 2
+        "url": "http://www.insecam.org/en/view/212604/",   # webcam 2
         "user": None, "password": None,
     },
     "3": {
         "name": "cam3",
-        "url": "http://www.insecam.org/en/view/759172/",   # QUI IP 3
+        "url": "http://www.insecam.org/en/view/759172/",   # webcam 3
         "user": None, "password": None,
     },
     "4": {
         "name": "cam4",
-        "url": "http://www.insecam.org/en/view/1012200/",   # QUI IP 4
+        "url": "http://www.insecam.org/en/view/1012200/",   # webcam 4
         "user": None, "password": None,
     },
 }
 
-IMG_ID = "image0"      # id dell'immagine da cercare nella pagina
+IMG_ID = "image0"      # id of the image to look for in the page
 
-SERIAL_PORT = None     # None = trova l'Arduino da solo; oppure "/dev/cu.usbmodem1401"
+SERIAL_PORT = None     # None = find the Arduino automatically; or e.g. "/dev/ttyACM0", "/dev/cu.usbmodem1401"
 BAUD = 115200
-DEBUG_SERIALE = True   # True = stampa ogni riga che arriva dall'Arduino (per i test)
+DEBUG_SERIAL = True    # True = print every line that arrives from the Arduino (for testing)
 
-# QUI WAX: l'indirizzo che apri nel browser per la pagina "Wax canvas",
-# senza / finale. Esempio: "http://localhost:8080"
-# Con "" le foto vengono solo salvate in frames/ e non inviate.
+# Engraving station on ANOTHER computer: its address, without a trailing /,
+# e.g. "http://192.168.1.150:8770". Frames and status are then sent there.
+# Leave "" when the station runs on this computer (it reads frames/ directly).
 WAX_URL = ""
 # =====================================================================
 
@@ -74,15 +74,43 @@ COOLDOWN_S = 0.5
 last_press = {}
 lock = threading.Lock()
 
-# Mappatura bottone fisico (pin Arduino) -> webcam. Si crea con "m" + Invio.
-MAPPA_FILE = os.path.join(BASE, "mappa_bottoni.json")
-MAPPA = {}
-mappa_queue = queue.Queue()
-mappando = threading.Event()
+# Physical button (Arduino pin) -> webcam. Created with "m" + Enter.
+BUTTON_MAP_FILE = os.path.join(BASE, "button_map.json")
+BUTTON_MAP = {}
+mapping_queue = queue.Queue()
+mapping = threading.Event()
+
+# Status for the engraving station page (engrave_server.py): Arduino, last button press,
+# last download per webcam. Written every 2 s to capture_status.json (and sent to WAX_URL).
+STATUS_FILE = os.path.join(BASE, "capture_status.json")
+STATUS = {"arduino": {"connected": False, "port": None, "error": "starting"},
+          "last_press": None, "cams": {}}
 
 
-class TrovaImg(HTMLParser):
-    """Raccoglie tutti i tag <img> della pagina."""
+def now_iso():
+    return datetime.now().isoformat(timespec="seconds")
+
+
+def write_status():
+    while True:
+        STATUS["heartbeat"] = now_iso()
+        try:
+            tmp = STATUS_FILE + ".tmp"
+            with open(tmp, "w") as f:
+                json.dump(STATUS, f)
+            os.replace(tmp, STATUS_FILE)
+        except OSError:
+            pass
+        if WAX_URL:
+            try:
+                requests.post(WAX_URL.rstrip("/") + "/api/capture_status", json=STATUS, timeout=2)
+            except requests.RequestException:
+                pass
+        time.sleep(2)
+
+
+class FindImg(HTMLParser):
+    """Collects all <img> tags of the page."""
     def __init__(self):
         super().__init__()
         self.imgs = []
@@ -108,8 +136,8 @@ def http_get(url, cam, stream=False, referer=None):
     return r
 
 
-def primo_jpeg_da_stream(r):
-    """Se l'immagine è uno stream MJPEG, estrae il primo frame."""
+def first_jpeg_from_stream(r):
+    """If the image is an MJPEG stream, extract the first frame."""
     buf = b""
     for chunk in r.iter_content(4096):
         buf += chunk
@@ -123,221 +151,223 @@ def primo_jpeg_da_stream(r):
     return None
 
 
-def ottieni_immagine(cam):
-    """Apre la pagina, trova <img id="image0"> e scarica quell'immagine.
-    Ritorna (bytes, url_immagine)."""
+def fetch_image(cam):
+    """Open the page, find <img id="image0"> and download that image.
+    Returns (bytes, image_url)."""
     page = http_get(cam["url"], cam)
     if page.status_code != 200:
-        raise RuntimeError(f"pagina: HTTP {page.status_code}")
+        raise RuntimeError(f"page: HTTP {page.status_code}")
 
-    parser = TrovaImg()
+    parser = FindImg()
     parser.feed(page.text)
     img = next((i for i in parser.imgs if i.get("id") == IMG_ID), None)
     if img is None:
         ids = [i.get("id") for i in parser.imgs]
         raise RuntimeError(
-            f'nella pagina non trovo <img id="{IMG_ID}">. '
-            f"Tag img trovati (id): {ids}. Se la lista è vuota, l'immagine "
-            f"viene creata da JavaScript: dimmelo e uso un altro metodo.")
+            f'no <img id="{IMG_ID}"> in the page. '
+            f"img tags found (ids): {ids}. If the list is empty, the image "
+            f"is created by JavaScript and needs another method.")
 
     src = img.get("src") or img.get("data-src")
     if not src:
-        raise RuntimeError(f'<img id="{IMG_ID}"> non ha un src nella pagina '
-                           f"(viene impostato da JavaScript?). Tag: {img}")
+        raise RuntimeError(f'<img id="{IMG_ID}"> has no src in the page '
+                           f"(set by JavaScript?). Tag: {img}")
 
-    # immagine incorporata nella pagina (data:image/jpeg;base64,...)
+    # image embedded in the page (data:image/jpeg;base64,...)
     if src.startswith("data:"):
         return base64.b64decode(src.split(",", 1)[1]), "data-uri"
 
     img_url = urljoin(page.url, src)
     r = http_get(img_url, cam, stream=True, referer=page.url)
     if r.status_code != 200:
-        raise RuntimeError(f"immagine {img_url}: HTTP {r.status_code}")
+        raise RuntimeError(f"image {img_url}: HTTP {r.status_code}")
     ctype = r.headers.get("Content-Type", "")
-    data = primo_jpeg_da_stream(r) if "multipart" in ctype else r.content
+    data = first_jpeg_from_stream(r) if "multipart" in ctype else r.content
     if not data or not data.startswith((b"\xff\xd8", b"\x89PNG")):
-        raise RuntimeError(f"{img_url} non è un'immagine valida ({ctype})")
+        raise RuntimeError(f"{img_url} is not a valid image ({ctype})")
     return data, img_url
 
 
-def salva_frame(cam):
-    nome = cam["name"]
+def save_frame(cam):
+    name = cam["name"]
     t0 = time.time()
     try:
-        data, img_url = ottieni_immagine(cam)
-        cartella = os.path.join(OUTPUT_DIR, nome)
-        os.makedirs(cartella, exist_ok=True)
-        fname = datetime.now().strftime("frame_%Y%m%d_%H%M%S_%f")[:-3] + ".jpg"
-        path = os.path.join(cartella, fname)
-        with open(path, "wb") as f:
-            f.write(data)
-        print(f"[{nome}] salvato in {time.time() - t0:.1f}s: {path}")
-        print(f"        (immagine presa da: {img_url})")
-        invia_a_wax(data, nome)
-    except Exception as e:
-        print(f"[{nome}] ERRORE: {e}")
-
-
-def invia_a_wax(data, nome):
-    """Manda la foto alla pagina Wax canvas (stessa chiamata del tasto upload)."""
-    if not WAX_URL:
-        return
-    if Image is None:
-        print("        [Wax] manca Pillow: riapri 1_INSTALLA_UNA_VOLTA.command")
-        return
-    try:
-        im = Image.open(io.BytesIO(data)).convert("RGB")
-        buf = io.BytesIO()
-        im.save(buf, "PNG")
-        fname = f"{nome}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
-        r = requests.post(WAX_URL.rstrip("/") + "/api/upload", data=buf.getvalue(),
-                          headers={"X-Filename": fname}, timeout=20)
-        j = r.json()
-        if j.get("error"):
-            print(f"        [Wax] ERRORE: {j['error']}")
+        data, img_url = fetch_image(cam)
+        if WAX_URL:
+            send_to_station(data, name)          # the station stores it in its frames/
         else:
-            print(f"        [Wax] inviata come {j.get('name', fname)}")
+            folder = os.path.join(OUTPUT_DIR, name)
+            os.makedirs(folder, exist_ok=True)
+            fname = datetime.now().strftime("frame_%Y%m%d_%H%M%S_%f")[:-3] + ".jpg"
+            path = os.path.join(folder, fname)
+            with open(path, "wb") as f:
+                f.write(data)
+            print(f"[{name}] saved in {time.time() - t0:.1f}s: {path}")
+        print(f"        (image from: {img_url})")
+        STATUS["cams"][name] = {"ok_at": now_iso(), "error": None, "error_at": None}
     except Exception as e:
-        print(f"        [Wax] ERRORE: {type(e).__name__}: {e}")
+        print(f"[{name}] ERROR: {e}")
+        st = STATUS["cams"].setdefault(name, {"ok_at": None})
+        st.update(error=str(e)[:200], error_at=now_iso())
 
 
-def scatta(codice):
-    """Questa funzione la chiamerà Arduino in futuro."""
-    cam = CAMERAS.get(codice)
+def send_to_station(data, name):
+    """Send the frame to the engraving station on another computer (its /api/upload)."""
+    if Image is None:
+        raise RuntimeError("Pillow missing: run 1_INSTALL_ONCE.command again")
+    im = Image.open(io.BytesIO(data)).convert("RGB")
+    buf = io.BytesIO()
+    im.save(buf, "PNG")
+    fname = f"{name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.png"
+    r = requests.post(WAX_URL.rstrip("/") + "/api/upload", data=buf.getvalue(),
+                      headers={"X-Filename": fname}, timeout=20)
+    j = r.json()
+    if j.get("error"):
+        raise RuntimeError(f"station: {j['error']}")
+    print(f"[{name}] sent to the station as {j.get('name', fname)}")
+
+
+def capture(code):
+    """Fetch a frame from webcam `code` (called for every button press)."""
+    cam = CAMERAS.get(code)
     if not cam:
-        print(f"Webcam {codice}: non configurata")
+        print(f"Webcam {code}: not configured")
         return None
     now = time.time()
     with lock:
-        if now - last_press.get(codice, 0) < COOLDOWN_S:
+        if now - last_press.get(code, 0) < COOLDOWN_S:
             return None
-        last_press[codice] = now
-    t = threading.Thread(target=salva_frame, args=(cam,), daemon=True)
+        last_press[code] = now
+    t = threading.Thread(target=save_frame, args=(cam,), daemon=True)
     t.start()
     return t
 
 
-def carica_mappa():
+def load_button_map():
     try:
-        with open(MAPPA_FILE) as f:
-            MAPPA.update({str(k): str(v) for k, v in json.load(f).items()})
+        with open(BUTTON_MAP_FILE) as f:
+            BUTTON_MAP.update({str(k): str(v) for k, v in json.load(f).items()})
     except (OSError, ValueError):
         pass
 
 
-def gestisci_bottone(n):
-    """Chiamata a ogni 'Bn' ricevuto da Arduino."""
-    if mappando.is_set():
-        mappa_queue.put(n)
+def handle_button(n):
+    """Called for every 'Bn' received from the Arduino."""
+    if mapping.is_set():
+        mapping_queue.put(n)
         return
-    cam = MAPPA.get(n, n)
+    cam = BUTTON_MAP.get(n, n)
     extra = f" -> webcam {cam}" if cam != n else ""
-    print(f"[Arduino] bottone {n} premuto{extra}")
-    scatta(cam)
+    print(f"[Arduino] button {n} pressed{extra}")
+    STATUS["last_press"] = {"button": n, "cam": cam, "at": now_iso()}
+    capture(cam)
 
 
-def mappa_bottoni():
-    """Procedura guidata: premi i bottoni da sinistra a destra."""
-    nomi = ["il PRIMO da SINISTRA", "il SECONDO da sinistra",
-            "il TERZO da sinistra", "l'ULTIMO, il piu' a DESTRA"]
-    nuova = {}
-    mappando.set()
+def map_buttons():
+    """Guided setup: press the buttons from left to right."""
+    names = ["the FIRST from the LEFT", "the SECOND from the left",
+             "the THIRD from the left", "the LAST one, on the RIGHT"]
+    new = {}
+    mapping.set()
     try:
-        for pos, nome in enumerate(nomi, 1):
+        for pos, label in enumerate(names, 1):
             while True:
-                while not mappa_queue.empty():
-                    mappa_queue.get_nowait()
-                print(f"Premi {nome}  (sara' la webcam {pos})...")
+                while not mapping_queue.empty():
+                    mapping_queue.get_nowait()
+                print(f"Press {label}  (it will be webcam {pos})...")
                 try:
-                    n = mappa_queue.get(timeout=60)
+                    n = mapping_queue.get(timeout=60)
                 except queue.Empty:
-                    print("Nessun segnale dall'Arduino per 60 secondi: "
-                          "mappatura annullata (la vecchia resta valida).")
+                    print("No signal from the Arduino for 60 seconds: "
+                          "mapping cancelled (the old one stays valid).")
                     return
-                if n in nuova:
-                    print(f"  Quel bottone e' gia' la webcam {nuova[n]}: "
-                          "premi uno diverso.")
+                if n in new:
+                    print(f"  That button is already webcam {new[n]}: press a different one.")
                     time.sleep(0.5)
                     continue
-                nuova[n] = str(pos)
-                print(f"  ok: bottone fisico {n} = webcam {pos}")
-                time.sleep(0.7)            # il tempo di staccare il dito
+                new[n] = str(pos)
+                print(f"  ok: physical button {n} = webcam {pos}")
+                time.sleep(0.7)            # time to lift the finger
                 break
     finally:
-        mappando.clear()
-    MAPPA.clear()
-    MAPPA.update(nuova)
-    with open(MAPPA_FILE, "w") as f:
-        json.dump(MAPPA, f)
-    print("Mappatura salvata. Da sinistra a destra: webcam 1, 2, 3, 4.\n")
+        mapping.clear()
+    BUTTON_MAP.clear()
+    BUTTON_MAP.update(new)
+    with open(BUTTON_MAP_FILE, "w") as f:
+        json.dump(BUTTON_MAP, f)
+    print("Mapping saved. From left to right: webcam 1, 2, 3, 4.\n")
 
 
 PORT_NAMES = ("usbmodem", "usbserial", "ttyACM", "ttyUSB")   # macOS + Linux
 
 
-def trova_porta():
+def find_port():
     for p in list_ports.comports():
         if any(n in p.device for n in PORT_NAMES):
             return p.device
     return None
 
 
-def ascolta_seriale():
-    """Legge i messaggi B1..B4 dall'Arduino e chiama scatta()."""
-    avvisato = False
+def listen_serial():
+    """Read the B1..B4 messages from the Arduino and call handle_button()."""
+    warned = False
     while True:
-        porta = SERIAL_PORT or trova_porta()
-        if not porta:
-            if not avvisato:
-                print("[Arduino] non trovato: collegalo con il cavo USB e chiudi "
-                      "il Serial Monitor. Riprovo ogni 3 secondi "
-                      "(intanto la tastiera funziona).")
-                avvisato = True
+        port = SERIAL_PORT or find_port()
+        if not port:
+            STATUS["arduino"] = {"connected": False, "port": None, "error": "Arduino not found (USB?)"}
+            if not warned:
+                print("[Arduino] not found: connect it with the USB cable and close "
+                      "the Serial Monitor. Retrying every 3 seconds "
+                      "(the keyboard works meanwhile).")
+                warned = True
             time.sleep(3)
             continue
-        avvisato = False
+        warned = False
         try:
-            candidate = [p.device for p in list_ports.comports()
-                         if any(n in p.device for n in PORT_NAMES)]
-            if len(candidate) > 1 and not SERIAL_PORT:
-                print(f"[Arduino] ATTENZIONE: trovate piu' porte {candidate}. "
-                      f"Uso {porta}. Se non e' quella della Mega, scrivi la porta "
-                      f"giusta in SERIAL_PORT oppure scollega l'altra scheda.")
-            with serial.Serial(porta, BAUD, timeout=1) as ser:
-                print(f"[Arduino] collegato su {porta} a {BAUD} baud")
-                time.sleep(2)              # l'Arduino può resettarsi all'apertura
+            candidates = [p.device for p in list_ports.comports()
+                          if any(n in p.device for n in PORT_NAMES)]
+            if len(candidates) > 1 and not SERIAL_PORT:
+                print(f"[Arduino] WARNING: several ports found {candidates}. "
+                      f"Using {port}. If that is not the Mega, put the right port "
+                      f"in SERIAL_PORT or unplug the other board.")
+            with serial.Serial(port, BAUD, timeout=1) as ser:
+                print(f"[Arduino] connected on {port} at {BAUD} baud")
+                STATUS["arduino"] = {"connected": True, "port": port, "error": None, "since": now_iso()}
+                time.sleep(2)              # the Arduino may reset when the port opens
                 ser.reset_input_buffer()
                 while True:
                     raw = ser.readline()
-                    riga = raw.decode("utf-8", errors="ignore").strip()
-                    if DEBUG_SERIALE and raw.strip():
-                        print(f"[Arduino] byte ricevuti: {raw!r}")
-                    if not riga:
+                    line = raw.decode("utf-8", errors="ignore").strip()
+                    if DEBUG_SERIAL and raw.strip():
+                        print(f"[Arduino] bytes received: {raw!r}")
+                    if not line:
                         continue
-                    m = re.search(r"B(\d+)", riga)
+                    m = re.search(r"B(\d+)", line)
                     if m:
-                        gestisci_bottone(m.group(1))
+                        handle_button(m.group(1))
         except (serial.SerialException, OSError) as e:
-            print(f"[Arduino] scollegato ({e}). Riprovo...")
+            print(f"[Arduino] disconnected ({e}). Retrying...")
+            STATUS["arduino"] = {"connected": False, "port": port, "error": str(e)[:200]}
             time.sleep(3)
 
 
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
-    carica_mappa()
-    if MAPPA:
-        print("Mappatura bottoni caricata:", dict(sorted(MAPPA.items())),
-              "(bottone fisico -> webcam)\n")
-    if not WAX_URL:
-        print("Wax canvas: WAX_URL è vuoto, le foto restano solo in frames/.\n")
+    load_button_map()
+    if BUTTON_MAP:
+        print("Button map loaded:", dict(sorted(BUTTON_MAP.items())),
+              "(physical button -> webcam)\n")
+    print(f"Frames are sent to the station at {WAX_URL}\n" if WAX_URL else
+          f"Frames are saved in: {OUTPUT_DIR}\n")
+    threading.Thread(target=write_status, daemon=True).start()
     if serial is None:
-        print("pyserial non installato: riapri 1_INSTALLA_UNA_VOLTA.command "
-              "per attivare Arduino. Per ora funziona solo la tastiera.\n")
+        STATUS["arduino"] = {"connected": False, "port": None, "error": "pyserial not installed"}
+        print("pyserial not installed: run 1_INSTALL_ONCE.command again "
+              "to enable the Arduino. For now only the keyboard works.\n")
     else:
-        threading.Thread(target=ascolta_seriale, daemon=True).start()
-    print("Scrivi 1, 2, 3 o 4 + Invio per salvare da quella webcam.")
-    print("a + Invio = tutte e 4 insieme.  m + Invio = rimappa i bottoni.  q + Invio = esci.")
-    print(f"Le immagini finiscono in: {OUTPUT_DIR}\n")
+        threading.Thread(target=listen_serial, daemon=True).start()
+    print("Type 1, 2, 3 or 4 + Enter to save from that webcam.")
+    print("a + Enter = all 4 at once.  m + Enter = map the buttons.  q + Enter = quit.\n")
     while True:
         try:
             cmd = input("> ").strip().lower()
@@ -346,11 +376,11 @@ if __name__ == "__main__":
         if cmd == "q":
             break
         if cmd == "m":
-            mappa_bottoni()
+            map_buttons()
         elif cmd == "a":
-            threads = [scatta(c) for c in CAMERAS]
+            threads = [capture(c) for c in CAMERAS]
             for t in threads:
                 if t:
                     t.join()
         elif cmd:
-            scatta(cmd)
+            capture(cmd)

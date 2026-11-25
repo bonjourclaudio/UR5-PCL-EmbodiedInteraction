@@ -16,6 +16,7 @@
          -webkit-font-smoothing: antialiased; font-feature-settings: "tnum" 1; }
   button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; border-radius: 0; }
   button:disabled { cursor: not-allowed; }
+  [hidden] { display: none !important; }
   .wrap { padding-inline: var(--pad); }
   header.wrap, footer.wrap { padding-inline: 0; margin-inline: var(--pad); }
   .grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gut); }
@@ -34,6 +35,16 @@
   .btn:disabled { border-color: var(--hair); color: var(--hair); }
   .btn.stop { background: var(--red); border-color: var(--red); color: #fff; min-width: 96px; }
   .btn.stop:hover { background: #b30015; border-color: #b30015; }
+
+  /* ---------------- connectivity */
+  #conn { padding-top: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); row-gap: 14px; }
+  header.wrap, footer.wrap, #conn.wrap { padding-inline: 0; margin-inline: var(--pad); }
+  .cn { grid-column: span 4; min-width: 0; }
+  .cn .k { font-size: 12px; color: var(--grey); }
+  .cn .v { font-size: 17px; font-weight: 700; letter-spacing: -.015em; margin-top: 1px; }
+  .cn .d { font-size: 12px; color: var(--grey); margin-top: 2px; overflow-wrap: anywhere; }
+  .cn.bad .v { color: var(--red); }
+  .cn.warn .v { color: var(--red); }
 
   /* ---------------- messages + job band */
   #msg { display: none; border-bottom: 1px solid var(--rule); padding: 12px var(--pad); font-weight: 700; }
@@ -101,7 +112,8 @@
   .go:disabled { background: var(--paper); color: var(--hair); border-color: var(--hair); }
   .go.confirm { background: var(--red); border-color: var(--red); color: #fff; }
   .go.confirm:hover { background: #b30015; color: #fff; }
-  .ask { font-size: 13px; font-weight: 700; }
+  .nogo { height: 52px; display: flex; align-items: center; padding: 0 16px; border: 1px solid var(--hair);
+          color: var(--grey); font-size: 14px; font-weight: 700; }
   .cancel { font-size: 13px; color: var(--grey); text-align: left; text-decoration: underline; text-underline-offset: 3px; }
 
   footer { font-size: 12px; color: var(--grey); border-top: 1px solid var(--rule); padding-top: 10px; padding-bottom: 24px; }
@@ -115,6 +127,7 @@
     .jtime { grid-column: 1 / span 6; } #job .btn.stop { grid-column: 7 / span 6; }
   }
   @media (max-width: 640px) {
+    .cn,
     .cam, .robot, .tools, .jk, .jcount, .jtime, #job .btn.stop { grid-column: 1 / -1; }
     .tools { justify-content: flex-start; margin-top: 14px; }
     #job .btn.stop { justify-self: stretch; }
@@ -130,6 +143,11 @@
     <button class="btn stop" id="stopTop">STOP</button>
   </div>
 </header>
+<section class="wrap grid" id="conn">
+  <div class="cn" id="cRobot"><div class="k">Robot</div><div class="v">…</div><div class="d"></div></div>
+  <div class="cn" id="cButtons"><div class="k">Arduino</div><div class="v">…</div><div class="d"></div></div>
+  <div class="cn" id="cCams"><div class="k">Webcams</div><div class="v">…</div><div class="d"></div></div>
+</section>
 <div id="msg"></div>
 <section id="job">
   <div class="grid">
@@ -225,15 +243,28 @@ function card(c) {
     </dl>
     ${pv && pv.too_many ? `<div class="warn">${esc(pv.too_many)}</div>` : ""}
     ${c.error ? `<div class="warn">Last attempt: ${esc(c.error)}</div>` : ""}
+    ${c.fetch && c.fetch.error && (!c.fetch.ok_at || c.fetch.error_at > c.fetch.ok_at)
+        ? `<div class="warn">Webcam fetch failed ${clock(c.fetch.error_at)}: ${esc(c.fetch.error)}</div>` : ""}
     <div class="act"></div>`;
 
   el.querySelectorAll(".tabs button").forEach(b => b.onclick = () => { showDots[c.cam] = b.dataset.v === "1"; render(); });
 
   const act = $(".act", el);
-  if (armed === key && !busy) {
-    act.innerHTML = `<div class="ask">Wax plate ready, tool hot, nobody at the canvas?</div>`;
+  // the button only appears when a click can actually start an engraving
+  const r = status.robot || {};
+  const why = c.state === "in progress" ? "Engraving now"
+    : !c.latest ? "No frame yet"
+    : !r.reachable ? "Robot not connected"
+    : r.ready ? "Robot not ready"
+    : busy ? "Robot busy"
+    : !pv ? "Preparing preview"
+    : pv.error || pv.too_many ? "Frame cannot be engraved"
+    : null;
+  if (why) {
+    act.innerHTML = `<div class="nogo">${why}</div>`;
+  } else if (armed && armed === key) {
     const yes = document.createElement("button");
-    yes.className = "go confirm"; yes.textContent = `Start · ≈ ${mins(pv && pv.estimate_s)}`;
+    yes.className = "go confirm"; yes.textContent = `Start · ≈ ${mins(pv.estimate_s)}`;
     yes.onclick = () => start(c);
     const no = document.createElement("button");
     no.className = "cancel"; no.textContent = "Cancel";
@@ -242,9 +273,8 @@ function card(c) {
   } else {
     const b = document.createElement("button");
     b.className = "go";
-    b.textContent = c.state === "in progress" ? "Engraving" : "Update engraving";
-    b.disabled = busy || !c.latest || !pv || !!pv.error || !!pv.too_many;
-    b.title = busy ? "the robot is busy" : !c.latest ? "no frame yet" : c.state === "engraved" ? "engrave the same frame again" : "";
+    b.textContent = "Update engraving";
+    if (c.state === "engraved") b.title = "engrave the same frame again";
     b.onclick = () => {
       armed = key; render();
       clearTimeout(armTimer); armTimer = setTimeout(() => { armed = null; render(); }, 15000);
@@ -281,14 +311,46 @@ function renderJob() {
   if (atEnd) log.scrollTop = log.scrollHeight;
 }
 
+function conn(id, cls, value, detail) {
+  const el = $(id);
+  el.className = "cn " + cls;
+  $(".v", el).textContent = value;
+  $(".d", el).textContent = detail;
+}
+const clock = iso => iso ? when(iso).split(" ")[1] : "—";
+
+function renderConn() {
+  const r = status.robot || {};
+  if (!r.reachable) conn("#cRobot", "bad", "Not connected", `${status.host} · ${r.error || ""}`);
+  else conn("#cRobot", r.ready ? "warn" : "ok", r.ready ? "Not ready" : "Ready",
+            (r.ready ? r.ready + " · " : "") + `${r.mode} · ${r.safety} · ${r.remote ? "Remote" : "Local"} · ${status.host}`);
+
+  const c = status.capture || {};
+  const a = c.arduino || {};
+  const press = c.last_press ? ` · last press ${clock(c.last_press.at)} → cam ${pad2(+c.last_press.cam)}` : "";
+  if (!c.running) conn("#cButtons", "bad", "Capture script not running",
+                       c.heartbeat ? `last sign of life ${when(c.heartbeat)} (${ago(c.heartbeat)})` : "start webcams.py");
+  else if (!a.connected) conn("#cButtons", "bad", "Arduino not connected", (a.error || "") + press);
+  else conn("#cButtons", "ok", "Connected", `${a.port}` + press);
+
+  const fetch = status.cams.map(x => [x.cam, x.fetch]).filter(([, f]) => f);
+  const failing = fetch.filter(([, f]) => f.error && (!f.ok_at || f.error_at > f.ok_at));
+  if (!c.running) conn("#cCams", "", "—", "no capture script");
+  else if (!fetch.length) conn("#cCams", "", "No fetch yet", "press a button to fetch a frame");
+  else if (failing.length) conn("#cCams", "bad", `${failing.length} failing`,
+       failing.map(([cam, f]) => `cam ${camNo(cam)}: ${f.error}`).join(" · "));
+  else conn("#cCams", "ok", "Fetching OK", fetch.map(([cam, f]) => `${camNo(cam)} ${clock(f.ok_at)}`).join(" · "));
+}
+
 function render() {
   if (!status) return;
+  renderConn();
   const real = status.target === "real";
   $("#robot").innerHTML = `<div class="${real ? "" : "sim"}"><b>${real ? "Real robot" : "UR5e"}</b>${esc(status.host)}` +
     (status.extra.length ? `<br>${esc(status.extra.join(" "))}` : "") + `</div>`;
   const lj = status.last_job;
   $("#foot").textContent = lj ? `Last job — ${lj.kind}${lj.cam ? " cam " + camNo(lj.cam) : ""}, ${when(lj.ended)}: ${lj.ok ? "finished" : lj.error}` : "No job yet.";
-  $("#lift").disabled = !!status.job;
+  $("#lift").hidden = !!status.job || !!(status.robot && status.robot.ready);
   renderJob();
   const grid = $("#cams");
   grid.replaceChildren(...status.cams.map(card));
@@ -300,10 +362,13 @@ async function poll() {
   try {
     const r = await fetch("/api/status");
     status = await r.json();
-    const sig = JSON.stringify([status.cams, !!status.job, status.last_job]);
-    if (sig !== lastSig) { lastSig = sig; render(); } else { renderJob(); }
+    const sig = JSON.stringify([status.cams, !!status.job, status.last_job, status.robot && status.robot.ready, status.robot && status.robot.reachable]);
+    if (sig !== lastSig) { lastSig = sig; render(); } else { renderJob(); renderConn(); }
   } catch (e) {
     $("#robot").innerHTML = `<b>Server not reachable</b>is engrave_server.py running?`;
+    conn("#cRobot", "bad", "Unknown", "station server not reachable");
+    conn("#cButtons", "bad", "Unknown", "station server not reachable");
+    conn("#cCams", "bad", "Unknown", "station server not reachable");
   }
 }
 async function stop() {

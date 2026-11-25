@@ -102,6 +102,16 @@ def dashboard(host: str, *cmds: str) -> list[str]:
     return out
 
 
+def robot_ready_from(r: dict, target: str) -> str | None:
+    if r["mode"] != "RUNNING":
+        return f"robot {r['mode']} — pendant: ON -> START"
+    if r["safety"] != "NORMAL":
+        return f"{r['safety']} — clear it on the pendant"
+    if not r["remote"]:
+        return "pendant in Local mode — switch to Remote Control"
+    return None
+
+
 def robot_ready(host: str, target: str) -> str | None:
     """None if the arm can be driven, else the reason."""
     try:
@@ -127,8 +137,48 @@ class Station:
         self.job: dict | None = None
         self.lock = threading.Lock()
         self.previews: dict[str, dict] = {}
+        self.robot = {"reachable": False, "checked": None, "error": "not checked yet"}
+        self.capture_file = frames.parent / "capture_status.json"
+        self.capture_posted: dict | None = None             # from webcams.py on another computer
+        threading.Thread(target=self._watch_robot, daemon=True).start()
         JOBS.mkdir(parents=True, exist_ok=True)
         PREVIEWS.mkdir(parents=True, exist_ok=True)
+
+    # -- connectivity (read-only)
+    def _watch_robot(self):
+        while True:
+            now = datetime.now().isoformat(timespec="seconds")
+            try:
+                mode, safety, remote, prog = dashboard(self.host, "robotmode", "safetystatus",
+                                                       "is in remote control", "programState")
+                self.robot = {"reachable": True, "checked": now,
+                              "mode": mode.split(":", 1)[-1].strip(),
+                              "safety": safety.split(":", 1)[-1].strip(),
+                              "remote": "true" in remote.lower(), "program": prog.split()[0] if prog else ""}
+                self.robot["ready"] = robot_ready_from(self.robot, self.target)
+            except OSError as e:
+                self.robot = {"reachable": False, "checked": now, "error": str(e) or type(e).__name__,
+                              "ready": f"not reachable at {self.host}"}
+            time.sleep(2)
+
+    def capture_status(self) -> dict:
+        """webcams.py heartbeat: file next to frames/ (same computer) or POSTed (other computer)."""
+        cands = []
+        try:
+            cands.append(json.loads(self.capture_file.read_text()))
+        except (OSError, ValueError):
+            pass
+        if self.capture_posted:
+            cands.append(self.capture_posted)
+        if not cands:
+            return {"running": False, "why": "capture script never started"}
+        st = max(cands, key=lambda c: c.get("heartbeat") or "")
+        try:
+            age = (datetime.now() - datetime.fromisoformat(st["heartbeat"])).total_seconds()
+        except (KeyError, ValueError):
+            age = 1e9
+        return {**st, "running": age < 10, "age_s": round(age),
+                "why": None if age < 10 else "capture script not running"}
 
     def save_state(self):
         tmp = self.state_file.with_suffix(".tmp")
@@ -175,7 +225,11 @@ class Station:
                          "engraved_frame": st.get("engraved_frame"), "engraved_at": st.get("engraved_at"),
                          "engraved_captured_at": st.get("engraved_captured_at"),
                          "error": st.get("error"), "on_canvas": self.state.get("on_canvas") == d.name})
+        cap = self.capture_status()
+        for c in cams:
+            c["fetch"] = (cap.get("cams") or {}).get(c["cam"])
         return {"target": self.target, "host": self.host, "extra": self.extra, "cams": cams,
+                "robot": self.robot, "capture": cap,
                 "job": self.job_progress() if self.job else None,
                 "last_job": self.state.get("last_job")}
 
@@ -361,6 +415,9 @@ class Handler(BaseHTTPRequestHandler):
             if self.path.startswith("/api/upload"):
                 return self.json(st.upload(Path(self.headers.get("X-Filename", "")).name, body))
             req = json.loads(body or b"{}")
+            if self.path == "/api/capture_status":
+                st.capture_posted = req
+                return self.json({"ok": True})
             if self.path == "/api/engrave":
                 return self.json(st.engrave(req["cam"], req["frame"]))
             if self.path == "/api/stop":
