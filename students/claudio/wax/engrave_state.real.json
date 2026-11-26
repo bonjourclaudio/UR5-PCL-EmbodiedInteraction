@@ -1,6 +1,6 @@
 {
   "cams": {
-    "cam2": {
+    "cam3": {
       "error": null,
       "engraved_frame": "frame_20261125_172857_066.jpg",
       "engraved_captured_at": "2026-11-25T17:28:57",
@@ -9,11 +9,11 @@
   },
   "last_job": {
     "kind": "engrave",
-    "cam": "cam2",
+    "cam": "cam3",
     "ok": true,
     "error": null,
     "log": "20261125_172922_engrave_cam2.log",
     "ended": "2026-11-25T17:38:40"
   },
-  "on_canvas": "cam2"
+  "on_canvas": "cam3"
 }
